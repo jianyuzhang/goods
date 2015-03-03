@@ -134,16 +134,20 @@ body {
 
 	<script type="text/javascript">
 		var app = angular.module('login', []);
-		app.controller('baseCtrl', function($scope) {
+		app.controller('baseCtrl', function($scope, $http) {
 			$scope.title = '登录页';
 
 			$scope.submit = function() {
-				$scope.errorMsg = '账号：' + $scope.username + ' 密码：' + $scope.password;
-				$("#myModal").modal({
-					"backdrop" : "static",
-					"keyboard" : true,
-					"show" : true
-				});
+				if (!$scope.username || !$scope.password) {
+					$scope.errorMsg = '账号密码不能为空';
+					$("#myModal").modal({
+						"backdrop" : "static",
+						"keyboard" : true,
+						"show" : true
+					});
+				} else {
+
+				}
 			};
 		});
 	</script>
