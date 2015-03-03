@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjy.models.User">
+    <resultMap type="User" id="userMap">
+        <id property="uid" column="uid"/>
+        <result property="loginname" column="loginname"/>
+        <result property="loginpass" column="loginpass"/>
+        <result property="email" column="email"/>
+        <result property="status" column="status"/>
+        <result property="activationCode" column="activationCode"/>
+        <result property="reloginpass" column="reloginpass"/>
+        <result property="verifyCode" column="verifyCode"/>
+        <result property="newpass" column="newpass"/>
+    </resultMap>
+    <select id="selectAll" resultMap="userMap">
+        select * from t_user
+    </select>
+    <select id="findByNameAndPassword" parameterType="java.util.Map"
+		resultType="int">
+		select count(*) from t_user t
+		<where>
+			<if test="uid != null">
+				AND t.loginname= #{loginname}
+			</if>
+			<if test="loginpass != null">
+				AND t.loginpass= #{loginpass}
+			</if>
+		</where>
+	</select>
+	<select id="ajaxValidateLoginname" parameterType="java.util.Map"
+		resultType="int">
+		select count(*) from t_user t
+		<where>
+			<if test="loginname != null">
+				AND t.loginname= #{loginname}
+			</if>
+		</where>
+	</select>
+	<select id="ajaxValidateEmail" parameterType="java.util.Map"
+		resultType="int">
+		select count(*) from t_user t
+		<where>
+			<if test="email != null">
+				AND t.email= #{email}
+			</if>
+		</where>
+	</select>
+	<insert id="insert" parameterType="User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+       	uid,
+      <if test="loginname != null">
+        loginname, 
+      </if>  
+      <if test="loginpass != null" >
+        loginpass,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+       <if test="status != null" >
+        status,
+      </if>
+      <if test="activationCode != null">
+		activationCode,
+	  </if>
+	  
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+       #{uid},
+     <if test="loginname != null">
+		#{loginname},
+	 </if>
+     <if test="loginpass != null" >
+        #{loginpass},
+      </if>
+     <if test="email != null" >
+        #{email},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="activationCode != null">
+		#{activationCode},
+	  </if>
+     </trim>
+    </insert>
+</mapper>
