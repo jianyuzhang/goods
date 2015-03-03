@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8">
-<title>{{title}}</title>
+<title ng-bind="title"></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/css/style.min.css" rel="stylesheet">
@@ -32,33 +32,38 @@ body {
 		<div class="row">
 			<div class="row">
 				<div class="login-box">
-					<div class="icons">
-						<a href="index.html"><i class="halflings-icon home"></i></a> <a href="login.html#"><i class="halflings-icon cog"></i></a>
-					</div>
+					<hr>
+					<div class="icons"></div>
 					<h2>Login to your account</h2>
 					<form class="form-horizontal" action="index.html" method="post">
 						<fieldset>
 							<div class="input-wrap">
 								<div class="input-prepend input-group" title="Username">
-									<span class="input-group-addon"><i class="fa fa-user"></i></span> <input class="form-control" name="username" id="username" type="text" placeholder="type username" />
+									<span class="input-group-addon">
+										<i class="fa fa-user"></i>
+									</span>
+									<input class="form-control" id="username" type="text" placeholder="用户名" ng-model="username" />
 								</div>
 							</div>
 							<div class="input-wrap">
 								<div class="input-prepend input-group" title="Password">
-									<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input class="form-control" name="password" id="password" type="password" placeholder="type password" />
+									<span class="input-group-addon">
+										<i class="fa fa-lock"></i>
+									</span>
+									<input class="form-control" id="password" type="password" placeholder="密码" ng-model="password" />
 								</div>
 							</div>
-							<label for="remember" class="remember"><input type="checkbox" id="remember">Remember me</label>
+							<label for="remember" class="remember">
+								<input type="checkbox" id="remember">
+								Remember me
+							</label>
 							<div class="button-login">
-								<button type="submit" class="btn btn-primary">Login</button>
+								<button type="button" class="btn btn-primary" ng-click="submit()">Login</button>
 							</div>
 							<div class="clearfix"></div>
 					</form>
 					<hr>
-					<h3>Forgot Password?</h3>
-					<p>
-						No problem, <a href="login.html#">click here</a> to get a new password.
-					</p>
+					<div class="icons"></div>
 				</div>
 				<!--/col-->
 			</div>
@@ -72,25 +77,22 @@ body {
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Modal title</h4>
+						<h4 class="modal-title">信息</h4>
 					</div>
 					<div class="modal-body">
-						<p>Here settings can be configured...</p>
+						<p ng-bind="errorMsg"></p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
 					</div>
 				</div>
 				<!-- /.modal-content -->
 			</div>
 			<!-- /.modal-dialog -->
 		</div>
-		<!-- /.modal -->
 
 	</div>
 	<!--/container-->
-
 
 	<!-- start: JavaScript-->
 	<!--[if !IE]>-->
@@ -134,6 +136,15 @@ body {
 		var app = angular.module('login', []);
 		app.controller('baseCtrl', function($scope) {
 			$scope.title = '登录页';
+
+			$scope.submit = function() {
+				$scope.errorMsg = '账号：' + $scope.username + ' 密码：' + $scope.password;
+				$("#myModal").modal({
+					"backdrop" : "static",
+					"keyboard" : true,
+					"show" : true
+				});
+			};
 		});
 	</script>
 </body>
