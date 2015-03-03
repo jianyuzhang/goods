@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="login" ng-controller="baseCtrl">
 <head>
 
 <meta charset="utf-8">
+<title>{{title}}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/css/style.min.css" rel="stylesheet">
@@ -126,8 +127,14 @@ body {
 	<!-- theme scripts -->
 	<script src="assets/js/custom.min.js"></script>
 	<script src="assets/js/core.min.js"></script>
-
+	<script src="assets/js/angular.min.js"></script>
 	<!-- end: JavaScript-->
 
+	<script type="text/javascript">
+		var app = angular.module('login', []);
+		app.controller('baseCtrl', function($scope) {
+			$scope.title = '登录页';
+		});
+	</script>
 </body>
 </html>
