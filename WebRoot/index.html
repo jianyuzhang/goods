@@ -115,10 +115,13 @@ body {
 	<script src="assets/js/custom.min.js"></script>
 	<script src="assets/js/core.min.js"></script>
 	<script src="assets/js/angular.min.js"></script>
+	<script src="assets/js/pages/angularConfig.js"></script>
 	<!-- end: JavaScript-->
 
 	<script type="text/javascript">
 		var app = angular.module('login', []);
+		angularConfig(app);
+		
 		app.controller('baseCtrl', function($scope, $http) {
 			$scope.title = '登录页';
 
@@ -131,11 +134,9 @@ body {
 						"show" : true
 					});
 				} else {
-					$http.get('operate/user/login.do', {
-						params : {
-							loginname : $scope.username,
-							loginpass : $scope.password
-						}
+					$http.post('operate/user/login.do', {
+						loginname : $scope.username,
+						loginpass : $scope.password
 					}).success(function() {
 						// window.location.href = "main.html";
 					});
