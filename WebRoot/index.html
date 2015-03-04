@@ -131,7 +131,14 @@ body {
 						"show" : true
 					});
 				} else {
-					window.location.href = "main.html";
+					$http.get('operate/user/login.do', {
+						params : {
+							loginname : $scope.username,
+							loginpass : $scope.password
+						}
+					}).success(function() {
+						// window.location.href = "main.html";
+					});
 				}
 			};
 		});
