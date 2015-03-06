@@ -12,25 +12,21 @@ app.controller('registCtrol', function($scope, $http, $element) {
 	};
 
 	$scope.change = function(target) {
-		if (!$scope[target]) {
-			$element.find('input[ng-model="' + target + '"]').popover({
+		if (!$scope.user[target]) {
+			$element.find('input[name="' + target + '"]').popover({
 				content : $scope.errorTips[target],
 				placement : 'top',
-				trigger: 'manual'
+				trigger : 'manual'
 			});
-			$element.find('input[ng-model="' + target + '"]').popover('show');
+			$element.find('input[name="' + target + '"]').popover('show');
 		} else {
-			$element.find('input[ng-model="' + target + '"]').popover('destroy');
+			$element.find('input[name="' + target + '"]').popover('destroy');
 		}
 	};
 
 	$scope.submit = function() {
 		if ($scope.registForm.$valid) {
-			$http.post("/goods/operate/user/registUser.do", {
-				loginname : $scope.loginname,
-				loginpass : $scope.password,
-				email : $scope.email,
-			}).success(function(result) {
+			$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
 				if (!result) {
 					$scope.errorMsg = '注册失败';
 					$("#myModal").modal({

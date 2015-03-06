@@ -28,6 +28,10 @@ body {
 	width: 14px;
 }
 
+.popover {
+	z-index: 9999999;
+}
+
 #verify {
 	width: 100px;
 }
@@ -55,7 +59,7 @@ body {
 									<span class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</span>
-									<input class="form-control" type="text" placeholder="用户名" ng-model="loginname" ng-change="change('loginname')" required />
+									<input name="loginname" class="form-control" type="text" placeholder="用户名" ng-model="user.loginname" ng-change="change('loginname')" required />
 								</div>
 							</div>
 							<div class="input-wrap">
@@ -63,7 +67,7 @@ body {
 									<span class="input-group-addon">
 										<i class="fa fa-lock"></i>
 									</span>
-									<input class="form-control" type="password" placeholder="密码" ng-model="password" ng-change="change('password')" required />
+									<input name="password" class="form-control" type="password" placeholder="密码" ng-model="user.password" ng-change="change('password')" required />
 								</div>
 							</div>
 
@@ -72,7 +76,7 @@ body {
 									<span class="input-group-addon">
 										<i class="fa fa-lock"></i>
 									</span>
-									<input class="form-control" type="password" placeholder="重新密码" ng-model="repassword" ng-change="change('repassword')" required />
+									<input name="repassword" class="form-control" type="password" placeholder="重新密码" ng-model="user.repassword" ng-change="change('repassword')" required />
 								</div>
 							</div>
 
@@ -81,7 +85,7 @@ body {
 									<span class="input-group-addon">
 										<i class="fa fa-envelope"></i>
 									</span>
-									<input class="form-control" type="text" placeholder="邮箱" ng-model="email" ng-change="change('email')" required />
+									<input name="email" class="form-control" type="text" placeholder="邮箱" ng-model="user.email" ng-change="change('email')" required />
 								</div>
 							</div>
 

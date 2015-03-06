@@ -138,17 +138,8 @@ body {
 					$http.post('operate/user/login.do', {
 						loginname : $scope.username,
 						loginpass : $scope.password
-					}).success(function(result) {
-						if(result){
-						 window.location.href = "main.html";
-						}else{
-							$scope.errorMsg = '登录失败，请重新登陆！';
-							$("#myModal").modal({
-								"backdrop" : "static",
-								"keyboard" : true,
-								"show" : true
-							});
-						}
+					}).success(function() {
+						// window.location.href = "main.html";
 					});
 				}
 			};
