@@ -19,7 +19,7 @@
 		resultType="int">
 		select count(*) from t_user t
 		<where>
-			<if test="uid != null">
+			<if test="loginname != null">
 				AND t.loginname= #{loginname}
 			</if>
 			<if test="loginpass != null">
