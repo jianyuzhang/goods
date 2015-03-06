@@ -69,17 +69,17 @@ public class UserController{
     	}
     /**
      * 登陆
+     * @throws Exception 
      */
     @RequestMapping("login.do")
-    public ModelAndView Login(HttpServletRequest request,HttpServletResponse response){
+    public void Login(HttpServletRequest request,HttpServletResponse response) throws Exception{
     	System.out.println("111");
     	String loginName=request.getParameter("loginname");
     	String loginPass=request.getParameter("loginpass");
     	String[] properties={"loginname","loginpass"};
     	Object[] values={loginName,loginPass};
-    	String vCode=(String) request.getSession().getAttribute("vCode");
-    	System.out.println(loginName);
-    	return null;
+    	int i=userService.login(properties, values);
+    	response.getWriter().print(i>0);
     }
     /**
      * 验证用户名是否重名

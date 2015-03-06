@@ -24,8 +24,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int login(String[] properties,Object[] values) {
-		userDao.selectByProperties(".findByUidAndPassword", properties, values);
-		return 0;
+		int i =userDao.selectByProperties(".findByNameAndPassword", properties, values);
+		return i;
 	}
 
 	@Override
