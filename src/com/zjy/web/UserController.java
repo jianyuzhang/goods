@@ -51,6 +51,7 @@ public class UserController{
     			 {
     	    ServletOutputStream out = response.getOutputStream(); 
     		VerifyCode vc = new VerifyCode();
+    		request.getSession().setAttribute("vCode", vc.getText());
     		BufferedImage image = vc.getImage();//获取一次性验证码图片
     		// 该方法必须在getImage()方法之后来调用
 //    		System.out.println(vc.getText());//获取图片上的文本
@@ -62,7 +63,6 @@ public class UserController{
 			}//把图片写到指定流中
     		
     		// 把文本保存到session中，为LoginServlet验证做准备
-    		request.getSession().setAttribute("vCode", vc.getText());
     		out.flush();
     		out.close();
     		return null;
@@ -78,7 +78,7 @@ public class UserController{
     	String[] properties={"loginname","loginpass"};
     	Object[] values={loginName,loginPass};
     	String vCode=(String) request.getSession().getAttribute("vCode");
-    	System.out.println(vCode);
+    	System.out.println(loginName);
     	return null;
     }
     /**
@@ -127,7 +127,7 @@ public class UserController{
     	String loginpass=request.getParameter("loginpass");
     	String email=request.getParameter("email");
     	String verifyCode=request.getParameter("verifyCode");
-    	boolean flag=((String) request.getSession().getAttribute("vCode")).equalsIgnoreCase(verifyCode);
+    	//boolean flag=((String) request.getSession().getAttribute("vCode")).equalsIgnoreCase(verifyCode);
     	boolean flag1=userService.ajaxValidateLoginname(loginname)<1;
     	boolean flag2=userService.ajaxValidateEmail(email)<1;
     	System.out.println(loginname+loginpass+email);
@@ -143,7 +143,7 @@ public class UserController{
 		user.setActivationCode(activationCode);
 		System.out.println(user.toString());
 		int i=0;
-		if(flag&&flag1&&flag2){
+		if(flag1&&flag2){
 		i=userService.regist(user);
 		}
 		Map<String,Object> map = new HashMap<String,Object>();

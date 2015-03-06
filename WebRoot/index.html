@@ -51,6 +51,7 @@ body {
 							<label for="remember" class="remember"> <input type="checkbox" id="remember"> Remember me
 							</label>
 							<div class="button-login">
+							    <button type="button" class="btn" ng-click="regist()">Regist</button>
 								<button type="button" class="btn btn-primary" ng-click="submit()">Login</button>
 							</div>
 							<div class="clearfix"></div>
@@ -142,6 +143,9 @@ body {
 					});
 				}
 			};
+			$scope.regist=function(){
+				window.location.href = "user/regist.html";
+			}
 		});
 	</script>
 </body>
