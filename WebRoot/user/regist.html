@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="regist" ng-controller="registCtrol">
 <head>
-	
-	<meta charset="utf-8">
+
+<meta charset="utf-8">
 <title ng-bind="title"></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -18,55 +18,76 @@
 <!--[if IE 9]>
 		<link id="ie9style" href="assets/css/ie9.css" rel="stylesheet">
 	<![endif]-->
-	<style type="text/css">
+<style type="text/css">
 body {
 	background: url("/goods/assets/img/bg-login.jpg") !important;
+	overflow: hidden;
 }
-#verify{
-    width:100px;
+
+.fa {
+	width: 14px;
 }
-#verifyCode {width:80px;height:34px;}
-</style> 
+
+#verify {
+	width: 100px;
+}
+
+#verifyCode {
+	width: 80px;
+	height: 34px;
+}
+</style>
 </head>
 <body>
 
 
-<div class="container">
+	<div class="container">
 		<div class="row">
 			<div class="row">
 				<div class="login-box">
 					<hr>
 					<div class="icons"></div>
 					<h2>Free registration</h2>
-					<form class="form-horizontal" action="index.html" method="post">
+					<form name="registForm" class="form-horizontal" action="index.html" method="post">
 						<fieldset>
 							<div class="input-wrap">
 								<div class="input-prepend input-group" title="Loginname">
-									<span class="input-group-addon"> <i class="fa fa-user"></i>
-									</span> <input class="form-control" id="loginname" type="text" placeholder="用户名" ng-model="loginname" />
+									<span class="input-group-addon">
+										<i class="fa fa-user"></i>
+									</span>
+									<input class="form-control" type="text" placeholder="用户名" ng-model="loginname" ng-change="change('loginname')" required />
 								</div>
 							</div>
 							<div class="input-wrap">
 								<div class="input-prepend input-group" title="Password">
-									<span class="input-group-addon"> <i class="fa fa-lock"></i>
-									</span> <input class="form-control" id="password" type="password" placeholder="密码" ng-model="password" />
+									<span class="input-group-addon">
+										<i class="fa fa-lock"></i>
+									</span>
+									<input class="form-control" type="password" placeholder="密码" ng-model="password" ng-change="change('password')" required />
 								</div>
 							</div>
-							
+
 							<div class="input-wrap">
 								<div class="input-prepend input-group" title="Repassword">
-									<span class="input-group-addon"> <i class="fa fa-lock"></i>
-									</span> <input class="form-control" id="repassword" type="password" placeholder="重新密码" ng-model="repassword" />
+									<span class="input-group-addon">
+										<i class="fa fa-lock"></i>
+									</span>
+									<input class="form-control" type="password" placeholder="重新密码" ng-model="repassword" ng-change="change('repassword')" required />
 								</div>
 							</div>
+
 							<div class="input-wrap">
 								<div class="input-prepend input-group" title="Email">
-									<span class="input-group-addon"> <i class="glyphicon glyphicon-envelope"></i>
-									</span> <input class="form-control" id="email" type="text" placeholder="邮箱" ng-model="email" />
+									<span class="input-group-addon">
+										<i class="fa fa-envelope"></i>
+									</span>
+									<input class="form-control" type="text" placeholder="邮箱" ng-model="email" ng-change="change('email')" required />
 								</div>
 							</div>
-							
-							<label for="remember" class="remember"> <input type="checkbox" id="remember"> Remember me
+
+							<label for="remember" class="remember">
+								<input type="checkbox" id="remember" />
+								Remember me
 							</label>
 							<div class="button-login">
 								<button type="button" class="btn btn-primary" ng-click="submit()">Regist</button>
@@ -110,7 +131,6 @@ body {
 	<script type="text/javascript">
 		window.jQuery || document.write("<script src='/goods/assets/js/jquery-2.1.0.min.js'>" + "<"+"/script>");
 	</script>
-
 	<!--<![endif]-->
 
 	<!--[if IE]>
@@ -130,72 +150,7 @@ body {
 	<script src="/goods/assets/js/angular.min.js"></script>
 	<script src="/goods/assets/js/pages/angularConfig.js"></script>
 	<!-- end: JavaScript-->
-	
-	<script type="text/javascript">
-	  var app = angular.module("regist",[]);
-	  angularConfig(app);
-	  
-	  app.controller('registCtrol',function($scope,$http){
-		  $scope.title="注册页";
-		  
-	$scope.submit = function(){
-		if(!$scope.loginname){
-			$scope.errorMsg = '登录名不能为空';
-			$("#myModal").modal({
-				"backdrop" : "static",
-				"keyboard" : true,
-				"show" : true
-			});
-		}else if(!$scope.password){
-			$scope.errorMsg = '密码不能为空';
-			$("#myModal").modal({
-				"backdrop" : "static",
-				"keyboard" : true,
-				"show" : true
-			});
-		}else if(!$scope.repassword){
-			$scope.errorMsg = '确认密码不能为空';
-			$("#myModal").modal({
-				"backdrop" : "static",
-				"keyboard" : true,
-				"show" : true
-			});
-		}else if(!$scope.email){
-			$scope.errorMsg = '邮箱不能为空';
-			$("#myModal").modal({
-				"backdrop" : "static",
-				"keyboard" : true,
-				"show" : true
-			});
-		}else if(!$scope.verifyCode){
-			$scope.errorMsg = '验证码不能为空';
-			$("#myModal").modal({
-				"backdrop" : "static",
-				"keyboard" : true,
-				"show" : true
-			});
-		}else{
-			$http.post("/goods/operate/user/registUser.do",
-					{
-				      loginname : $scope.loginname,
-				      loginpass : $scope.password,
-				          email : $scope.email,
-					}).success(function(result){
-						if(!result){
-							$scope.errorMsg = '注册失败';
-							$("#myModal").modal({
-								"backdrop" : "static",
-								"keyboard" : true,
-								"show" : true
-							});
-						}else{
-							 window.location.href = "/goods/index.html";
-						}
-					});
-		}
-	}
-		  
-	  })
-	</script>
+
+	<script type="text/javascript" src="/goods/js/regist.js"></script>
 </body>
 </html>
