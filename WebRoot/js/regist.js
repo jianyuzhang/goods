@@ -5,22 +5,37 @@ app.controller('registCtrol', function($scope, $http, $element) {
 	$scope.title = '注册页';
 
 	$scope.errorTips = {
-		'loginname' : '登录名不能为空',
-		'password' : '密码不能为空',
-		'repassword' : '确认密码不能为空',
-		'email' : '邮箱不能为空'
+		'loginname': {
+			required: '登录名不能为空'
+		},
+		'password': {
+			required: '密码不能为空'
+		},
+		'repassword': {
+			required: '确认密码不能为空'
+		},
+		'email': {
+			required: '邮箱不能为空',
+			email: '邮箱格式错误'
+		}
 	};
 
-	$scope.change = function(target) {
-		if (!$scope.user[target]) {
-			$element.find('input[name="' + target + '"]').popover({
-				content : $scope.errorTips[target],
-				placement : 'top',
-				trigger : 'manual'
-			});
-			$element.find('input[name="' + target + '"]').popover('show');
-		} else {
-			$element.find('input[name="' + target + '"]').popover('destroy');
+	$scope.change = function(event) {
+		if (event) {
+			$element.find(event.target).popover('destroy');
+			if ($scope.registForm[$element.find(event.target).attr('name')].$invalid) {
+				var content = '';
+				for ( var i in $scope.registForm[$element.find(event.target).attr('name')].$error) {
+					content = $scope.errorTips[$element.find(event.target).attr('name')][i];
+					console.log(content);
+				}
+				$element.find(event.target).popover({
+					content: content,
+					placement: 'top',
+					trigger: 'manual'
+				});
+				$element.find(event.target).popover('show');
+			}
 		}
 	};
 
@@ -30,68 +45,25 @@ app.controller('registCtrol', function($scope, $http, $element) {
 				if (!result) {
 					$scope.errorMsg = '注册失败';
 					$("#myModal").modal({
-						"backdrop" : "static",
-						"keyboard" : true,
-						"show" : true
+						"backdrop": "static",
+						"keyboard": true,
+						"show": true
 					});
 				} else {
 					window.location.href = "/goods/index.html";
 				}
 			});
 		}
+	};
+});
 
-		// if (!$scope.loginname) {
-		// $scope.errorMsg = '登录名不能为空';
-		// $("#myModal").modal({
-		// "backdrop" : "static",
-		// "keyboard" : true,
-		// "show" : true
-		// });
-		// } else if (!$scope.password) {
-		// $scope.errorMsg = '密码不能为空';
-		// $("#myModal").modal({
-		// "backdrop" : "static",
-		// "keyboard" : true,
-		// "show" : true
-		// });
-		// } else if (!$scope.repassword) {
-		// $scope.errorMsg = '确认密码不能为空';
-		// $("#myModal").modal({
-		// "backdrop" : "static",
-		// "keyboard" : true,
-		// "show" : true
-		// });
-		// } else if (!$scope.email) {
-		// $scope.errorMsg = '邮箱不能为空';
-		// $("#myModal").modal({
-		// "backdrop" : "static",
-		// "keyboard" : true,
-		// "show" : true
-		// });
-		// } else if (!$scope.verifyCode) {
-		// $scope.errorMsg = '验证码不能为空';
-		// $("#myModal").modal({
-		// "backdrop" : "static",
-		// "keyboard" : true,
-		// "show" : true
-		// });
-		// } else {
-		// $http.post("/goods/operate/user/registUser.do", {
-		// loginname : $scope.loginname,
-		// loginpass : $scope.password,
-		// email : $scope.email,
-		// }).success(function(result) {
-		// if (!result) {
-		// $scope.errorMsg = '注册失败';
-		// $("#myModal").modal({
-		// "backdrop" : "static",
-		// "keyboard" : true,
-		// "show" : true
-		// });
-		// } else {
-		// window.location.href = "/goods/index.html";
-		// }
-		// });
-		// }
+app.directive('ngBlur', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attr) {
+			element.bind('blur', function() {
+				scope.$apply(attr.ngBlur);
+			});
+		}
 	};
 });
