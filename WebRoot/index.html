@@ -142,12 +142,20 @@ body {
 					$http.post('operate/user/login.do', {
 						loginname : $scope.username,
 						loginpass : $scope.password
-					}).success(function() {
+					}).success(function(result) {
+						if(result == true || result == 'true'){
 						swal("Success", "Welcome to Sweet Alert", "success");
 						setTimeout(function() {
 							window.location.href = 'main.html';
 						}, 1000);
-				
+						}else{
+							$scope.errorMsg = '登陆失败';
+							$("#myModal").modal({
+								"backdrop" : "static",
+								"keyboard" : true,
+								"show" : true
+							});
+						}
 					});
 				}
 			};
