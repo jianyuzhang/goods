@@ -88,6 +88,7 @@ public class UserController{
     @RequestMapping("/ajaxValidateLoginname.do")
     public void ajaxValidateLoginname(HttpServletRequest request,HttpServletResponse response) throws Exception{
     	String loginName=request.getParameter("loginname");
+    	System.err.println(loginName);
     	int i=userService.ajaxValidateLoginname(loginName);
     	response.getWriter().print(i>0);
     }
@@ -153,8 +154,9 @@ public class UserController{
 			map.put("user", user);
 		}else{
 			map.put("data", "success");
+			map.put("success", "注册成功");
 		}
-		response.getWriter().print(i>0);
+		response.getWriter().print(map);
     }
 }
 

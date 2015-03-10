@@ -27,7 +27,6 @@ app.controller('registCtrol', function($scope, $http, $element) {
 				var content = '';
 				for ( var i in $scope.registForm[$element.find(event.target).attr('name')].$error) {
 					content = $scope.errorTips[$element.find(event.target).attr('name')][i];
-					console.log(content);
 				}
 				$element.find(event.target).popover({
 					content: content,
@@ -39,6 +38,27 @@ app.controller('registCtrol', function($scope, $http, $element) {
 		}
 	};
 
+	$scope.checkUser = function(event) {
+		$scope.change(event);
+		if (event && $scope.user && $scope.user.loginname) {
+			$element.find(event.target).popover('destroy');
+			$http.post("/goods/operate/user/ajaxValidateLoginname.do", {
+				loginname: $scope.user.loginname
+			}).success(function(result) {
+				if (result == true || result == 'true') {
+					$element.find(event.target).popover({
+						content: '用户名不可使用',
+						placement: 'top',
+						trigger: 'manual'
+					});
+					$element.find(event.target).popover('show');
+				} else {
+					$element.find(event.target).popover('destroy');
+				}
+			});
+		}
+	}
+	
 	$scope.submit = function() {
 		if ($scope.registForm.$valid) {
 			$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
@@ -51,6 +71,7 @@ app.controller('registCtrol', function($scope, $http, $element) {
 					});
 				} else {
 					window.location.href = "/goods/index.html";
+					
 				}
 			});
 		}
@@ -65,5 +86,12 @@ app.directive('ngBlur', function() {
 				scope.$apply(attr.ngBlur);
 			});
 		}
+	};
+});
+
+app.directive('main', function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'main.html'
 	};
 });
