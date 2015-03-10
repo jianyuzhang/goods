@@ -97,20 +97,22 @@ app.controller('registCtrol', function($scope, $http, $element) {
 	}
 	
 	$scope.submit = function() {
-		if(!$scope.loginname || !$scope.loginpass ||!$scope.reloginpass ||$scope.email){
-			swal("请填写完毕后提交", "", "error");
-		}
-		else if($scope.registForm.$valid) {
-			$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
-				if ("err"==result.data) {
-					swal("注册失败", result.data.error, "error");
-				} else {
-					swal("注册成功", "欢迎登录", "success");
-					setTimeout(function() {
-						window.location.href = '/goods/index.html';
-					}, 1000);
+		if(event && $scope.user){
+			 if($scope.registForm.$valid){
+					$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
+						if ("err"==result.data) {
+							swal("注册失败", result.data.error, "error");
+						} else {
+							swal("注册成功", "欢迎登录", "success");
+							setTimeout(function() {
+								window.location.href = '/goods/index.html';
+							}, 1000);
+						}
+					});
 				}
-			});
+		}
+		else {
+			swal("请填写完毕后提交", "", "error");
 		}
 	};
 });
