@@ -7,6 +7,9 @@
 <link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="/goods/assets/css/style.min.css" rel="stylesheet">
 <link href="/goods/assets/css/retina.min.css" rel="stylesheet">
+ <link href="/goods/tips/css/example.css" type="text/css" rel="stylesheet">
+<link href="/goods/tips/css/sweet-alert.css" type="text/css" rel="stylesheet">
+<script src="/goods/tips/js/sweet-alert.min.js"> </script>
 <!--[if lt IE 9]>
 	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="assets/js/respond.min.js"></script>
@@ -54,7 +57,7 @@ body {
 									<span class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</span>
-									<input name="loginname" class="form-control" type="text" placeholder="用户名" ng-model="user.loginname" ng-blur="checkUser($event)" required />
+									<input name="loginname" class="form-control" type="text" placeholder="用户名" ng-model="user.loginname" ng-blur="checkName($event)" required />
 								</div>
 							</div>
 							<div class="input-wrap">
@@ -78,7 +81,7 @@ body {
 									<span class="input-group-addon">
 										<i class="fa fa-envelope"></i>
 									</span>
-									<input name="email" class="form-control" type="email" placeholder="邮箱" ng-model="user.email" ng-blur="change($event)" required />
+									<input name="email" class="form-control" type="email" placeholder="邮箱" ng-model="user.email" ng-blur="changeEmail($event)" required />
 								</div>
 							</div>
 							<label for="remember" class="remember">
@@ -141,5 +144,26 @@ body {
 	<script src="/goods/assets/js/pages/angularConfig.js"></script>
 	<!-- end: JavaScript-->
 	<script type="text/javascript" src="/goods/js/regist.js"></script>
+	<script type="text/javascript">
+	$scope.submit = function() {
+		if ($scope.registForm.$valid) {
+			$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
+				if (map.data=="err") {
+					$scope.errorMsg = '注册失败';
+					$("#myModal").modal({
+						"backdrop": "static",
+						"keyboard": true,
+						"show": true
+					});
+				} else {
+					swal("Success", "Welcome to Sweet Alert", "success");
+					setTimeout(function() {
+						window.location.href = '/goods/index.html';
+					}, 1000);
+				}
+			});
+		}
+	};
+	</script>
 </body>
 </html>

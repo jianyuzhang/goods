@@ -3,12 +3,16 @@
 <head>
 
 <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title ng-bind="title"></title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/css/style.min.css" rel="stylesheet">
 <link href="assets/css/retina.min.css" rel="stylesheet">
-
+<!--提示信息插件-->
+ <link href="tips/css/example.css" type="text/css" rel="stylesheet">
+<link href="tips/css/sweet-alert.css" type="text/css" rel="stylesheet">
+<script src="tips/js/sweet-alert.min.js"> </script>
 <!--[if lt IE 9]>
 	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="assets/js/respond.min.js"></script>
@@ -52,7 +56,7 @@ body {
 							</label>
 							<div class="button-login">
 							    <button type="button" class="btn" ng-click="regist()">Regist</button>
-								<button type="button" class="btn btn-primary" ng-click="submit()">Login</button>
+								<button type="button" class="btn btn-primary" ng-click="submit()" id="submitBut">Login</button>
 							</div>
 							<div class="clearfix"></div>
 					</form>
@@ -139,7 +143,11 @@ body {
 						loginname : $scope.username,
 						loginpass : $scope.password
 					}).success(function() {
-						// window.location.href = "main.html";
+						swal("Success", "Welcome to Sweet Alert", "success");
+						setTimeout(function() {
+							window.location.href = 'main.html';
+						}, 1000);
+				
 					});
 				}
 			};
@@ -147,6 +155,8 @@ body {
 				window.location.href = "user/regist.html";
 			}
 		});
+		
+		
 	</script>
 </body>
 </html>

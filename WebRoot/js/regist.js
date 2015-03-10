@@ -38,7 +38,7 @@ app.controller('registCtrol', function($scope, $http, $element) {
 		}
 	};
 
-	$scope.checkUser = function(event) {
+	$scope.checkName = function(event) {
 		$scope.change(event);
 		if (event && $scope.user && $scope.user.loginname) {
 			$element.find(event.target).popover('destroy');
@@ -58,24 +58,28 @@ app.controller('registCtrol', function($scope, $http, $element) {
 			});
 		}
 	}
-	
-	$scope.submit = function() {
-		if ($scope.registForm.$valid) {
-			$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
-				if (!result) {
-					$scope.errorMsg = '注册失败';
-					$("#myModal").modal({
-						"backdrop": "static",
-						"keyboard": true,
-						"show": true
+	$scope.changeEmail = function(event){
+		$scope.change(event);
+		if (event && $scope.user && $scope.user.email) {
+			$element.find(event.target).popover('destroy');
+			$http.post("/goods/operate/user/ajaxValidateEmail.do", {
+				email: $scope.user.email
+			}).success(function(result) {
+				if (result == true || result == 'true') {
+					$element.find(event.target).popover({
+						content: '邮箱不可使用',
+						placement: 'top',
+						trigger: 'manual'
 					});
+					$element.find(event.target).popover('show');
 				} else {
-					window.location.href = "/goods/index.html";
-					
+					$element.find(event.target).popover('destroy');
 				}
 			});
 		}
-	};
+	}
+	
+	
 });
 
 app.directive('ngBlur', function() {
