@@ -10,6 +10,9 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -156,7 +159,8 @@ public class UserController{
 			map.put("data", "success");
 			map.put("success", "注册成功");
 		}
-		response.getWriter().print(map);
+		
+		response.getWriter().print(JSONObject.fromObject(map));
     }
 }
 
