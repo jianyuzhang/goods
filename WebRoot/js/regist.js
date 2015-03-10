@@ -59,10 +59,10 @@ app.controller('registCtrol', function($scope, $http, $element) {
 		}
 	}
 	$scope.checkPassword = function(event){
-		$scope.chagnge(event);
+		$scope.change(event);
 		if(event && $scope.user && $scope.user.reloginpass){
 			$element.find(event.target).popover('destroy');
-			if($scope.user.loginpass!==$scope.user.reloginpass){
+			if(!$scope.user.loginpass==$scope.user.reloginpass){
 				$element.find(event.target).popover({
 					content: '两次密码必须相同',
 					placement: 'top',
