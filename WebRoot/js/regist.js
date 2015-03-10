@@ -79,7 +79,25 @@ app.controller('registCtrol', function($scope, $http, $element) {
 		}
 	}
 	
-	
+	$scope.submit = function() {
+		if ($scope.registForm.$valid) {
+			$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
+				if ("err"==result.data) {
+					$scope.errorMsg = '注册失败';
+					$("#myModal").modal({
+						"backdrop": "static",
+						"keyboard": true,
+						"show": true
+					});
+				} else {
+					swal("Success", "Welcome to Sweet Alert", "success");
+					setTimeout(function() {
+						window.location.href = '/goods/index.html';
+					}, 1000);
+				}
+			});
+		}
+	};
 });
 
 app.directive('ngBlur', function() {

@@ -65,7 +65,7 @@ body {
 									<span class="input-group-addon">
 										<i class="fa fa-lock"></i>
 									</span>
-									<input name="password" class="form-control" type="password" placeholder="密码" ng-model="user.password" ng-blur="change($event)" required />
+									<input name="password" class="form-control" type="password" placeholder="密码" ng-model="user.loginpass" ng-blur="change($event)" required />
 								</div>
 							</div>
 							<div class="input-wrap">
@@ -73,7 +73,7 @@ body {
 									<span class="input-group-addon">
 										<i class="fa fa-lock"></i>
 									</span>
-									<input name="repassword" class="form-control" type="password" placeholder="重新密码" ng-model="user.repassword" ng-blur="change($event)" required />
+									<input name="repassword" class="form-control" type="password" placeholder="重新密码" ng-model="user.reloginpass" ng-blur="change($event)" required />
 								</div>
 							</div>
 							<div class="input-wrap">
@@ -144,26 +144,6 @@ body {
 	<script src="/goods/assets/js/pages/angularConfig.js"></script>
 	<!-- end: JavaScript-->
 	<script type="text/javascript" src="/goods/js/regist.js"></script>
-	<script type="text/javascript">
-	$scope.submit = function() {
-		if ($scope.registForm.$valid) {
-			$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
-				if (map.data=="err") {
-					$scope.errorMsg = '注册失败';
-					$("#myModal").modal({
-						"backdrop": "static",
-						"keyboard": true,
-						"show": true
-					});
-				} else {
-					swal("Success", "Welcome to Sweet Alert", "success");
-					setTimeout(function() {
-						window.location.href = '/goods/index.html';
-					}, 1000);
-				}
-			});
-		}
-	};
-	</script>
+
 </body>
 </html>
