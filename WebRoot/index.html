@@ -132,12 +132,7 @@ body {
 
 			$scope.submit = function() {
 				if (!$scope.username || !$scope.password) {
-					$scope.errorMsg = '账号密码不能为空';
-					$("#myModal").modal({
-						"backdrop" : "static",
-						"keyboard" : true,
-						"show" : true
-					});
+					swal("用户名或密码不能为空", "", "error");
 				} else {
 					$http.post('operate/user/login.do', {
 						loginname : $scope.username,
@@ -149,12 +144,7 @@ body {
 							window.location.href = 'main.html';
 						}, 1000);
 						}else{
-							$scope.errorMsg = '登陆失败';
-							$("#myModal").modal({
-								"backdrop" : "static",
-								"keyboard" : true,
-								"show" : true
-							});
+							swal("请重新登陆", "", "error");
 						}
 					});
 				}

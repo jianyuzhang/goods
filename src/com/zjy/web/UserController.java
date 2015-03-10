@@ -153,7 +153,15 @@ public class UserController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(i==0){
 			map.put("data","err");
-			map.put("error", "注册失败");
+			if(!flag1){
+				map.put("error", "用户名不能使用");
+			}
+			if(!flag2){
+				map.put("error", "邮箱不能使用");
+			}
+			else{
+				map.put("error", "注册失败");
+			}
 			map.put("user", user);
 		}else{
 			map.put("data", "success");
