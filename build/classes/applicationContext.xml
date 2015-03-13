@@ -41,6 +41,5 @@
 	</bean>                    
     <bean id="baseDao" class="com.zjy.baseDao.BaseDao" abstract="true">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean> 
-	
+	</bean>
 </beans>

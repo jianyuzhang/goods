@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjy.models.Menu">
+    <resultMap type="Menu" id="menuMap">
+        <id property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="name" column="name"/>
+        <result property="icon" column="icon"/>
+        <result property="url" column="url"/>
+        <result property="flag" column="flag"/>
+        <result property="type" column="type"/>
+    </resultMap>
+    <select id="selectAll" resultMap="menuMap">
+        select * from t_menu t
+        <where>
+            t.pid is null
+           <if test="flag != null">
+           AND t.flag = 1
+           </if>       
+        </where>
+    </select>
+    <select id="findChildMenus" resultMap="menuMap">
+		select * from t_menu t
+		<where>
+		    t.flag = 1
+			<if test="pid != null">
+				AND t.pid= #{pid}
+			</if>
+				
+		</where>
+	</select>
+	
+	
+</mapper>

@@ -2,7 +2,9 @@ package com.zjy.web;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,7 +12,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.vcode.utils.VerifyCode;
 
+import com.zjy.models.Menu;
+import com.zjy.models.MenuDTO;
 import com.zjy.models.User;
+import com.zjy.service.MenuService;
 import com.zjy.service.UserService;
 
 @Controller
@@ -30,6 +34,8 @@ public class UserController{
 	
 	@Resource
 	private UserService userService;
+	@Resource
+	private MenuService menuService;
 	
  /**
   * 登陆页面跳转到注册页面
@@ -76,12 +82,29 @@ public class UserController{
      */
     @RequestMapping("login.do")
     public void Login(HttpServletRequest request,HttpServletResponse response) throws Exception{
-    	System.out.println("111");
     	String loginName=request.getParameter("loginname");
     	String loginPass=request.getParameter("loginpass");
     	String[] properties={"loginname","loginpass"};
     	Object[] values={loginName,loginPass};
     	int i=userService.login(properties, values);
+    	List<Menu> parents=menuService.findParentMenus();
+    	List<MenuDTO> DTOParents=new ArrayList<MenuDTO>();
+        for(Menu parent: parents){
+        	MenuDTO menuDto=new MenuDTO();
+        	menuDto.setId(parent.getId());
+        	menuDto.setName(parent.getName());
+        	menuDto.setPid(parent.getPid());
+        	menuDto.setIcon(parent.getIcon());
+        	menuDto.setUrl(parent.getUrl());
+        	menuDto.setFlag(parent.getFlag());
+        	menuDto.setType(parent.getType());
+        	String[] properties1={"pid"};
+        	Object[] values1={parent.getId()};
+        	List<Menu> children=menuService.findChildMenus(properties1, values1);
+        	menuDto.setChildren(children);
+        	DTOParents.add(menuDto);
+        }
+        System.out.println(DTOParents.toString());
     	response.getWriter().print(i>0);
     }
     /**

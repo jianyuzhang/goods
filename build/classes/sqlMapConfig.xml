@@ -3,5 +3,6 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.zjy.models.User" alias="User"/>
+         <typeAlias type="com.zjy.models.Menu" alias="Menu"/>
     </typeAliases>
 </configuration>
