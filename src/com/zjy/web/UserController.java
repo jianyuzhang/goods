@@ -91,7 +91,7 @@ public class UserController{
     	List<MenuDTO> DTOParents=new ArrayList<MenuDTO>();
         for(Menu parent: parents){
         	MenuDTO menuDto=new MenuDTO();
-        	menuDto.setId(parent.getId());
+        	menuDto.setId(parent.getMid());
         	menuDto.setName(parent.getName());
         	menuDto.setPid(parent.getPid());
         	menuDto.setIcon(parent.getIcon());
@@ -99,7 +99,7 @@ public class UserController{
         	menuDto.setFlag(parent.getFlag());
         	menuDto.setType(parent.getType());
         	String[] properties1={"pid"};
-        	Object[] values1={parent.getId()};
+        	Object[] values1={parent.getMid()};
         	List<Menu> children=menuService.findChildMenus(properties1, values1);
         	menuDto.setChildren(children);
         	DTOParents.add(menuDto);

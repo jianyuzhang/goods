@@ -4,5 +4,8 @@
     <typeAliases>
         <typeAlias type="com.zjy.models.User" alias="User"/>
          <typeAlias type="com.zjy.models.Menu" alias="Menu"/>
+         <typeAlias type="com.zjy.models.CD" alias="CD"/>
+         <typeAlias type="com.zjy.models.CartItem" alias="CartItem"/>
+         <typeAlias type="com.zjy.models.Order" alias="Order"/>
     </typeAliases>
 </configuration>

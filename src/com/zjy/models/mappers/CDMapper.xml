@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjy.models.CD">
+    <resultMap type="CD" id="CDMap">
+        <id property="cid" column="cid"/>
+        <result property="singer" column="singer"/>
+        <result property="cname" column="cname"/>
+        <result property="price" column="price"/>
+        <result property="currprice" column="currprice"/>
+        <result property="discount" column="discount"/>
+        <result property="press" column="press"/>
+        <result property="publishtime" column="publishtime"/>
+        <result property="edition" column="edition"/>
+        <result property="pinttime" column="pinttime"/>
+        <result property="mid" column="mid"/>
+        <result property="image_w" column="image_w"/>
+        <result property="image_b" column="image_b"/>
+        <result property="orderBy" column="orderBy"/>
+        <result property="sum" column="sum"/>
+    </resultMap>
+    <select id="selectAll" resultMap="CDMap">
+        select * from t_cd 
+    </select>
+    <select id="findSomeCDs" resultMap="CDMap">
+		select * from t_cd t
+		<where>
+			<if test="mid != null">
+				AND t.mid= #{mid}
+			</if>
+				
+		</where>
+	</select>
+	
+	
+</mapper>

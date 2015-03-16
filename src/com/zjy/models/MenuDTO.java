@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public class MenuDTO {
-	private String id;
+	private String mid;
 	private String pid;
 	private String name;
 	private String icon;
@@ -21,11 +21,11 @@ public class MenuDTO {
 	}
 
 	public String getId() {
-		return id;
+		return mid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String mid) {
+		this.mid = mid;
 	}
 
 	public String getPid() {
@@ -78,7 +78,7 @@ public class MenuDTO {
 
 	@Override
 	public String toString() {
-		return "MenuDTO [id=" + id + ", pid=" + pid + ", name=" + name
+		return "MenuDTO [mid=" + mid + ", pid=" + pid + ", name=" + name
 				+ ", icon=" + icon + ", url=" + url + ", flag=" + flag
 				+ ", type=" + type + ", children=" + children + "]";
 	}

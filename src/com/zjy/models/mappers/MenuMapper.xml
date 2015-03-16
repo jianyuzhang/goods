@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zjy.models.Menu">
     <resultMap type="Menu" id="menuMap">
-        <id property="id" column="id"/>
+        <id property="mid" column="mid"/>
         <result property="pid" column="pid"/>
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>

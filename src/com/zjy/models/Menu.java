@@ -2,7 +2,7 @@ package com.zjy.models;
 
 
 public class Menu {
-	private String id;
+	private String mid;
 	private String pid;
 	private String name;
 	private String icon;
@@ -10,12 +10,13 @@ public class Menu {
 	private String flag;
 	private String type;
 
-	public String getId() {
-		return id;
+	
+	public String getMid() {
+		return mid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 
 	public String getPid() {
@@ -68,7 +69,7 @@ public class Menu {
 
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", pid=" + pid + ", name=" + name + ", icon="
+		return "Menu [mid=" + mid + ", pid=" + pid + ", name=" + name + ", icon="
 				+ icon + ", url=" + url + ", flag=" + flag + ", type=" + type
 				+ "]";
 	}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjy.models.CartItem">
+    <resultMap type="CartItem" id="CartMap">
+        <id property="cartItemId" column="cartItemId"/>
+        <result property="quantity" column="quantity"/>
+    </resultMap>
+   
+</mapper>
