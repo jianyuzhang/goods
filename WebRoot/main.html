@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="main" lang="en">
 <head>
 	
 	<!-- start: Meta -->
@@ -15,9 +15,9 @@
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/css/style.min.css" rel="stylesheet">
-	<link href="assets/css/retina.min.css" rel="stylesheet">
+	<link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/goods/assets/css/style.min.css" rel="stylesheet">
+	<link href="/goods/assets/css/retina.min.css" rel="stylesheet">
 	<!-- end: CSS -->
 
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -32,10 +32,10 @@
 	<![endif]-->
 	
 	<!-- start: Favicon and Touch Icons -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/goods/assets/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/goods/assets/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/goods/assets/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/goods/assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
 	
@@ -193,7 +193,7 @@
 								</li>	
                             	<li>
                                     <a href="index.html#">
-										<span class="avatar"><img src="assets/img/avatar.jpg" alt="Avatar"></span>
+										<span class="avatar"><img src="/goods/assets/img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
 										    	Łukasz Holeczek
@@ -209,7 +209,7 @@
                                 </li>
                                 <li>
                                     <a href="index.html#">
-										<span class="avatar"><img src="assets/img/avatar2.jpg" alt="Avatar"></span>
+										<span class="avatar"><img src="/goods/assets/img/avatar2.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
 										    	Megan Abott
@@ -225,7 +225,7 @@
                                 </li>
                                 <li>
                                     <a href="index.html#">
-										<span class="avatar"><img src="assets/img/avatar3.jpg" alt="Avatar"></span>
+										<span class="avatar"><img src="/goods/assets/img/avatar3.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
 										    	Kate Ross
@@ -241,7 +241,7 @@
                                 </li>
 								<li>
                                     <a href="index.html#">
-										<span class="avatar"><img src="assets/img/avatar4.jpg" alt="Avatar"></span>
+										<span class="avatar"><img src="/goods/assets/img/avatar4.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
 										    	Julie Blank
@@ -257,7 +257,7 @@
                                 </li>
                                 <li>
                                     <a href="index.html#">
-										<span class="avatar"><img src="assets/img/avatar5.jpg" alt="Avatar"></span>
+										<span class="avatar"><img src="/goods/assets/img/avatar5.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
 										    	Jane Sanders
@@ -308,7 +308,7 @@
 
 				
 			<!-- start: Main Menu -->
-			<div id="sidebar-left" class="col-sm-1">
+			<div id="sidebar-left" class="col-sm-1" ng-controller="menuCtrol">
 				<div class="nav-collapse sidebar-nav collapse navbar-collapse bs-navbar-collapse">
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li><a href="index.html"><i class="fa fa-bar-chart-o"></i><span class="hidden-sm"> Dashboard</span></a></li>	
@@ -392,7 +392,7 @@
 						</div>
 						<div class="right">	
 							<div class="arrow">
-								<img src="assets/img/uparrow.png">
+								<img src="/goods/assets/img/uparrow.png">
 							</div>
 							<div class="percent">+13%</div>
 						</div>
@@ -405,7 +405,7 @@
 						</div>
 						<div class="right">	
 							<div class="arrow">
-								<img src="assets/img/uparrow.png">
+								<img src="/goods/assets/img/uparrow.png">
 							</div>
 							<div class="percent">+17%</div>
 						</div>
@@ -418,7 +418,7 @@
 						</div>
 						<div class="right">	
 							<div class="arrow">
-								<img src="assets/img/downarrow.png">
+								<img src="/goods/assets/img/downarrow.png">
 							</div>
 							<div class="percent">-33%</div>
 						</div>
@@ -431,7 +431,7 @@
 						</div>
 						<div class="right">	
 							<div class="arrow">
-								<img src="assets/img/uparrow.png">
+								<img src="/goods/assets/img/uparrow.png">
 							</div>
 							<div class="percent">+3%</div>
 						</div>
@@ -620,23 +620,23 @@
 					<div class="content">
 						
 						<div class="browserStat big">
-							<img src="assets/img/browser-chrome-big.png" alt="Chrome">
+							<img src="/goods/assets/img/browser-chrome-big.png" alt="Chrome">
 							<span>34%</span>
 						</div>
 						<div class="browserStat big">
-							<img src="assets/img/browser-firefox-big.png" alt="Firefox">
+							<img src="/goods/assets/img/browser-firefox-big.png" alt="Firefox">
 							<span>34%</span>
 						</div>
 						<div class="browserStat">
-							<img src="assets/img/browser-ie.png" alt="Internet Explorer">
+							<img src="/goods/assets/img/browser-ie.png" alt="Internet Explorer">
 							<span>34%</span>
 						</div>
 						<div class="browserStat">
-							<img src="assets/img/browser-safari.png" alt="Safari">
+							<img src="/goods/assets/img/browser-safari.png" alt="Safari">
 							<span>34%</span>
 						</div>
 						<div class="browserStat">
-							<img src="assets/img/browser-opera.png" alt="Opera">
+							<img src="/goods/assets/img/browser-opera.png" alt="Opera">
 							<span>34%</span>
 						</div>	
 								
@@ -803,35 +803,35 @@
             	<li>
                     <a href="index.html#">
 						<span class="status active"></span>
-						<span class="avatar"><img class="img-circle" src="assets/img/avatar.jpg" alt="Avatar"></span>
+						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar.jpg" alt="Avatar"></span>
 						<span class="name">Łukasz Holeczek</span>
                     </a>
                 </li>
                 <li>
                     <a href="index.html#">
 						<span class="status busy"></span>
-						<span class="avatar"><img class="img-circle" src="assets/img/avatar2.jpg" alt="Avatar"></span>
+						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar2.jpg" alt="Avatar"></span>
 						<span class="name">Megan Abott</span>
                     </a>
                 </li>
                 <li>
                     <a href="index.html#">
 						<span class="status disable"></span>
-						<span class="avatar"><img class="img-circle" src="assets/img/avatar3.jpg" alt="Avatar"></span>
+						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar3.jpg" alt="Avatar"></span>
 						<span class="name">Kate Ross</span>
                     </a>
                 </li>
 				<li>
                     <a href="index.html#">
 						<span class="status active"></span>
-						<span class="avatar"><img class="img-circle" src="assets/img/avatar4.jpg" alt="Avatar"></span>
+						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar4.jpg" alt="Avatar"></span>
 						<span class="name">Julie Blank</span>
                     </a>
                 </li>
                 <li>
                     <a href="index.html#">
 						<span class="status"></span>
-						<span class="avatar"><img class="img-circle" src="assets/img/avatar5.jpg" alt="Avatar"></span>
+						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar5.jpg" alt="Avatar"></span>
 						<span class="name">Jane Sanders</span>
                     </a>
                 </li>
@@ -846,7 +846,7 @@
 			<ul class="messages-list">
             	<li>
                     <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="assets/img/avatar.jpg" alt="Avatar"></div>
+						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar.jpg" alt="Avatar"></div>
 						<span class="name">Łukasz Holeczek</span>
 						<span class="date">25/6/2013</span>
 						<span class="title">Custom Bootstrap design for new client</span>
@@ -854,7 +854,7 @@
                 </li>
                 <li>
                     <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="assets/img/avatar2.jpg" alt="Avatar"></div>
+						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar2.jpg" alt="Avatar"></div>
 						<span class="name">Megan Abott</span>
 						<span class="date">25/6/2013</span>
 						<span class="title">Custom Bootstrap design for new client</span>
@@ -862,7 +862,7 @@
                 </li>
                 <li>
                     <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="assets/img/avatar3.jpg" alt="Avatar"></div>
+						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar3.jpg" alt="Avatar"></div>
 						<span class="name">Kate Ross</span>
 						<span class="date">25/6/2013</span>
 						<span class="title">Custom Bootstrap design for new client</span>
@@ -870,7 +870,7 @@
                 </li>
 				<li>
                     <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="assets/img/avatar4.jpg" alt="Avatar"></div>
+						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar4.jpg" alt="Avatar"></div>
 						<span class="name">Julie Blank</span>
 						<span class="date">25/6/2013</span>
 						<span class="title">Custom Bootstrap design for new client</span>
@@ -878,7 +878,7 @@
                 </li>
                 <li>
                     <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="assets/img/avatar5.jpg" alt="Avatar"></div>
+						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar5.jpg" alt="Avatar"></div>
 						<span class="name">Jane Sanders</span>
 						<span class="date">25/6/2013</span>
 						<span class="title">Custom Bootstrap design for new client</span>
@@ -942,7 +942,7 @@
 	<!-- start: JavaScript-->
 	<!--[if !IE]>-->
 
-			<script src="assets/js/jquery-2.1.0.min.js"></script>
+			<script src="/goods/assets/js/jquery-2.1.0.min.js"></script>
 
 	<!--<![endif]-->
 
@@ -955,7 +955,7 @@
 	<!--[if !IE]>-->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.1.0.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='/goods/assets/js/jquery-2.1.0.min.js'>"+"<"+"/script>");
 		</script>
 
 	<!--<![endif]-->
@@ -967,30 +967,31 @@
 		</script>
 		
 	<![endif]-->
-	<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="/goods/assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="/goods/assets/js/bootstrap.min.js"></script>
 	
 	
 	<!-- page scripts -->
-	<script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-	<script src="assets/js/jquery.sparkline.min.js"></script>
+	<script src="/goods/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="/goods/assets/js/jquery.sparkline.min.js"></script>
 	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="assets/js/excanvas.min.js"></script><![endif]-->
-	<script src="assets/js/jquery.flot.min.js"></script>
-	<script src="assets/js/jquery.flot.pie.min.js"></script>
-	<script src="assets/js/jquery.flot.stack.min.js"></script>
-	<script src="assets/js/jquery.flot.resize.min.js"></script>
-	<script src="assets/js/jquery.flot.time.min.js"></script>
-	<script src="assets/js/retina.min.js"></script>
-	<script src="assets/js/raphael.min.js"></script>
-	<script src="assets/js/justgage.1.0.1.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.pie.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.stack.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.resize.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.time.min.js"></script>
+	<script src="/goods/assets/js/retina.min.js"></script>
+	<script src="/goods/assets/js/raphael.min.js"></script>
+	<script src="/goods/assets/js/justgage.1.0.1.min.js"></script>
 	
 	<!-- theme scripts -->
-	<script src="assets/js/custom.min.js"></script>
-	<script src="assets/js/core.min.js"></script>
-	
+	<script src="/goods/assets/js/custom.min.js"></script>
+	<script src="/goods/assets/js/core.min.js"></script>
+	<script src="/goods/assets/js/angular.min.js"></script>
+	<script src="/goods/assets/js/pages/angularConfig.js"></script>
 	<!-- inline scripts related to this page -->
-	<script src="assets/js/pages/index.js"></script>
-	
+	<script src="/goods/assets/js/pages/index.js"></script>
+	<script src="/goods/js/main.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>

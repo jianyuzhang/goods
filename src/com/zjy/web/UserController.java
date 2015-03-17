@@ -34,9 +34,7 @@ public class UserController{
 	
 	@Resource
 	private UserService userService;
-	@Resource
-	private MenuService menuService;
-	
+
  /**
   * 登陆页面跳转到注册页面
   * @param arg0
@@ -87,24 +85,6 @@ public class UserController{
     	String[] properties={"loginname","loginpass"};
     	Object[] values={loginName,loginPass};
     	int i=userService.login(properties, values);
-    	List<Menu> parents=menuService.findParentMenus();
-    	List<MenuDTO> DTOParents=new ArrayList<MenuDTO>();
-        for(Menu parent: parents){
-        	MenuDTO menuDto=new MenuDTO();
-        	menuDto.setId(parent.getMid());
-        	menuDto.setName(parent.getName());
-        	menuDto.setPid(parent.getPid());
-        	menuDto.setIcon(parent.getIcon());
-        	menuDto.setUrl(parent.getUrl());
-        	menuDto.setFlag(parent.getFlag());
-        	menuDto.setType(parent.getType());
-        	String[] properties1={"pid"};
-        	Object[] values1={parent.getMid()};
-        	List<Menu> children=menuService.findChildMenus(properties1, values1);
-        	menuDto.setChildren(children);
-        	DTOParents.add(menuDto);
-        }
-        System.out.println(DTOParents.toString());
     	response.getWriter().print(i>0);
     }
     /**
