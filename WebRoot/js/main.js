@@ -9,10 +9,7 @@ app.controller('menuCtrol',function($scope,$http){
 		
 	}).success(function(MenuDTOParents){
 		$scope.MenuDTOParents = MenuDTOParents;
-		for(var i=0;i<MenuDTOParents.length;i++){
-			$scope.childern = MenuDTOParents[i].children;
-			
-		}
+		
 	});
 	
 });
