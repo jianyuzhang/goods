@@ -312,7 +312,7 @@
 				<div class="nav-collapse sidebar-nav collapse navbar-collapse bs-navbar-collapse">
 					<ul class="nav nav-tabs nav-stacked main-menu" >
 						<li ng-repeat="parent in MenuDTOParents">
-							<a class="dropmenu" href="index.html#"><i class="fa fa-folder-o"></i><span class="hidden-sm">{{parent.name}}</span> <span class="badge badge-important">{{parent.children.length}}</span></a>
+							<a class="dropmenu" href="javascript:void(0)"><i class="fa fa-folder-o"></i><span class="hidden-sm">{{parent.name}}</span> <span class="badge badge-important">{{parent.children.length}}</span></a>
 							<ul>
 								<li ng-repeat="child in parent.children"><a class="submenu" href="#"><i class="fa fa-hdd-o"></i><span class="hidden-sm">{{child.name}}</span></a></li>
 							</ul>	
