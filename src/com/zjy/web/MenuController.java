@@ -1,10 +1,13 @@
 package com.zjy.web;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -26,10 +29,10 @@ public class MenuController{
 	private MenuService menuService;
 	
     @RequestMapping("/showMenus.do")
-    public ModelAndView main(){
-    	ModelAndView mv=new ModelAndView("main.html");
+    public void showMenus(HttpServletRequest request,HttpServletResponse response) throws Exception{
+    	System.out.println("111");
     	List<Menu> parents=menuService.findParentMenus();
-    	List<MenuDTO> DTOParents=new ArrayList<MenuDTO>();
+    	List<MenuDTO> MenuDTOParents=new ArrayList<MenuDTO>();
         for(Menu parent: parents){
         	MenuDTO menuDto=new MenuDTO();
         	menuDto.setId(parent.getMid());
@@ -43,10 +46,9 @@ public class MenuController{
         	Object[] values1={parent.getMid()};
         	List<Menu> children=menuService.findChildMenus(properties1, values1);
         	menuDto.setChildren(children);
-        	DTOParents.add(menuDto);
+        	MenuDTOParents.add(menuDto);
         }
-        mv.addObject("menus", JSONArray.fromObject(DTOParents));
-		return mv;
+        response.getWriter().print(JSONArray.fromObject(MenuDTOParents));
 		}
 }
 
