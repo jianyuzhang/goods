@@ -10,9 +10,6 @@ app.controller('menuCtrol',function($scope,$http){
 	
 	$http.post("/goods/operate/menu/showMenus.do").success(function(MenuDTOParents){
 		$scope.MenuDTOParents = MenuDTOParents;
-//		$(".dropmenu").click(function(t) {
-//			t.preventDefault();
-//		})
 	});
 	
 });
