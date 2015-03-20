@@ -18,6 +18,11 @@
 	<link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/goods/assets/css/style.min.css" rel="stylesheet">
 	<link href="/goods/assets/css/retina.min.css" rel="stylesheet">
+	<style type="text/css">
+	.item.img{
+	text-align:center;
+	}
+	</style>
 	<!-- end: CSS -->
 
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -283,14 +288,14 @@
 							</a>
 						</li>
 						<!-- start: User Dropdown -->
-						<li class="dropdown">
+						<li class="dropdown" ng-controller="userCtrol">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="index.html#">
-								<i class="halflings user white"></i> Łukasz Holeczek
+								<i class="halflings user white"></i>{{user.loginname}}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="index.html#"><i class="halflings user white"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings off white"></i> Logout</a></li>
+								<li><a href="user.html"><i class="halflings user white"></i> Profile</a></li>
+								<li><a href="javascript: void(0)" ng-click="logout()"><i class="halflings off white"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -335,530 +340,70 @@
 			
 			<!-- start: Content -->
 			<div id="content" class="col-sm-11">
-			
-			
-			<div class="row">
-				
-				<div class="stats-date col-md-3">
-					<div>Monthly Statistics</div>
-					<div class="range">02/10/2012 - 02/11/2012</div>
-				</div><!--/col-->
-				
-				<div class="stats col-md-9">
-					
-					<div class="stat">
-						<div class="left">
-							<div class="number green">1.324.996</div>
-							<div class="title"><span class="color green"></span> Visits</div>
-						</div>
-						<div class="right">	
-							<div class="arrow">
-								<img src="/goods/assets/img/uparrow.png">
-							</div>
-							<div class="percent">+13%</div>
-						</div>
-					</div>
-					
-					<div class="stat">
-						<div class="left">
-							<div class="number yellow">12.894.765</div>
-							<div class="title"><span class="color yellow"></span> Pageviews</div>
-						</div>
-						<div class="right">	
-							<div class="arrow">
-								<img src="/goods/assets/img/uparrow.png">
-							</div>
-							<div class="percent">+17%</div>
-						</div>
-					</div>
-					
-					<div class="stat">
-						<div class="left">
-							<div class="number blue">432.980</div>
-							<div class="title"><span class="color blue"></span>Visitors</div>
-						</div>
-						<div class="right">	
-							<div class="arrow">
-								<img src="/goods/assets/img/downarrow.png">
-							</div>
-							<div class="percent">-33%</div>
-						</div>
-					</div>
-					
-					<div class="stat">
-						<div class="left">
-							<div class="number red">11.324</div>
-							<div class="title"><span class="color red"></span>New Visitors</div>
-						</div>
-						<div class="right">	
-							<div class="arrow">
-								<img src="/goods/assets/img/uparrow.png">
-							</div>
-							<div class="percent">+3%</div>
-						</div>
-					</div>
-						
-				</div><!--/col-->
-			
-			</div><!--/row-->	
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:890px ">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="4" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="5" class="active"></li>
+  </ol>
 
-			<div class="row">
-				
-				<div class="col-xs-12 overflow:hidden">
-				
-					<div id="stats-chart2" style="height:300px;" ></div>
-				
-				</div><!--/col-->	
-			
-			</div><!--/row-->
-			
-			<hr>
-			
-			<div class="row">
-				
-				<div class="widget col-md-5 col-sm-12">
-					
-					<h2><i class="glyphicons globe"></i> Demographics</h2>
-					
-					<hr>
-					
-					<div class="content">
-						
-						<div class="verticalChart">
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>37%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">US</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>16%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">PL</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>12%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">GB</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>9%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">DE</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>7%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">NL</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>6%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">CA</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>5%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">FI</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>4%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">RU</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>3%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">AU</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>1%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">N/A</div>
-							
-							</div>	
-							
-						</div>
-					
-					</div>
-					
-				</div><!--/col-->
-				
-				<div class="widget col-md-3 col-sm-6">
-					
-					<h2><span class="glyphicons pie_chart"><i></i></span> Browsers</h2>
-					
-					<hr>
-					
-					<div class="content">
-						
-						<div class="browserStat big">
-							<img src="/goods/assets/img/browser-chrome-big.png" alt="Chrome">
-							<span>34%</span>
-						</div>
-						<div class="browserStat big">
-							<img src="/goods/assets/img/browser-firefox-big.png" alt="Firefox">
-							<span>34%</span>
-						</div>
-						<div class="browserStat">
-							<img src="/goods/assets/img/browser-ie.png" alt="Internet Explorer">
-							<span>34%</span>
-						</div>
-						<div class="browserStat">
-							<img src="/goods/assets/img/browser-safari.png" alt="Safari">
-							<span>34%</span>
-						</div>
-						<div class="browserStat">
-							<img src="/goods/assets/img/browser-opera.png" alt="Opera">
-							<span>34%</span>
-						</div>	
-								
-						
-					</div>
-				</div><!--/col-->
-				
-				<div class="widget col-md-4 col-sm-6">
-					<h2><span class="glyphicons charts"><i></i></span> Weekly Stat</h2>
-					
-					<hr>
-					
-					<div class="content">
-						<div class="sparkLineStats">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="/goods/images/big0020150317143520.jpg" alt="..." style="margin-left:95px;">
+      <div class="carousel-caption">
+            苏打绿
+      </div>
+    </div>
+    <div class="item">
+      <img src="/goods/images/big0020150318230815.jpg" alt="..." style="margin-left:95px;">
+      <div class="carousel-caption">
+            复古怀旧   
+      </div>
+    </div>
+    <div class="item">
+      <img src="/goods/images/big0120150317173331.jpg" alt="..." style="margin-left:95px;">
+      <div class="carousel-caption">
+               
+      </div>
+    </div>
+    <div class="item">
+      <img src="/goods/images/big0120150318181147.jpg" alt="..." style="margin-left:95px;">
+      <div class="carousel-caption">
+               
+      </div>
+    </div>
+     <div class="item">
+      <img src="/goods/images/big0720150317204632.jpg" alt="..." style="margin-left:95px;">
+      <div class="carousel-caption">
+               
+      </div>
+    </div>
+     <div class="item">
+      <img src="/goods/images/big0920150318175655.jpg" alt="..." style="margin-left:95px;">
+      <div class="carousel-caption">
+               
+      </div>
+    </div>
+  </div>
 
-	                        <ul class="unstyled">
-	                            
-	                            <li>
-									<div class="sparkLineStats3"></div> 
-	                                Pageviews: 
-	                                <span class="number">781</span>
-	                            </li>
-	                            <li>
-									<div class="sparkLineStats4"></div>
-	                                Pages / Visit: 
-	                                <span class="number">2,19</span>
-	                            </li>
-	                            <li>
-									<div class="sparkLineStats5"></div>
-	                                Avg. Visit Duration: 
-	                                <span class="number">00:02:58</span>
-	                            </li>
-	                            <li>
-									<div class="sparkLineStats6"></div>
-	                                Bounce Rate: <span class="number">59,83%</span>
-	                            </li>
-	                            <li>
-									<div class="sparkLineStats7"></div>
-	                                % New Visits: 
-	                                <span class="number">70,79%</span>
-	                            </li>
-	                            <li>
-									<div class="sparkLineStats8"></div>
-	                                % Returning Visitor: 
-	                                <span class="number">29,21%</span>
-	                            </li>
-
-	                        </ul>
-	
-	                    </div><!-- End .sparkStats -->
-					</div>
-				</div><!--/col-->
-			
-			</div><!--/row-->
-			
-			<hr>
-			
-			<div class="row">
-				
-				<div class="widget col-sm-6 overflow:hidden">
-					<h2><span class="social facebook"><i></i></span>Facebook Fans</h2>
-					<hr>
-					<div class="content">
-						<div id="facebookChart" style="height:300px;" ></div>
-					</div>
-				</div><!--/col-->
-				
-				<div class="widget col-sm-6 overflow:hidden">
-					<h2><span class="social twitter"><i></i></span>Twitter Followers</h2>
-					<hr>
-					<div class="content">
-						<div id="twitterChart" style="height:300px;" ></div>
-					</div>
-				</div><!--/col-->
-			
-			</div><!--/row-->
-
-				
-			
-       
-					
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 			</div>
 			<!-- end: Content -->
 			
-			<!-- start: Widgets Area -->
-<div id="widgets-area" class="col-sm-2">
-	
-	<ul class="nav tab-menu nav-tabs" id="myTab">
-		<li class="active"><a href="index.html#charts"><i class="fa fa-bar-chart-o"></i></a></li>
-		<li><a href="index.html#users"><i class="fa fa-group"></i></a></li>
-		<li><a href="index.html#messages"><i class="fa fa-envelope"></i></a></li>
-		<li><a id="close-widgets-area" href="index.html#"><i class="fa fa-sign-in"></i></a></li>
-	</ul>
-	 
-	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane active" id="charts">
-			
-			<div class="bar-stat">
-				<span class="title">Account balance</span>
-				<span class="value">$19 999,99</span>
-				<span class="chart green">7,3,2,6,6,3,9,0,1,4</span>
-			</div>
-
-			<hr>
-
-			<div class="bar-stat">
-				<span class="title">Clients</span>
-				<span class="value">1278</span>
-				<span class="chart yellow">8,2,5,4,7,4,7,2,5,9</span>
-			</div>
-
-			<hr>
-
-			<div class="bar-stat">
-				<span class="title">Orders</span>
-				<span class="value">5876</span>
-				<span class="chart blue">2,4,6,8,3,5,9,3,2,2</span>
-			</div>
-
-			<hr>
-
-			<div class="bar-stat">
-				<span class="title">Messages</span>
-				<span class="value">673</span>
-				<span class="chart red">0,3,3,8,3,3,2,7,8,4</span>
-			</div>
-			
-			<hr>
-			
-			<div id="cpu-usage"></div>
-			
-			<ul class="progress-bars">
-				
-				<li>
-					<span class="title">Free Memory</span>
-					<span class="percent"></span>
-					<div class="taskProgress progressSlim progressGreen">80</div>
-				</li>
-				
-				<li>
-					<span class="title">Free HDD Drive</span>
-					<span class="percent"></span>
-					<div class="taskProgress progressSlim progressYellow">20</div>
-				</li>
-				
-				<li>
-					<span class="title">Free SSD Drive</span>
-					<span class="percent"></span>
-					<div class="taskProgress progressSlim progressBlue">57</div>
-				</li>
-				
-				<li>
-					<span class="title">Transfer</span>
-					<span class="percent"></span>
-					<div class="taskProgress progressSlim progressRed">45</div>
-				</li>	
-				
-			</ul>	
-
-		</div>
-		<div class="tab-pane" id="users">
-			
-			<ul class="users-list">
-            	<li>
-                    <a href="index.html#">
-						<span class="status active"></span>
-						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar.jpg" alt="Avatar"></span>
-						<span class="name">Łukasz Holeczek</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html#">
-						<span class="status busy"></span>
-						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar2.jpg" alt="Avatar"></span>
-						<span class="name">Megan Abott</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html#">
-						<span class="status disable"></span>
-						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar3.jpg" alt="Avatar"></span>
-						<span class="name">Kate Ross</span>
-                    </a>
-                </li>
-				<li>
-                    <a href="index.html#">
-						<span class="status active"></span>
-						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar4.jpg" alt="Avatar"></span>
-						<span class="name">Julie Blank</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html#">
-						<span class="status"></span>
-						<span class="avatar"><img class="img-circle" src="/goods/assets/img/avatar5.jpg" alt="Avatar"></span>
-						<span class="name">Jane Sanders</span>
-                    </a>
-                </li>
-				<li>
-            		<a href="index.html#">View all users</a>
-				</li>	
-			</ul>
-
-		</div>
-		<div class="tab-pane" id="messages">
-			
-			<ul class="messages-list">
-            	<li>
-                    <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar.jpg" alt="Avatar"></div>
-						<span class="name">Łukasz Holeczek</span>
-						<span class="date">25/6/2013</span>
-						<span class="title">Custom Bootstrap design for new client</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar2.jpg" alt="Avatar"></div>
-						<span class="name">Megan Abott</span>
-						<span class="date">25/6/2013</span>
-						<span class="title">Custom Bootstrap design for new client</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar3.jpg" alt="Avatar"></div>
-						<span class="name">Kate Ross</span>
-						<span class="date">25/6/2013</span>
-						<span class="title">Custom Bootstrap design for new client</span>
-                    </a>
-                </li>
-				<li>
-                    <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar4.jpg" alt="Avatar"></div>
-						<span class="name">Julie Blank</span>
-						<span class="date">25/6/2013</span>
-						<span class="title">Custom Bootstrap design for new client</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html#">
-						<div class="avatar"><img class="img-circle" src="/goods/assets/img/avatar5.jpg" alt="Avatar"></div>
-						<span class="name">Jane Sanders</span>
-						<span class="date">25/6/2013</span>
-						<span class="title">Custom Bootstrap design for new client</span>
-                    </a>
-                </li>
-				<li>
-            		<a href="index.html#">View all messages</a>
-				</li>	
-			</ul>
-
-		</div>
-	</div>
-			
-</div>
-<!-- end: Widgets Area -->
-
-<a id="widgets-area-button" class="hidden-sm hidden-xs open"><i class="fa fa-bars"></i></a>				
-				</div><!--/row-->
-		
 		<div class="modal fade" id="myModal">
 			<div class="modal-dialog">
 				<div class="modal-content">

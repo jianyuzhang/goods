@@ -1,7 +1,6 @@
 package com.zjy.web;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.zjy.models.Menu;
 import com.zjy.models.MenuDTO;
 import com.zjy.service.MenuService;
@@ -30,7 +25,6 @@ public class MenuController{
 	
     @RequestMapping("/showMenus.do")
     public void showMenus(HttpServletRequest request,HttpServletResponse response) throws Exception{
-    	System.out.println("111");
     	List<Menu> parents=menuService.findParentMenus();
     	List<MenuDTO> MenuDTOParents=new ArrayList<MenuDTO>();
         for(Menu parent: parents){

@@ -15,9 +15,9 @@
     <select id="selectAll" resultMap="userMap">
         select * from t_user
     </select>
-    <select id="findByNameAndPassword" parameterType="java.util.Map"
-		resultType="int">
-		select count(*) from t_user t
+    <select id="findByNameAndPassword" 
+		resultMap="userMap">
+		select * from t_user t
 		<where>
 			<if test="loginname != null">
 				AND t.loginname= #{loginname}

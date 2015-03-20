@@ -12,6 +12,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
@@ -40,11 +41,12 @@ public class UserController{
   * @param arg0
   * @param arg1
   * @return
+ * @throws IOException 
   */
-    @RequestMapping("/regist.do")
-    public String index(HttpServletRequest arg0,
-			HttpServletResponse arg1){
-        return "user/regist";
+    @RequestMapping("/findUser.do")
+    public void index(HttpServletRequest request,
+			HttpServletResponse response) throws IOException{
+    	response.getWriter().print(JSONObject.fromObject(request.getSession().getAttribute("user")));
     }
     /**
      * 验证码
@@ -84,8 +86,17 @@ public class UserController{
     	String loginPass=request.getParameter("loginpass");
     	String[] properties={"loginname","loginpass"};
     	Object[] values={loginName,loginPass};
-    	int i=userService.login(properties, values);
-    	response.getWriter().print(i>0);
+    	User user=userService.login(properties, values);
+    	request.getSession().setAttribute("user", user);
+    	response.getWriter().print(!"".equals(user));
+    }
+    
+   /**
+    * 退出
+    */
+    @RequestMapping("/logout.do")
+    public void logout(HttpServletRequest request,HttpServletResponse response){
+    	request.getSession().removeAttribute("user");
     }
     /**
      * 验证用户名是否重名

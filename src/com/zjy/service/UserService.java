@@ -18,7 +18,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public int login(String[] properties,Object[] values) ;
+	public User login(String[] properties,Object[] values) ;
 	
 	/**
 	 * 激活功能

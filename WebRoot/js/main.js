@@ -14,3 +14,13 @@ app.controller('menuCtrol',function($scope,$http){
 	
 });
 	
+app.controller('userCtrol',function($scope,$http){
+	$http.post("/goods/operate/user/findUser.do").success(function(user){
+		$scope.user = user;
+	});	
+	$scope.logout = function(){
+	$http.post("/goods/operate/user/logout.do").success(function(){
+        window.location.href="index.html";		
+	});
+	}
+});
