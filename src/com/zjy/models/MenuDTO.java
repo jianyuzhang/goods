@@ -5,13 +5,13 @@ import java.util.List;
 
 public class MenuDTO {
 	private String mid;
-	private String pid;
+	private String pid;//对应一级菜单id
 	private String name;
 	private String icon;
 	private String url;
 	private String flag;
 	private String type;
-    private List<Menu> children;
+    private List<Menu> children;//二级菜单list
 	public List<Menu> getChildren() {
 		return children;
 	}

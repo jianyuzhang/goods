@@ -1,83 +1,187 @@
 <!DOCTYPE html>
 <html ng-app="main" lang="en">
 <head>
-	
-	<!-- start: Meta -->
-	<meta charset="utf-8">
-	<title>ACME Dashboard</title>
-	<meta name="description" content="ACME Dashboard Bootstrap Admin Template.">
-	<meta name="author" content="Łukasz Holeczek">
-	<meta name="keyword" content="ACME, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-	<!-- end: Meta -->
-	
-	<!-- start: Mobile Specific -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- end: Mobile Specific -->
-	
-	<!-- start: CSS -->
-	<link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/goods/assets/css/style.min.css" rel="stylesheet">
-	<link href="/goods/assets/css/retina.min.css" rel="stylesheet">
-	<style type="text/css">
-	.item.img{
-	text-align:center;
-	}
-.mod_content{width:880px;overflow:hidden}
-.title{height:10px;margin:0 10px 10px 0}.title h2{}
-.slide_content{width:2130px;height:416px;overflow:hidden}
-.mod_first_list{width:870px;height:415px;float:left;overflow:hidden;padding-left:50px}
-.mod_first_list li{list-style-type:none;width:130px;height:130px;float:left;margin:0 22px 10px 0}
-.mod_first_list li .mod_poster_130:hover .icon_play{right:5px;bottom:53px}
-.mod_poster_130{position:relative}
-.mod_poster_130,.mod_poster_130 img{display:block;width:130px;height:130px}
-.mod_poster_130:hover{text-decoration:none;border:none}
-.mod_poster_130 .shadow{display:block;width:130px;height:48px;position:absolute;z-index:1;left:0;bottom:0;background:#000;opacity:.75;cursor:pointer;filter:alpha(opacity=75)}
-.mod_poster_130 strong{display:block;width:130px;height:20px;position:absolute;z-index:2;left:0;font-weight:normal;cursor:pointer;text-indent:5px;overflow:hidden;word-break:keep-all;word-wrap:keep-all;white-space:nowrap;table-layout:fixed;-o-text-overflow:ellipsis;text-overflow:ellipsis}
-.mod_poster_130 .album_name{height:28px;line-height:28px;bottom:20px;color:#0cc65b;font-size:14px}
-.mod_poster_130 .album_singer{line-height:18px;bottom:0;color:#fff}
-	</style>
-	<!-- end: CSS -->
 
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
+<!-- start: Meta -->
+<meta charset="utf-8">
+<title>ACME Dashboard</title>
+<meta name="description" content="ACME Dashboard Bootstrap Admin Template.">
+<meta name="author" content="Łukasz Holeczek">
+<meta name="keyword" content="ACME, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- end: Mobile Specific -->
+
+<!-- start: CSS -->
+<link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/goods/assets/css/style.min.css" rel="stylesheet">
+<link href="/goods/assets/css/retina.min.css" rel="stylesheet">
+<style type="text/css">
+.item.img {
+	text-align: center;
+}
+
+.mod_content {
+	/* 	width: 880px; */
+	overflow: hidden
+}
+
+.title {
+	height: 10px;
+	margin: 0 10px 10px 0
+}
+
+.title h2 {
+	
+}
+
+.slide_content {
+	width: 2130px;
+	height: 416px;
+	overflow: hidden
+}
+
+.mod_first_list {
+	width: 870px;
+	height: 415px;
+	float: left;
+	overflow: hidden;
+	padding-left: 50px
+}
+
+.mod_first_list li {
+	list-style-type: none;
+	width: 130px;
+	height: 130px;
+	float: left;
+	margin: 0 22px 10px 0
+}
+
+.mod_first_list li .mod_poster_130:hover .icon_play {
+	right: 5px;
+	bottom: 53px
+}
+
+.mod_poster_130 {
+	position: relative
+}
+
+.mod_poster_130, .mod_poster_130 img {
+	display: block;
+	width: 130px;
+	height: 130px
+}
+
+.mod_poster_130:hover {
+	text-decoration: none;
+	border: none
+}
+
+.mod_poster_130 .shadow {
+	display: block;
+	width: 130px;
+	height: 48px;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	bottom: 0;
+	background: #000;
+	opacity: .75;
+	cursor: pointer;
+	filter: alpha(opacity = 75)
+}
+
+.mod_poster_130 strong {
+	display: block;
+	width: 130px;
+	height: 20px;
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	font-weight: normal;
+	cursor: pointer;
+	text-indent: 5px;
+	overflow: hidden;
+	word-break: keep-all;
+	word-wrap: keep-all;
+	white-space: nowrap;
+	table-layout: fixed;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis
+}
+
+.mod_poster_130 .album_name {
+	height: 28px;
+	line-height: 28px;
+	bottom: 20px;
+	color: #0cc65b;
+	font-size: 14px
+}
+
+.mod_poster_130 .album_singer {
+	line-height: 18px;
+	bottom: 0;
+	color: #fff
+}
+</style>
+<!-- end: CSS -->
+
+<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
 	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<link href="assets/css/ie.css" rel="stylesheet">
 	<![endif]-->
-	
-	<!--[if IE 9]>
+
+<!--[if IE 9]>
 		<link id="ie9style" href="assets/css/ie9.css" rel="stylesheet">
 	<![endif]-->
-	
-	<!-- start: Favicon and Touch Icons -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/goods/assets/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/goods/assets/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/goods/assets/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/goods/assets/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="assets/ico/favicon.png">
-	<!-- end: Favicon and Touch Icons -->
-	
-		
-		
-		
+
+<!-- start: Favicon and Touch Icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/goods/assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/goods/assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/goods/assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/goods/assets/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="assets/ico/favicon.png">
+<!-- end: Favicon and Touch Icons -->
+
+<style type="text/css">
+.carousel-inner>.item {
+	height: 320px;
+	overflow: hidden;
+}
+
+.carousel-inner>.item img {
+	width: 100%;
+	margin: 0;
+}
+</style>
+
+
 </head>
 
 <body>
-		<!-- start: Header -->
+	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".sidebar-nav.nav-collapse">
-				      <span class="icon-bar"></span>
-				      <span class="icon-bar"></span>
-				      <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href=""><span><strong>音像派</strong></span></a>
-								
+				<a class="navbar-brand" href="">
+					<span>
+						<strong>商家管理中心</strong>
+					</span>
+				</a>
+
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
-					
+
 						<!-- start: Message Dropdown -->
 						<li class="dropdown hidden-xs">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="index.html#">
@@ -86,90 +190,70 @@
 							<ul class="dropdown-menu messages">
 								<li>
 									<span class="dropdown-menu-title">You have 9 messages</span>
-								</li>	
-                            	<li>
-                                    <a href="index.html#">
-										<span class="avatar"><img src="/goods/assets/img/avatar.jpg" alt="Avatar"></span>
-										<span class="header">
-											<span class="from">
-										    	Łukasz Holeczek
-										     </span>
-											<span class="time">
-										    	6 min
-										    </span>
-										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index.html#">
-										<span class="avatar"><img src="/goods/assets/img/avatar2.jpg" alt="Avatar"></span>
-										<span class="header">
-											<span class="from">
-										    	Megan Abott
-										     </span>
-											<span class="time">
-										    	56 min
-										    </span>
-										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index.html#">
-										<span class="avatar"><img src="/goods/assets/img/avatar3.jpg" alt="Avatar"></span>
-										<span class="header">
-											<span class="from">
-										    	Kate Ross
-										     </span>
-											<span class="time">
-										    	3 hours
-										    </span>
-										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
+								</li>
 								<li>
-                                    <a href="index.html#">
-										<span class="avatar"><img src="/goods/assets/img/avatar4.jpg" alt="Avatar"></span>
-										<span class="header">
-											<span class="from">
-										    	Julie Blank
-										     </span>
-											<span class="time">
-										    	yesterday
-										    </span>
+									<a href="index.html#">
+										<span class="avatar">
+											<img src="/goods/assets/img/avatar.jpg" alt="Avatar">
 										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index.html#">
-										<span class="avatar"><img src="/goods/assets/img/avatar5.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	Jane Sanders
-										     </span>
-											<span class="time">
-										    	Jul 25, 2012
-										    </span>
+											<span class="from"> Łukasz Holeczek </span>
+											<span class="time"> 6 min </span>
 										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
+										<span class="message"> Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore </span>
+									</a>
+								</li>
 								<li>
-                            		<a class="dropdown-menu-sub-footer">View all messages</a>
-								</li>	
+									<a href="index.html#">
+										<span class="avatar">
+											<img src="/goods/assets/img/avatar2.jpg" alt="Avatar">
+										</span>
+										<span class="header">
+											<span class="from"> Megan Abott </span>
+											<span class="time"> 56 min </span>
+										</span>
+										<span class="message"> Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore </span>
+									</a>
+								</li>
+								<li>
+									<a href="index.html#">
+										<span class="avatar">
+											<img src="/goods/assets/img/avatar3.jpg" alt="Avatar">
+										</span>
+										<span class="header">
+											<span class="from"> Kate Ross </span>
+											<span class="time"> 3 hours </span>
+										</span>
+										<span class="message"> Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore </span>
+									</a>
+								</li>
+								<li>
+									<a href="index.html#">
+										<span class="avatar">
+											<img src="/goods/assets/img/avatar4.jpg" alt="Avatar">
+										</span>
+										<span class="header">
+											<span class="from"> Julie Blank </span>
+											<span class="time"> yesterday </span>
+										</span>
+										<span class="message"> Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore </span>
+									</a>
+								</li>
+								<li>
+									<a href="index.html#">
+										<span class="avatar">
+											<img src="/goods/assets/img/avatar5.jpg" alt="Avatar">
+										</span>
+										<span class="header">
+											<span class="from"> Jane Sanders </span>
+											<span class="time"> Jul 25, 2012 </span>
+										</span>
+										<span class="message"> Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore </span>
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-menu-sub-footer">View all messages</a>
+								</li>
 							</ul>
 						</li>
 						<!-- end: Message Dropdown -->
@@ -181,30 +265,41 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown" ng-controller="userCtrol">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="index.html#">
-								<i class="halflings user white"></i>{{user.loginname}}
-								<span class="caret" ></span>
+								<i class="halflings user white"></i>
+								{{user.loginname}}
+								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="user.html"><i class="halflings user white"></i> Profile</a></li>
-								<li><a href="javascript: void(0)" ng-click="logout()"><i class="halflings off white"></i> Logout</a></li>
+								<li>
+									<a href="user.html">
+										<i class="halflings user white"></i>
+										Profile
+									</a>
+								</li>
+								<li>
+									<a href="javascript: void(0)" ng-click="logout()">
+										<i class="halflings off white"></i>
+										Logout
+									</a>
+								</li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
 					</ul>
 				</div>
 				<!-- end: Header Menu -->
-				
+
 			</div>
 		</div>
 	</div>
 	<!-- start: Header -->
-	
-		<div class="container">
+
+	<div class="container">
 		<div class="row">
 
-				
+
 			<!-- start: Main Menu -->
-			<div id="sidebar-left" class="col-sm-1" ng-controller="menuCtrol" >
+			<div id="sidebar-left" class="col-sm-1" ng-controller="menuCtrol">
 				<div class="nav-collapse sidebar-nav collapse navbar-collapse bs-navbar-collapse">
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li ng-repeat="parent in MenuDTOParents">
@@ -225,287 +320,295 @@
 					</ul>
 				</div>
 			</div>
-			<a id="main-menu-toggle" class="hidden-xs open"><i class="fa fa-bars"></i></a>
+			<a id="main-menu-toggle" class="hidden-xs open">
+				<i class="fa fa-bars"></i>
+			</a>
 			<!-- end: Main Menu -->
 
-			
+
 			<!-- start: Content -->
 			<div id="content" class="col-sm-11">
-			<div style="float:left">
-			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:880px ">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="3" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="4" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="5" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="6" class="active"></li>
-  </ol>
+				<div class="row">
+					<div class="col-md-9">
+						<div class="row">
+							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+								<!-- Indicators -->
+								<ol class="carousel-indicators">
+									<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="3" class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="4" class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="5" class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="6" class="active"></li>
+								</ol>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="/goods/images/big0020150317143520.jpg" alt="..." style="margin-left:90px;">
-      <div class="carousel-caption">
-          
-      </div>
-    </div>
-    <div class="item">
-      <img src="/goods/images/big0020150318230815.jpg" alt="..." style="margin-left:90px;">
-      <div class="carousel-caption">
-      <h2>巅峰跨乐：曲风不会变老，轮回后依然潮流</h2>    
-      </div>
-   
-    </div>
-    <div class="item">
-      <img src="/goods/images/big0120150317173331.jpg" alt="..." style="margin-left:90px;">
-      <div class="carousel-caption">
-               
-      </div>
-    </div>
-    <div class="item">
-      <img src="/goods/images/big0120150318181147.jpg" alt="..." style="margin-left:90px;">
-      <div class="carousel-caption">
-               
-      </div>
-    </div>
-     <div class="item">
-      <img src="/goods/images/big0720150317204632.jpg" alt="..." style="margin-left:90px;">
-      <div class="carousel-caption">
-            <h2>专辑首发：《速度与激情7》电影原声带  </h2>    
-      </div>
-    </div>
-     <div class="item">
-      <img src="/goods/images/big0920150318175655.jpg" alt="..." style="margin-left:90px;">
-      <div class="carousel-caption">
-               
-      </div>
-    </div>
-    <div class="item">
-      <img src="/goods/images/big0320150319153350.jpg" alt="..." style="margin-left:90px;">
-      <div class="carousel-caption">
-      </div>
-    </div>
-  </div>
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner" role="listbox">
+									<div class="item active">
+										<img src="/goods/images/big0020150317143520.jpg" alt="...">
+										<div class="carousel-caption"></div>
+									</div>
+									<div class="item">
+										<img src="/goods/images/big0020150318230815.jpg" alt="...">
+										<div class="carousel-caption">
+											<h2>巅峰跨乐：曲风不会变老，轮回后依然潮流</h2>
+										</div>
 
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-<div class= "mod_content" style="height:500px;width:880px;border: solid 1px black;">
- <div class="title">
-  <h2>单品展示</h2>
- </div>
- <div class="slide_content" style="padding-top:5px;border: solid 1px black;">
-   <ul class="mod_first_list" id="divalbumlist">
-     <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-      <li>
-      <a href="" class="mod_poster_130">
-      <img alt="" src="">
-      <span class="shadow"></span>
-      <strong class="album_name">假如爱有天意</strong>
-      <strong class="album_singer">李健</strong>
-      </a>
-     </li>
-   </ul>
- </div>
-</div>
-	</div>
-			<div style="height:820px;width:287px;padding-left: 20px;border: solid 1px black;float:right">
-	            <div style="height:540px;width:287px;float: right;border-bottom: solid 1px black">
-	              <div class="mod_rank">
-	                <h2 style="padding-left:10px;float:left">排行榜</h2>
-	                <h2 style="padding-right:10px;float:right">详细</h2>
-	              </div>
-	            </div>		
-			    <div>
-			    </div>
-			</div>
+									</div>
+									<div class="item">
+										<img src="/goods/images/big0120150317173331.jpg" alt="...">
+										<div class="carousel-caption"></div>
+									</div>
+									<div class="item">
+										<img src="/goods/images/big0120150318181147.jpg" alt="...">
+										<div class="carousel-caption"></div>
+									</div>
+									<div class="item">
+										<img src="/goods/images/big0720150317204632.jpg" alt="...">
+										<div class="carousel-caption">
+											<h2>专辑首发：《速度与激情7》电影原声带</h2>
+										</div>
+									</div>
+									<div class="item">
+										<img src="/goods/images/big0920150318175655.jpg" alt="...">
+										<div class="carousel-caption"></div>
+									</div>
+									<div class="item">
+										<img src="/goods/images/big0320150319153350.jpg" alt="...">
+										<div class="carousel-caption"></div>
+									</div>
+								</div>
+
+								<!-- Controls -->
+								<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="mod_content" style="border: solid 1px black;">
+								<div class="title">
+									<h2>单品展示</h2>
+								</div>
+								<div class="slide_content" style="padding-top: 5px; border: solid 1px black;">
+									<ul class="mod_first_list" id="divalbumlist">
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+										<li>
+											<a href="" class="mod_poster_130">
+												<img alt="" src="">
+												<span class="shadow"></span>
+												<strong class="album_name">假如爱有天意</strong>
+												<strong class="album_singer">李健</strong>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="row" style="border: solid 1px black; border-left: 0;">
+							<h2 class="col-md-6" style="text-align: left;">排行榜</h2>
+							<h2 class="col-md-6" style="text-align: right;">详细</h2>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- end: Content -->
-			
-		<div class="modal fade" id="myModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Modal title</h4>
-					</div>
-					<div class="modal-body">
-						<p>Here settings can be configured...</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-		
-	</div><!--/container-->
-	
-		
-		
-	
-	<div class="clearfix"></div>
-	
-	<footer>
-		
-		<div class="row">
-			
-			<div class="col-sm-5">
-				&copy; 2015 creativeLabs. <a href="http://bootstrapmaster.com">Admin Templates</a> by BootstrapMaster
-			</div><!--/.col-->
-			
-			<div class="col-sm-7 text-right">
-				Powered by: <a href="http://bootstrapmaster.com/demo/acme/" alt="Bootstrap Admin Templates">ACME Dashboard</a> | Based on Bootstrap 3.1.1 | Built with Brix.io
-			</div><!--/.col-->	
-			
-		</div><!--/.row-->
-		
-	</footer>
-	
-	<!-- start: JavaScript-->
-	<!--[if !IE]>-->
 
-			<script src="/goods/assets/js/jquery-2.1.0.min.js"></script>
+			<div class="modal fade" id="myModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							<p>Here settings can be configured...</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
 
-	<!--<![endif]-->
+		</div>
+		<!--/container-->
 
-	<!--[if IE]>
+
+
+
+		<div class="clearfix"></div>
+
+		<footer>
+
+			<div class="row">
+
+				<div class="col-sm-5">
+					&copy; 2015 creativeLabs.
+					<a href="http://bootstrapmaster.com">Admin Templates</a>
+					by BootstrapMaster
+				</div>
+				<!--/.col-->
+
+				<div class="col-sm-7 text-right">
+					Powered by:
+					<a href="http://bootstrapmaster.com/demo/acme/" alt="Bootstrap Admin Templates">ACME Dashboard</a>
+					| Based on Bootstrap 3.1.1 | Built with Brix.io
+				</div>
+				<!--/.col-->
+
+			</div>
+			<!--/.row-->
+
+		</footer>
+
+		<!-- start: JavaScript-->
+		<!--[if !IE]>-->
+
+		<script src="/goods/assets/js/jquery-2.1.0.min.js"></script>
+
+		<!--<![endif]-->
+
+		<!--[if IE]>
 	
 		<script src="assets/js/jquery-1.11.0.min.js"></script>
 	
 	<![endif]-->
 
-	<!--[if !IE]>-->
+		<!--[if !IE]>-->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='/goods/assets/js/jquery-2.1.0.min.js'>"+"<"+"/script>");
+			window.jQuery
+					|| document
+							.write("<script src='/goods/assets/js/jquery-2.1.0.min.js'>"
+									+ "<"+"/script>");
 		</script>
 
-	<!--<![endif]-->
+		<!--<![endif]-->
 
-	<!--[if IE]>
+		<!--[if IE]>
 	
 		<script type="text/javascript">
 	 	window.jQuery || document.write("<script src='assets/js/jquery-1.11.0.min.js'>"+"<"+"/script>");
 		</script>
 		
 	<![endif]-->
-	<script src="/goods/assets/js/jquery-migrate-1.2.1.min.js"></script>
-	<script src="/goods/assets/js/bootstrap.min.js"></script>
-	
-	
-	<!-- page scripts -->
-	<script src="/goods/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-	<script src="/goods/assets/js/jquery.sparkline.min.js"></script>
-	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="assets/js/excanvas.min.js"></script><![endif]-->
-	<script src="/goods/assets/js/jquery.flot.min.js"></script>
-	<script src="/goods/assets/js/jquery.flot.pie.min.js"></script>
-	<script src="/goods/assets/js/jquery.flot.stack.min.js"></script>
-	<script src="/goods/assets/js/jquery.flot.resize.min.js"></script>
-	<script src="/goods/assets/js/jquery.flot.time.min.js"></script>
-	<script src="/goods/assets/js/retina.min.js"></script>
-	<script src="/goods/assets/js/raphael.min.js"></script>
-	<script src="/goods/assets/js/justgage.1.0.1.min.js"></script>
-	
-	<!-- theme scripts -->
-	<script src="/goods/assets/js/custom.min.js"></script>
-	<script src="/goods/assets/js/core.min.js"></script>
-	<script src="/goods/assets/js/angular.min.js"></script>
-	<script src="/goods/assets/js/pages/angularConfig.js"></script>
-	<!-- inline scripts related to this page -->
-	<script src="/goods/assets/js/pages/index.js"></script>
-	<script src="/goods/js/main.js"></script>
-	<!-- end: JavaScript-->
-	
+		<script src="/goods/assets/js/jquery-migrate-1.2.1.min.js"></script>
+		<script src="/goods/assets/js/bootstrap.min.js"></script>
+
+
+		<!-- page scripts -->
+		<script src="/goods/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="/goods/assets/js/jquery.sparkline.min.js"></script>
+		<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="assets/js/excanvas.min.js"></script><![endif]-->
+		<script src="/goods/assets/js/jquery.flot.min.js"></script>
+		<script src="/goods/assets/js/jquery.flot.pie.min.js"></script>
+		<script src="/goods/assets/js/jquery.flot.stack.min.js"></script>
+		<script src="/goods/assets/js/jquery.flot.resize.min.js"></script>
+		<script src="/goods/assets/js/jquery.flot.time.min.js"></script>
+		<script src="/goods/assets/js/retina.min.js"></script>
+		<script src="/goods/assets/js/raphael.min.js"></script>
+		<script src="/goods/assets/js/justgage.1.0.1.min.js"></script>
+
+		<!-- theme scripts -->
+		<script src="/goods/assets/js/custom.min.js"></script>
+		<script src="/goods/assets/js/core.min.js"></script>
+		<script src="/goods/assets/js/angular.min.js"></script>
+		<script src="/goods/assets/js/pages/angularConfig.js"></script>
+		<!-- inline scripts related to this page -->
+		<script src="/goods/assets/js/pages/index.js"></script>
+		<script src="/goods/js/main.js"></script>
+		<!-- end: JavaScript-->
 </body>
 </html>

@@ -97,7 +97,7 @@ app.controller('registCtrol', function($scope, $http, $element) {
 	}
 	
 	$scope.submit = function() {
-		if(event && $scope.user){
+		if($scope.user){
 			 if($scope.registForm.$valid){
 					$http.post("/goods/operate/user/registUser.do", $scope.user).success(function(result) {
 						if ("err"==result.data) {
