@@ -24,3 +24,10 @@ app.controller('userCtrol',function($scope,$http){
 	});
 	}
 });
+
+app.controller('titleCtrol',function($scope){
+	$scope.show = function(){
+		$scope.title=this.child.name;
+		//console.log($scope.title);
+	}
+});
