@@ -26,7 +26,9 @@ app.controller('userCtrol',function($scope,$http){
 });
 
 app.controller('titleCtrol',function($scope){
+	$scope.title = '全部';
 	$scope.show = function(){
+		event.preventDefault();
 		$scope.title=this.child.name;
 		//console.log($scope.title);
 	}

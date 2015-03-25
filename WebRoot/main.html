@@ -18,114 +18,7 @@
 <link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="/goods/assets/css/style.min.css" rel="stylesheet">
 <link href="/goods/assets/css/retina.min.css" rel="stylesheet">
-<style type="text/css">
-.item.img {
-	text-align: center;
-}
 
-.mod_content {
-	/* 	width: 880px; */
-	overflow: hidden
-}
-
-.title {
-	height: 10px;
-	margin: 0 10px 10px 0
-}
-
-.title h2 {
-	
-}
-
-.slide_content {
-	width: 2130px;
-	height: 416px;
-	overflow: hidden
-}
-
-.mod_first_list {
-	width: 870px;
-	height: 415px;
-	float: left;
-	overflow: hidden;
-	padding-left: 50px
-}
-
-.mod_first_list li {
-	list-style-type: none;
-	width: 130px;
-	height: 130px;
-	float: left;
-	margin: 0 22px 10px 0
-}
-
-.mod_first_list li .mod_poster_130:hover .icon_play {
-	right: 5px;
-	bottom: 53px
-}
-
-.mod_poster_130 {
-	position: relative
-}
-
-.mod_poster_130, .mod_poster_130 img {
-	display: block;
-	width: 130px;
-	height: 130px
-}
-
-.mod_poster_130:hover {
-	text-decoration: none;
-	border: none
-}
-
-.mod_poster_130 .shadow {
-	display: block;
-	width: 130px;
-	height: 48px;
-	position: absolute;
-	z-index: 1;
-	left: 0;
-	bottom: 0;
-	background: #000;
-	opacity: .75;
-	cursor: pointer;
-	filter: alpha(opacity = 75)
-}
-
-.mod_poster_130 strong {
-	display: block;
-	width: 130px;
-	height: 20px;
-	position: absolute;
-	z-index: 2;
-	left: 0;
-	font-weight: normal;
-	cursor: pointer;
-	text-indent: 5px;
-	overflow: hidden;
-	word-break: keep-all;
-	word-wrap: keep-all;
-	white-space: nowrap;
-	table-layout: fixed;
-	-o-text-overflow: ellipsis;
-	text-overflow: ellipsis
-}
-
-.mod_poster_130 .album_name {
-	height: 28px;
-	line-height: 28px;
-	bottom: 20px;
-	color: #0cc65b;
-	font-size: 14px
-}
-
-.mod_poster_130 .album_singer {
-	line-height: 18px;
-	bottom: 0;
-	color: #fff
-}
-</style>
 <!-- end: CSS -->
 
 <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -147,17 +40,7 @@
 <link rel="shortcut icon" href="assets/ico/favicon.png">
 <!-- end: Favicon and Touch Icons -->
 
-<style type="text/css">
-.carousel-inner>.item {
-	height: 320px;
-	overflow: hidden;
-}
 
-.carousel-inner>.item img {
-	width: 100%;
-	margin: 0;
-}
-</style>
 
 
 </head>
@@ -328,11 +211,27 @@
 
 			<!-- start: Content -->
 			<div id="content" class="col-sm-11">
-			    <div id="title" class="row" >
-			    <h1 style="margin-top:0px" >{{title}}专辑</h1>
-			    </div>
-				<div class="row">
-					
+				<div>
+					<div id="title" class="col-sm-10">
+						<h1>
+							<span style="margin-top: 0px; block: display" ng-bind='title'></span>专辑
+						</h1>
+					</div>
+					<div class="col-sm-2">
+						<div class="input-group" style="padding-top: 18px">
+							<input type="text" class="form-control" placeholder="搜索好音乐">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+						<!-- /input-group -->
+					</div>
+				</div>
+				<!-- 专辑展示div -->
+				<div>
+				
 				</div>
 			</div>
 			<!-- end: Content -->
@@ -405,11 +304,11 @@
 		<!--[if !IE]>-->
 
 		<script type="text/javascript">
-			window.jQuery
-					|| document
-							.write("<script src='/goods/assets/js/jquery-2.1.0.min.js'>"
-									+ "<"+"/script>");
-		</script>
+				window.jQuery
+						|| document
+								.write("<script src='/goods/assets/js/jquery-2.1.0.min.js'>"
+										+ "<"+"/script>");
+			</script>
 
 		<!--<![endif]-->
 
