@@ -18,7 +18,9 @@
 <link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="/goods/assets/css/style.min.css" rel="stylesheet">
 <link href="/goods/assets/css/retina.min.css" rel="stylesheet">
+<style type="text/css">
 
+</style>
 <!-- end: CSS -->
 
 <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -211,7 +213,7 @@
 
 			<!-- start: Content -->
 			<div id="content" class="col-sm-11">
-				<div>
+				<div class="row">
 					<div id="title" class="col-sm-10">
 						<h1>
 							<span style="margin-top: 0px; block: display" ng-bind='title'></span>专辑
@@ -230,34 +232,59 @@
 					</div>
 				</div>
 				<!-- 专辑展示div -->
-				<div>
-				
-				</div>
-			</div>
-			<!-- end: Content -->
-
-			<div class="modal fade" id="myModal">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title">Modal title</h4>
-						</div>
-						<div class="modal-body">
-							<p>Here settings can be configured...</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="thumbnail">
+						<a href="#"><img alt="" src="cds/300.jpg" class="img-rounded"></a>
+							<div class="caption">
+								<h5>
+									<a>情歌—很爱很爱你</a>
+								</h5>
+								<p>群星</p>
+							</div>
 						</div>
 					</div>
-					<!-- /.modal-content -->
+						</div>
+						<!-- 分页div -->
+				<div style="clear:both">
+					<nav> 
+					<div style="text-align:center; margin-left:auto; margin-right:auto;">
+						<ul class="pagination pagination-lg" >
+							<li>
+								<a href="#" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">1</a>
+							</li>
+							<li>
+								<a href="#">2</a>
+							</li>
+							<li>
+								<a href="#">3</a>
+							</li>
+							<li>
+								<a href="#">4</a>
+							</li>
+							<li>
+								<a href="#">5</a>
+							</li>
+							<li>
+								<a href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					 </div>
+					</nav>
 				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<!-- /.modal -->
+				</div>
+				
+				<!-- end: Content -->
 
-		</div>
+		
+			</div>
 		<!--/container-->
 
 
