@@ -6,7 +6,7 @@
         <result property="singer" column="singer"/>
         <result property="cname" column="cname"/>
         <result property="price" column="price"/>
-        <result property="currprice" column="currprice"/>
+        <result property="currPrice" column="currPrice"/>
         <result property="discount" column="discount"/>
         <result property="press" column="press"/>
         <result property="publishtime" column="publishtime"/>
@@ -17,6 +17,7 @@
         <result property="image_b" column="image_b"/>
         <result property="orderBy" column="orderBy"/>
         <result property="sum" column="sum"/>
+        <result property="language" column="language"/>
     </resultMap>
     <select id="selectAll" resultMap="CDMap">
         select * from t_cd 

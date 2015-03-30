@@ -195,8 +195,9 @@
 							</a>
 							<ul>
 								<li ng-repeat="child in parent.children">
-									<a class="submenu" href="#" ng-click="show()">
+									<a class="submenu" href="#" ng-click="show($event)">
 										<i class="fa fa-hdd-o"></i>
+										<span style="display:none" ng-bind="child.mid"></span>
 										<span class="hidden-sm" ng-bind="child.name"></span>
 									</a>
 								</li>
@@ -212,7 +213,7 @@
 
 
 			<!-- start: Content -->
-			<div id="content" class="col-sm-11">
+			<div id="content" class="col-sm-11" ng-controller="cdCtrol">
 				<div class="row">
 					<div id="title" class="col-sm-10">
 						<h1>
@@ -232,19 +233,7 @@
 					</div>
 				</div>
 				<!-- 专辑展示div -->
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="thumbnail">
-						<a href="#"><img alt="" src="cds/300.jpg" class="img-rounded"></a>
-							<div class="caption">
-								<h5>
-									<a>情歌—很爱很爱你</a>
-								</h5>
-								<p>群星</p>
-							</div>
-						</div>
-					</div>
-						</div>
+				<div list></div>
 						<!-- 分页div -->
 				<div style="clear:both">
 					<nav> 

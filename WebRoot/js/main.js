@@ -25,11 +25,32 @@ app.controller('userCtrol',function($scope,$http){
 	}
 });
 
-app.controller('titleCtrol',function($scope){
+app.controller('titleCtrol',function($scope,$http, $element,$compile){
 	$scope.title = '全部';
-	$scope.show = function(){
+	$scope.show = function(event){
+		var id=event.currentTarget.children[1].innerText;
 		event.preventDefault();
 		$scope.title=this.child.name;
-		//console.log($scope.title);
+		$http.post("/goods/operate/CD/showSomeCDs.do",{mid:id}).success(function(allcds){
+			$scope.allcds=allcds;})
+        var list = $element.find('div[list]');
+        list.empty().removeAttr('list').attr('list','');
+        $compile(list)($scope);
+	}
+});
+
+app.controller('cdCtrol',function($scope,$http,$compile,$element){
+	$http.post("/goods/operate/CD/showAllCDs.do").success(function(allcds){
+		$scope.allcds=allcds;
+		 var list = $element.find('div[list]');
+	        list.empty().removeAttr('list').attr('list','');
+	        $compile(list)($scope);
+	});
+});
+
+app.directive('list', function() {
+	return {
+		restrict: 'EA',
+		templateUrl: 'list.html'
 	}
 });
