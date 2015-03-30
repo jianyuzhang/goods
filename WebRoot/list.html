@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-sm-2" ng-repeat="cd in allcds" style="height: 271px">
+		<div class="thumbnail">
+			<a href="#">
+				<img alt="{{cd.cname}}" src="{{cd.image_b}}" class="img-rounded" style="height: 160px; width: 160px">
+			</a>
+			<div class="caption">
+				<h5>
+					<a>{{cd.cname}}</a>
+				</h5>
+				<p>{{cd.singer}}</p>
+			</div>
+		</div>
+	</div>
+</div>
