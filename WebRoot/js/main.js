@@ -33,6 +33,12 @@ app.controller('titleCtrol',function($scope,$http, $element,$compile){
 		$scope.title=this.child.name;
 		$http.post("/goods/operate/CD/showSomeCDs.do",{mid:id}).success(function(allcds){
 			$scope.allcds=allcds;})
+			$http.post("/goods/operate/CD/count.do").success(function(count){
+		console.log(count[0])
+		if(count[0]<=18){
+			$scope.style={visible:'hidden'}
+		}
+	});
         var list = $element.find('div[list]');
         list.empty().removeAttr('list').attr('list','');
         $compile(list)($scope);
@@ -45,6 +51,10 @@ app.controller('cdCtrol',function($scope,$http,$compile,$element){
 		 var list = $element.find('div[list]');
 	        list.empty().removeAttr('list').attr('list','');
 	        $compile(list)($scope);
+	});
+	$http.post("/goods/operate/CD/count.do").success(function(count){
+		console.log(count)
+		
 	});
 });
 
