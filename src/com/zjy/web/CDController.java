@@ -59,11 +59,11 @@ public class CDController{
 	 * 分页展示
 	 */
 	@RequestMapping("/showListByPage.do")
-	public void showCDsByPage(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		String[] properties={"mid"};
-		Object[] propertyValues={};
+	public void showCDsByPage(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String[] properties={"mid","pageNo"};
 		int pageNo= Integer.parseInt(request.getParameter("pageNo"));
-		List<CD> cdListPages=cdService.showSomeCDsByPage(properties, propertyValues, null, null, 18, pageNo);
+		Object[] propertyValues={request.getParameter("mid"),pageNo};
+		List<CD> cdListPages=cdService.showSomeCDsByPage(properties, propertyValues);
 		response.getWriter().print(JSONArray.fromObject(cdListPages));
 	}
 }

@@ -35,11 +35,9 @@ public class CDServiceImpl implements CDService {
 	 * 分页展示
 	 */
 	@Override
-	public List<CD> showSomeCDsByPage(String[] properties,
-			Object[] propertyValues, String orderBy, String order,
-			int pageSize, int pageNo) {
+	public List<CD> showSomeCDsByPage(String[] properties,Object[] propertyValues) {
 		// TODO Auto-generated method stub
-		List<CD> cds=cdDao.pageQueryByMap(properties, propertyValues, null, null, 18, pageNo);
+		List<CD> cds=cdDao.findByStatementPostfix(".selectListByPage", properties, propertyValues, null, null);
 		return cds;
 	}
 	/*
@@ -47,7 +45,6 @@ public class CDServiceImpl implements CDService {
 	 */
 	@Override
 	public Integer countCDs(String propertyName, Object propertyValue) {
-		System.out.println(1);
 		// TODO Auto-generated method stub
 		Integer i =cdDao.count( propertyName, propertyValue);
 		return i;

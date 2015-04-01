@@ -26,16 +26,14 @@ app.controller('userCtrol', function($scope, $http) {
 });
 
 app.controller('cdCtrol', function($scope, $http, $compile, $element) {
-	$http.post("/goods/operate/CD/showAllCDs.do").success(function(allcds) {
+	$http.post("/goods/operate/CD/showListByPage.do", {
+		mid : $scope.id,
+		pageNo:1
+	}).success(function(allcds) {
 		$scope.allcds = allcds;
 		var list = $element.find('div[list]');
 		list.empty().removeAttr('list').attr('list', '');
 		$compile(list)($scope);
-	});
-	$http.post("/goods/operate/CD/count.do").success(function(count) {
-		if(count.length > 0){
-		    {$scope.count=count}
-		}
 	});
 });
 app.controller('titleCtrol', function($scope, $http, $element, $compile) {
@@ -44,24 +42,8 @@ app.controller('titleCtrol', function($scope, $http, $element, $compile) {
 	$scope.show = function(event) {
 		var id = event.currentTarget.children[1].innerText;
 		event.preventDefault();
+		$scope.id=id;
 		$scope.title = this.child.name;
-		$http.post("/goods/operate/CD/showSomeCDs.do", {
-			mid : id
-		}).success(function(allcds) {
-			$scope.allcds = allcds;
-			$http.post("/goods/operate/CD/count.do",{mid:id}).success(function(count) {
-				if(count.length > 0){
-				    {$scope.count=count}
-				}
-				
-				if (count[0] <= $scope.pageSize) {
-					$scope.style = {
-						visible : 'hidden'
-					}
-				}
-			});
-		})
-		
 		var list = $element.find('div[list]');
 		list.empty().removeAttr('list').attr('list', '');
 		$compile(list)($scope);
