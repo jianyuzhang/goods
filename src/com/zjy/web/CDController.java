@@ -24,7 +24,7 @@ public class CDController{
 	@Resource
 	private CDService cdService;
 	
-	public static String mid=null;
+	
 	/*
 	 * 展示全部的CD
 	 */
@@ -39,7 +39,7 @@ public class CDController{
 	@RequestMapping("/showSomeCDs.do")
 	public void showSomeCDs(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String[] properties={"mid"};
-		mid=request.getParameter("mid");
+		String mid=request.getParameter("mid");
 		Object[] propertyValues={mid};
 		List<CD> cds=cdService.showSomeCDs(properties, propertyValues);
 		response.getWriter().print(JSONArray.fromObject(cds));
@@ -51,7 +51,7 @@ public class CDController{
 	@RequestMapping("/count.do")
 	public void count(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String propertyName="mid";
-		Object propertyValue=mid;
+		Object propertyValue=request.getParameter("mid");
 		int i = cdService.countCDs(propertyName, propertyValue);
 		response.getWriter().print(JSONArray.fromObject(i));
 	}
@@ -61,7 +61,7 @@ public class CDController{
 	@RequestMapping("/showListByPage.do")
 	public void showCDsByPage(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String[] properties={"mid"};
-		Object[] propertyValues={mid};
+		Object[] propertyValues={};
 		int pageNo= Integer.parseInt(request.getParameter("pageNo"));
 		List<CD> cdListPages=cdService.showSomeCDsByPage(properties, propertyValues, null, null, 18, pageNo);
 		response.getWriter().print(JSONArray.fromObject(cdListPages));

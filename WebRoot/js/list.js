@@ -1,11 +1,11 @@
 var app = angular.module('list', []);
 
-app.controller('listCtrl', function($scope, $http) {
+app.controller('listCtrl', function($scope, $http, $element) {
 	$scope.showPage = [];
 	$scope.page = 1;
 	$scope.totalPage = 1;
-	$http.post('/goods/operate/CD/count.do').success(function(data) {
-		if (!isNaN(data[0])) {
+	console.log($scope.count)
+		/*if (!isNaN(data[0])) {
 			$scope.totalPage = parseInt(data[0] / $scope.pageSize);
 			if (data[0] % $scope.pageSize) {
 				$scope.totalPage++;
@@ -14,6 +14,5 @@ app.controller('listCtrl', function($scope, $http) {
 			for (var i = $scope.page; i <= $scope.totalPage; i++) {
 				$scope.showPage.push(i);
 			}
-		}
+		}*/
 	});
-});
