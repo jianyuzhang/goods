@@ -1,6 +1,6 @@
 var app = angular.module('list', []);
 
-app.controller('listCtrl', function($scope, $http, $element) {
+app.controller('listCtrl', function($scope, $http, $element,$compile) {
 	$scope.showPage = [];
 	$scope.page = 1;
 	$scope.totalPage = 1;
@@ -18,7 +18,7 @@ app.controller('listCtrl', function($scope, $http, $element) {
 					$scope.totalPage++;
 				}
 
-				for (var i = $scope.page; i <= $scope.totalPage; i++) {
+				for (var i = $scope.page; i <=$scope.totalPage; i++) {
 					$scope.showPage.push(i);
 				}
 			}
@@ -27,19 +27,48 @@ app.controller('listCtrl', function($scope, $http, $element) {
 	$scope.forward=function(){
 		if($scope.page>1)
 		$scope.page--;
+		$http.post("/goods/operate/CD/showListByPage.do", {
+			mid : $scope.id,
+			pageNo:$scope.page
+		}).success(function(allcds) {
+			$scope.allcds = allcds;
+			var list = $element.find('div[list]');
+			list.empty().removeAttr('list').attr('list', '');
+			$compile(list)($scope);
+		});
 	};
 	$scope.current = function(event){
 		$scope.page=event.currentTarget.children[0].innerText;
+		$http.post("/goods/operate/CD/showListByPage.do", {
+			mid : $scope.id,
+			pageNo:$scope.page
+		}).success(function(allcds) {
+			$scope.allcds = allcds;
+			var list = $element.find('div[list]');
+			list.empty().removeAttr('list').attr('list', '');
+			$compile(list)($scope);
+		});
 	}
 	$scope.back=function(){
-		if($scope.page<=$scope.totalPage)
+		if($scope.page<$scope.totalPage)
 		$scope.page++;
+		$http.post("/goods/operate/CD/showListByPage.do", {
+			mid : $scope.id,
+			pageNo:$scope.page
+		}).success(function(allcds) {
+			$scope.allcds = allcds;
+			var list = $element.find('div[list]');
+			list.empty().removeAttr('list').attr('list', '');
+			$compile(list)($scope);
+		});
 	};
-	/*$http.post("/goods/operate/CD/showListByPage.do", {
+	$http.post("/goods/operate/CD/showListByPage.do", {
 		mid : $scope.id,
 		pageNo:$scope.page
 	}).success(function(allcds) {
 		$scope.allcds = allcds;
-		
-	})*/
+		var list = $element.find('div[list]');
+		list.empty().removeAttr('list').attr('list', '');
+		$compile(list)($scope);
+	});
 });

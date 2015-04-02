@@ -40,11 +40,15 @@
 	</where>
 	</select>
 	<select id="selectListByPage" resultMap="CDMap">
-	   select * from t_cd t <where>
+	   select * from t_cd t 
+	   
 	   <if test="mid != null">
+	   <where>
 	     AND t.mid = #{mid}
+	    </where>
 	   </if>
-	</where> limit 
-	#{pageNo}*17 ,18
+	 limit 
+	#{pageNo} ,18
+	
 	</select>
 </mapper>

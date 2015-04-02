@@ -61,7 +61,7 @@ public class CDController{
 	@RequestMapping("/showListByPage.do")
 	public void showCDsByPage(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String[] properties={"mid","pageNo"};
-		int pageNo= Integer.parseInt(request.getParameter("pageNo"));
+		int pageNo= (Integer.parseInt(request.getParameter("pageNo"))-1)*18;
 		Object[] propertyValues={request.getParameter("mid"),pageNo};
 		List<CD> cdListPages=cdService.showSomeCDsByPage(properties, propertyValues);
 		response.getWriter().print(JSONArray.fromObject(cdListPages));

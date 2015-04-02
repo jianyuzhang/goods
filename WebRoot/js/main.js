@@ -26,15 +26,15 @@ app.controller('userCtrol', function($scope, $http) {
 });
 
 app.controller('cdCtrol', function($scope, $http, $compile, $element) {
-	$http.post("/goods/operate/CD/showListByPage.do", {
+	/*$http.post("/goods/operate/CD/showListByPage.do", {
 		mid : $scope.id,
-		pageNo:1
+		pageNo:$scope.page
 	}).success(function(allcds) {
 		$scope.allcds = allcds;
 		var list = $element.find('div[list]');
 		list.empty().removeAttr('list').attr('list', '');
 		$compile(list)($scope);
-	});
+	});*/
 });
 app.controller('titleCtrol', function($scope, $http, $element, $compile) {
 	$scope.title = '全部';
