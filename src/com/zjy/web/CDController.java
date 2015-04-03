@@ -66,5 +66,16 @@ public class CDController{
 		List<CD> cdListPages=cdService.showSomeCDsByPage(properties, propertyValues);
 		response.getWriter().print(JSONArray.fromObject(cdListPages));
 	}
+	
+	/*
+	 * 展示CD的具体内容
+	 */
+    @RequestMapping("/showCDDetial.do")
+    public void showCDDetial(HttpServletRequest request,HttpServletResponse response) throws Exception{
+    	String cid=request.getParameter("cid");
+    	CD cd =cdService.showCDDetial(cid);
+    	System.out.println(cd.toString());
+    	response.getWriter().print(JSONArray.fromObject(cd));
+    }
 }
 

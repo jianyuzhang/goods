@@ -6,7 +6,7 @@ app.controller('listCtrl', function($scope, $http, $element,$compile) {
 	$scope.totalPage = 1;
 	$http.post("/goods/operate/CD/count.do",{mid:$scope.id}).success(function(count) {
 			$scope.data=count;
-			console.log($scope.data[0])
+			//console.log($scope.data[0])
 		if ($scope.data[0] <= $scope.pageSize) {
 			$scope.style = {
 				visible : 'hidden'
@@ -23,46 +23,8 @@ app.controller('listCtrl', function($scope, $http, $element,$compile) {
 				}
 			}
 	});
-	
-	$scope.forward=function(){
-		if($scope.page>1)
-		$scope.page--;
+	var showPage= function(){
 		$http.post("/goods/operate/CD/showListByPage.do", {
-			mid : $scope.id,
-			pageNo:$scope.page
-		}).success(function(allcds) {
-			$scope.allcds = allcds;
-			var list = $element.find('div[list]');
-			list.empty().removeAttr('list').attr('list', '');
-			$compile(list)($scope);
-		});
-	};
-	$scope.current = function(event){
-		$scope.page=event.currentTarget.children[0].innerText;
-		$http.post("/goods/operate/CD/showListByPage.do", {
-			mid : $scope.id,
-			pageNo:$scope.page
-		}).success(function(allcds) {
-			$scope.allcds = allcds;
-			var list = $element.find('div[list]');
-			list.empty().removeAttr('list').attr('list', '');
-			$compile(list)($scope);
-		});
-	}
-	$scope.back=function(){
-		if($scope.page<$scope.totalPage)
-		$scope.page++;
-		$http.post("/goods/operate/CD/showListByPage.do", {
-			mid : $scope.id,
-			pageNo:$scope.page
-		}).success(function(allcds) {
-			$scope.allcds = allcds;
-			var list = $element.find('div[list]');
-			list.empty().removeAttr('list').attr('list', '');
-			$compile(list)($scope);
-		});
-	};
-	$http.post("/goods/operate/CD/showListByPage.do", {
 		mid : $scope.id,
 		pageNo:$scope.page
 	}).success(function(allcds) {
@@ -70,5 +32,22 @@ app.controller('listCtrl', function($scope, $http, $element,$compile) {
 		var list = $element.find('div[list]');
 		list.empty().removeAttr('list').attr('list', '');
 		$compile(list)($scope);
-	});
+	});}
+	showPage();
+	$scope.forward=function(){
+		if($scope.page>1)
+		$scope.page--;
+		showPage();
+	};
+	$scope.current = function(event){
+		$scope.page=event.currentTarget.children[0].innerText;
+		showPage();
+	}
+	$scope.back=function(){
+		if($scope.page<$scope.totalPage)
+		$scope.page++;
+		showPage();
+	};
+
+	
 });

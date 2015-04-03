@@ -51,4 +51,13 @@
 	#{pageNo} ,18
 	
 	</select>
+	<select id="selectById" resultMap="CDMap">
+	select * from t_cd t
+		<where>
+			<if test="cid != null">
+				AND t.mid= #{cid}
+			</if>
+				
+		</where>
+	</select>
 </mapper>

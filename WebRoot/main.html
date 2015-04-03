@@ -47,7 +47,7 @@
 
 </head>
 
-<body>
+<body ng-controller="indexCtrol">
 	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -59,7 +59,7 @@
 				</button>
 				<a class="navbar-brand" href="">
 					<span>
-						<strong>商家管理中心</strong>
+						<strong >商家管理中心</strong>
 					</span>
 				</a>
 
@@ -180,9 +180,7 @@
 	<!-- start: Header -->
 
 	<div class="container">
-		<div class="row" ng-controller="titleCtrol">
-
-
+		<div class="row" >
 			<!-- start: Main Menu -->
 			<div id="sidebar-left" class="col-sm-1" ng-controller="menuCtrol">
 				<div class="nav-collapse sidebar-nav collapse navbar-collapse bs-navbar-collapse">
@@ -213,7 +211,7 @@
 
 
 			<!-- start: Content -->
-			<div id="content" class="col-sm-11" ng-controller="cdCtrol">
+			<div id="content" class="col-sm-11" >
 				<div class="row">
 					<div id="title" class="col-sm-10">
 						<h1>
@@ -323,6 +321,7 @@
 		<script src="/goods/assets/js/pages/index.js"></script>
 		<script src="/goods/js/main.js"></script>
 		<script src="/goods/js/list.js"></script>
+		<script src="/goods/js/detail.js"></script>
 		<!-- end: JavaScript-->
 </body>
 </html>

@@ -49,5 +49,10 @@ public class CDServiceImpl implements CDService {
 		Integer i =cdDao.count( propertyName, propertyValue);
 		return i;
 	}
+	@Override
+	public CD showCDDetial(String cid) {
+		CD cd=cdDao.selectById(cid);
+		return cd;
+	}
    
 }
