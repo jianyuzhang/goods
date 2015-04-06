@@ -9,8 +9,12 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	});
 	$scope.showDetial = function (event){
 		$scope.cid = event.currentTarget.children[0].innerText;
-		$http.post("/goods/operate/CD/showCDDetial.do",{cid:$scope.cid}).success(function(){
-			
+		$http.post("/goods/operate/CD/showCDDetial.do",{cid:$scope.cid}).success(function(cd){
+			$scope.cd = cd;
+			//console.log($scope.cd)
+			var detail = $element.find('div#content');
+			detail.empty().removeAttr('detail').attr('detail', '');
+			$compile(detail)($scope);
 		});
 		
 	}
@@ -46,5 +50,11 @@ app.directive('list', function() {
 	return {
 		restrict : 'EA',
 		templateUrl : 'list.html'
+	}
+});
+app.directive('detail', function() {
+	return {
+		restrict : 'EA',
+		templateUrl : 'detail.html'
 	}
 });

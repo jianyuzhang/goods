@@ -51,11 +51,11 @@
 	#{pageNo} ,18
 	
 	</select>
-	<select id="selectById" resultMap="CDMap">
+	<select id="selectById" resultMap="CDMap" parameterType="java.lang.String">
 	select * from t_cd t
 		<where>
-			<if test="cid != null">
-				AND t.mid= #{cid}
+			<if test="_parameter != null">
+				AND t.cid= #{_parameter}
 			</if>
 				
 		</where>

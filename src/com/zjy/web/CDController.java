@@ -73,6 +73,7 @@ public class CDController{
     @RequestMapping("/showCDDetial.do")
     public void showCDDetial(HttpServletRequest request,HttpServletResponse response) throws Exception{
     	String cid=request.getParameter("cid");
+    	System.out.println(cid);
     	CD cd =cdService.showCDDetial(cid);
     	System.out.println(cd.toString());
     	response.getWriter().print(JSONArray.fromObject(cd));

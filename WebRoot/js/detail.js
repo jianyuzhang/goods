@@ -1,4 +1,7 @@
 var app = angular.module('detail', []);
-app.controller('detailCtrol',function($scope){
-	console.log($scope.cid);
+app.controller('detailCtrol',function($scope,$http){
+	
+		console.log($scope.cd)
+	
+	
 });
