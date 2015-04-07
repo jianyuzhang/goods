@@ -1,4 +1,4 @@
-var app = angular.module("main", [ 'list','detail']);
+var app = angular.module("main", [ 'list','detail','show']);
 angularConfig(app);
 app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$scope.title = '全部';
@@ -13,12 +13,15 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 			$scope.cd = cd;
 			//console.log($scope.cd)
 			var detail = $element.find('div#content');
-			detail.empty().removeAttr('detail').attr('detail', '');
+			detail.empty().removeAttr('show').attr('detail', '');
 			$compile(detail)($scope);
 		});
 		
 	}
 	$scope.show = function(event) {
+		var detail = $element.find('div#content');
+		detail.empty().removeAttr('detail').attr('show','');
+		$compile(detail)($scope);
 		var id = event.currentTarget.children[1].innerText;
 		event.preventDefault();
 		$scope.id=id;
@@ -56,5 +59,12 @@ app.directive('detail', function() {
 	return {
 		restrict : 'EA',
 		templateUrl : 'detail.html'
+	}
+});
+
+app.directive('show',function(){
+	return{
+		restrict : 'EA',
+		templateUrl : 'show.html'
 	}
 });
