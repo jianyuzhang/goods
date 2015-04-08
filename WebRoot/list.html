@@ -1,8 +1,8 @@
 <div class="row" ng-controller="listCtrl">
 	<div class="col-sm-2" ng-repeat="cd in allcds" style="height: 271px">
-		<div class="thumbnail" ng-click="showDetial($event)">
+		<div  ng-click="showDetial($event)">
 		    <span style="display:none">{{cd.cid}}</span>
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" class="thumbnail">
 				<img alt="{{cd.cname}}" ng-src="{{cd.image_b}}" class="img-rounded" style="height: 160px; width: 160px">
 			</a>
 			<div class="caption">
