@@ -4,132 +4,48 @@
     <resultMap type="CartItem" id="CartMap">
         <id property="cartItemId" column="cartItemId"/>
         <result property="quantity" column="quantity"/>
+        <result property="cid" column="cid"/>
+        <result property="uid" column="uid"/>
     </resultMap>
-    <update id="update" parameterType="CmMenuPO" >
-    update T_CM_MENU
+    <update id="update" >
+    update t_cartitem
     <set>
-    <if test="menuIcon != null" >
-      MENU_ICON=#{menuIcon},
-     </if>
-     <if test="parentMenuId != null" >
-      PARENT_MENU_ID=#{parentMenuId},
-     </if>
-     <if test="menuNo != null" >
-      MENU_NO=#{menuNo},
-     </if>
-     <if test="openFlag != null" >
-      OPEN_FLAG=#{openFlag},
-     </if>
-     <if test="menuUrl != null" >
-      MENU_URL=#{menuUrl},
-     </if>
-     <if test="menuName != null" >
-      MENU_NAME=#{menuName},
-     </if>
-     <if test="menuAuthority != null" >
-      MENU_AUTHORITY=#{menuAuthority},
-     </if>
-     <if test="menuAuthority != null" >
-      OPEN_FLAG=#{openFlag},
-     </if>
-     <if test="menuType != null" >
-      MENU_TYPE=#{menuType},
-     </if>
-      LAST_MODIFY_TIME=SYSDATE(),
-     <if test="memo != null" >
-      MEMO=#{memo},
-     </if>
-     <if test="menuSeq != null" >
-      MENU_SEQ=#{menuSeq},
-     </if>
-     <if test="menuLevel != null" >
-      MENU_LEVEL=#{menuLevel},
+    <if test="quantity != null" >
+      quantity=#{quantity},
      </if>
       </set>
-      where MENU_ID = #{menuId}
+      where cartItemId = #{cartItemId}
 
   </update>
   
-  <insert id="insert" parameterType="CmMenuPO" >
-  insert into T_CM_MENU
+  <insert id="insert"  >
+  insert into t_cartitem
     <trim prefix="(" suffix=")" suffixOverrides="," >
-     <if test="menuId != null">
-        MENU_ID, 
+     <if test="cartItemId != null">
+        cartItemId, 
      </if> 
-    <if test="parentMenuId != null">
-        PARENT_MENU_ID, 
+    <if test="quantity != null">
+        quantity, 
      </if>
-     <if test="menuNo != null">
-        MENU_NO, 
+     <if test="cid != null">
+        cid, 
      </if>
-     <if test="menuUrl != null">
-        MENU_URL, 
-     </if>
-     <if test="menuName != null">
-        MENU_NAME, 
-     </if>
-     <if test="menuIcon != null">
-        MENU_ICON, 
-     </if>
-     <if test="menuType != null">
-        MENU_TYPE, 
-     </if>
-     <if test="menuAuthority != null">
-        MENU_AUTHORITY, 
-     </if>
-      <if test="openFlag != null">
-        OPEN_FLAG, 
-     </if>
-        CREATE_TIME, 
-        LAST_MODIFY_TIME, 
-      <if test="memo != null">
-        MEMO, 
-     </if>
-      <if test="menuSeq != null">
-        MENU_SEQ, 
-     </if>
-      <if test="menuLevel != null">
-        MENU_LEVEL, 
+     <if test="uid != null">
+        uid, 
      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="menuId != null">
-		#{menuId},
+      <if test="cartItemId != null">
+		#{cartItemId},
 	  </if>
-      <if test="parentMenuId != null">
-	 	#{parentMenuId},
+      <if test="quantity != null">
+	 	#{quantity},
 	  </if>
-	  <if test="menuNo != null">
-		#{menuNo},
+	  <if test="cid != null">
+		#{cid},
 	  </if>
-	  <if test="menuUrl != null">
-		#{menuUrl},
-	  </if>
-	  <if test="menuName != null">
-		#{menuName},
-	  </if>
-	  <if test="menuIcon != null">
-		#{menuIcon},
-	  </if>
-	  <if test="menuType != null">
-		#{menuType},
-	  </if>
-	  <if test="menuAuthority != null">
-		#{menuAuthority},
-	  </if>
-	  <if test="openFlag != null">
-		#{openFlag},
-	  </if>
-		SYSDATE(),
-		SYSDATE(),
-	  <if test="memo != null">
-		#{memo},
-	  </if>
-	  <if test="menuSeq != null">
-		#{menuSeq},
-	  </if>
-	  <if test="menuLevel != null">
-		#{menuLevel},
+	  <if test="uid != null">
+		#{uid},
 	  </if>
     </trim>
   </insert>
