@@ -32,7 +32,16 @@ public class CartItemServiceImpl implements CartItemService {
 	public List<CartItem> showAllcarts(String[] properties,
 			Object[] propertyValues) {
 		
-		List<CartItem> carts=cartItemDao.findByStatementPostfix("", properties, propertyValues, null, null);
+		List<CartItem> carts=cartItemDao.findByStatementPostfix(".selectAllCarts", properties, propertyValues, null, null);
+		return carts;
+	}
+	/*
+	 * 查询某用户的某个商品的数量
+	 */
+	@Override
+	public List<CartItem> selectSomeOnesCartNUm(String[] properties,
+			Object[] propertyValues) {
+		List<CartItem> carts = cartItemDao.findByStatementPostfix(".selectSomeCartQunaty", properties, propertyValues, null, null);
 		return carts;
 	}
 	/*
@@ -54,6 +63,13 @@ public class CartItemServiceImpl implements CartItemService {
 		// TODO Auto-generated method stub
 		cartItemDao.deleteById(cartItemId);
 	}
+	@Override
+	public int countCart(String[] properties, Object[] propertyValues) {
+		// TODO Auto-generated method stub
+		int  i = cartItemDao.count(properties, propertyValues);
+		return i;
+	}
+	
 
    
 }

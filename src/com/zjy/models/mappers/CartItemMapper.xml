@@ -7,6 +7,36 @@
         <result property="cid" column="cid"/>
         <result property="uid" column="uid"/>
     </resultMap>
+    <select id="selectAllCarts" resultMap="CartMap">
+      select * from t_cartitem t
+      <where>
+      <if test="uid != null">
+       AND t.uid = #{uid}
+       </if>
+      </where>
+    </select>
+    <select id="selectSomeCartQunaty" resultMap="CartMap">
+      select * from t_cartitem t
+      <where>
+      <if test="uid != null">
+       AND t.uid = #{uid}
+       </if>
+       <if test="cid != null">
+       AND t.cid = #{cid}
+       </if>
+      </where>
+    </select>
+    <select id="count" resultType="int">
+	select count(*) from t_cartitem t
+	<where>
+	   <if test="cid != null">
+	     AND t.cid = #{cid}
+	   </if>
+	   <if test="uid != null">
+	     AND t.uid = #{uid}
+	   </if>
+	</where>
+	</select>
     <update id="update" >
     update t_cartitem
     <set>
@@ -14,8 +44,14 @@
       quantity=#{quantity},
      </if>
       </set>
-      where cartItemId = #{cartItemId}
-
+      <where>
+      <if test="cid != null">
+      AND cid = #{cid}
+      </if>
+      <if test="uid != null">
+      AND uid = #{uid}
+      </if>
+      </where>
   </update>
   
   <insert id="insert"  >
@@ -49,4 +85,8 @@
 	  </if>
     </trim>
   </insert>
+  <delete id="deleteById">
+  delete from t_cartitem
+  where cartItemId = #{cartItemId}
+  </delete>
 </mapper>

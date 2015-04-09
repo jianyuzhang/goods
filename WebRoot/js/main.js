@@ -6,6 +6,7 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$http.post("/goods/operate/user/findUser.do").success(function(user) {
 		$scope.user = user;
 		//console.log($scope.user)
+		$scope.uid=user.uid;
 	});
 	$scope.showDetial = function (event){
 		$scope.cid = event.currentTarget.children[0].innerText;

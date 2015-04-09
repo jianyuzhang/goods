@@ -3,8 +3,8 @@
 		<img ng-alt="{{cd.cname}}" ng-src="{{cd.image_b}}" class="img-responsive" style="width: 260px; height: 280px">
 	</div>
 	<div class="col-sm-4" style="height: 300px; margin-left: 40px">
-		<h1 ng-bind="cd.cname" style="margin-top:0px"></h1>
-		<h1 style="margin-top:0px">
+		<h1 ng-bind="cd.cname" style="margin-top: 0px"></h1>
+		<h1 style="margin-top: 0px">
 			<a href="javascript:void(0)">
 				<i class="glyphicon glyphicon-play-circle"></i>
 			</a>
@@ -18,23 +18,32 @@
 			<span ng-bind="cd.printtime"></span>
 		</p>
 		<p>
-		   现价 ：
-		  <i class="glyphicon glyphicon-yen"></i><span ng-bind="cd.currPrice"></span> <br>
-		    原价 ：
-		  <i class="glyphicon glyphicon-yen"></i><del style="color:red"><span ng-bind="cd.price"></span></del>
+			现价 ：
+			<i class="glyphicon glyphicon-yen"></i>
+			<span ng-bind="cd.currPrice"></span>
+			<br>
+			原价 ：
+			<i class="glyphicon glyphicon-yen"></i>
+			<del style="color: red">
+				<span ng-bind="cd.price"></span>
+			</del>
 		</p>
-		<p class="input-group col-sm-4" >
-			<a href="javascript:void(0)" class="input-group-addon" ng-click="minus()" ng-class="{disabled:num == 1}"><i class="glyphicon glyphicon-minus"></i></a>
-			<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{num}}" ng-modle="num">
-			<a href="javascript:void(0)" class="input-group-addon" ng-click="plus()"><i class="glyphicon glyphicon-plus"></i></a>
+		<p class="input-group col-sm-4">
+			<a href="javascript:void(0)" class="input-group-addon" ng-click="minus()" ng-class="{disabled:num == 1}">
+				<i class="glyphicon glyphicon-minus"></i>
+			</a>
+			<input type="text" class="form-control " aria-label="Amount (to the nearest dollar)" value="{{num}}" ng-model="num" ng-blur="change($event)">
+			<a href="javascript:void(0)" class="input-group-addon" ng-click="plus()">
+				<i class="glyphicon glyphicon-plus"></i>
+			</a>
 		</p>
 		<p>
-		  <button type="button" class="btn btn-warning btn-lg">立即购买</button>
-          <button type="button" class="btn btn-danger btn-lg">添加购物车</button>
-        </p>
+			<button type="button" class="btn btn-warning btn-lg">立即购买</button>
+			<button type="button" class="btn btn-danger btn-lg" ng-click="addCart()">添加购物车</button>
+		</p>
 	</div>
-	<div class="col-sm-7" style=" margin-left: 50px">
-	  <h3>歌曲简介</h3>
-	  <p ng-bind="cd.press"></p>
+	<div class="col-sm-7" style="margin-left: 50px">
+		<h3>歌曲简介</h3>
+		<p ng-bind="cd.press"></p>
 	</div>
 </div>
