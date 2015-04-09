@@ -1,7 +1,7 @@
 var app = angular.module('list', []);
 
 app.controller('listCtrl', function($scope, $http, $element,$compile) {
-	$scope.showPage = [];
+	$scope.pageList = [];
 	$scope.page = 1;
 	$scope.totalPage = 1;
 	$http.post("/goods/operate/CD/count.do",{mid:$scope.id}).success(function(count) {
@@ -19,7 +19,7 @@ app.controller('listCtrl', function($scope, $http, $element,$compile) {
 				}
 
 				for (var i = $scope.page; i <=$scope.totalPage; i++) {
-					$scope.showPage.push(i);
+					$scope.pageList.push(i);
 				}
 			}
 	});
@@ -39,8 +39,8 @@ app.controller('listCtrl', function($scope, $http, $element,$compile) {
 		$scope.page--;
 		showPage();
 	};
-	$scope.current = function(event){
-		$scope.page=event.currentTarget.children[0].innerText;
+	$scope.current = function(p){
+		$scope.page = p;
 		showPage();
 	}
 	$scope.back=function(){
