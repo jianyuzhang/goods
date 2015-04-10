@@ -51,7 +51,7 @@
 	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
-			<div class="container">
+			<div class="container" ng-controller="buttonCtrol">
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".sidebar-nav.nav-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -143,13 +143,13 @@
 						</li>
 						<!-- end: Message Dropdown -->
 						<li>
-							<a class="btn" href="cart.html">
+							<a class="btn" href="javascrip:void(0)" ng-click="showCart($event)">
 								<i class="glyphicon glyphicon-shopping-cart"></i>
 							</a>
 						</li>
 						<!-- start: User Dropdown -->
 						<li class="dropdown" ng-controller="userCtrol">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="index.html#">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascrip:void(0)">
 								<i class="halflings user white"></i>
 								{{user.loginname}}
 								<span class="caret"></span>
@@ -193,7 +193,7 @@
 							</a>
 							<ul>
 								<li ng-repeat="child in parent.children">
-									<a class="submenu" href="#" ng-click="show($event)">
+									<a class="submenu" href="javascript:void(0)" ng-click="show($event)">
 										<i class="fa fa-hdd-o"></i>
 										<span style="display: none" ng-bind="child.mid"></span>
 										<span class="hidden-sm" ng-bind="child.name"></span>
@@ -323,6 +323,7 @@
 		<script src="/goods/js/list.js"></script>
 		<script src="/goods/js/detail.js"></script>
 		<script src="/goods/js/show.js"></script>
+		<script src="/goods/js/cart.js"></script>
 		<!-- end: JavaScript-->
 </body>
 </html>

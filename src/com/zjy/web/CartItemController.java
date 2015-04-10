@@ -1,15 +1,13 @@
 package com.zjy.web;
 
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
+import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -55,7 +53,8 @@ public class CartItemController{
 		String[] propertyNames={"cid","uid"};
 		Object[] propertyValues={request.getParameter("cid"),request.getParameter("uid")};
 		 int  i =cartItemService.countCart(propertyNames, propertyValues);
-		 response.getWriter().print(JSONObject.fromObject(i>0));
+		 boolean flag = i > 0;
+		 response.getWriter().print(JSONArray.fromObject(flag));
 	}
 	@RequestMapping("/countCart.do")
 	public  void countCart(HttpServletRequest request ,HttpServletResponse response) throws Exception{
@@ -63,7 +62,7 @@ public class CartItemController{
 		Object[] propertyValues={request.getParameter("cid"),request.getParameter("uid")};
 		List<CartItem> carts= cartItemService.selectSomeOnesCartNUm(propertyNames, propertyValues);
 		int sum= carts.get(0).getQuantity();
-		response.getWriter().print(JSONObject.fromObject(sum));
+		response.getWriter().print(JSONArray.fromObject(sum));
 	}
 }
 
