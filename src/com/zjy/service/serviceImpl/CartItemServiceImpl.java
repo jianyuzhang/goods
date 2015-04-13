@@ -69,6 +69,15 @@ public class CartItemServiceImpl implements CartItemService {
 		int  i = cartItemDao.count(properties, propertyValues);
 		return i;
 	}
+	/*
+	 * 删除选中的商品
+	 * @see com.zjy.service.CartItemService#deleteCartsBySelected(java.util.List)
+	 */
+	@Override
+	public void deleteCartsBySelected(List<String> item) {
+		// TODO Auto-generated method stub
+		cartItemDao.deleteByIds(item);
+	}
 	
 
    

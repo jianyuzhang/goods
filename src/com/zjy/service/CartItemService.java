@@ -31,4 +31,9 @@ public interface CartItemService {
 	   * 查询某个用户某件商品的数量
 	   */
 	  public  List<CartItem> selectSomeOnesCartNUm(String[] properties, Object[] propertyValues);
+	  
+	  /*
+	   * 删除选中的商品
+	   */
+	  public void deleteCartsBySelected(List<String> ids);
 }

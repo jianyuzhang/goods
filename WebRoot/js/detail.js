@@ -27,7 +27,7 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 	 * 添加购物车
 	 */
 	$scope.addCart = function() {
-		
+		console.log($scope.cd)
 		/*
 		 * 判断当前是否有用户登陆
 		 */
@@ -70,9 +70,14 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 					$http.post("/goods/operate/cartItem/addCart.do", {
 						uid : $scope.uid,
 						cid : $scope.cid,
-						num : $scope.num
+						num : $scope.num,
+					 singer : $scope.cd.singer,
+					 price  : $scope.cd.price,
+				currPrice   : $scope.cd.currPrice,
+				     cname  : $scope.cd.cname,
+				     image_b  : $scope.cd.image_b
 					}).success(function() {
-
+                       
 					});
 
 				}

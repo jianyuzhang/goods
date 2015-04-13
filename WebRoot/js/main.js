@@ -32,9 +32,16 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 		$compile(list)($scope);
 	}
 	$scope.showCart = function(event){
+		/*
+		 * 判断当前是否有用户登陆
+		 */
+		if ($scope.uid==null) {
+			window.location.href = "index.html";
+		} else {
 		var cart = $element.find('div#content');
 		cart.empty().removeAttr('detail').removeAttr('show').attr('cart', '');
 		$compile(cart)($scope);
+		}
 	}
 });
 app.controller('buttonCtrol', function($scope,$compile,$element){
