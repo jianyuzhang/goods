@@ -129,6 +129,5 @@
 		where cartItemId in
 		<foreach collection="ids" item="item" index="index" separator=",">
 			#{item}</foreach>
-		)
 	</delete>
 </mapper>

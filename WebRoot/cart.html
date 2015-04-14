@@ -5,7 +5,7 @@
   <table class="table">
    <tr>
      <td class="col-sm-2">
-     <input class="col-sm-1" type="checkbox">
+     <input  type="checkbox" class="checkAll" ng-model="status" ng-checked="status==1">
            全选
      </td>
      <td class="col-sm-4">商品</td>
@@ -15,30 +15,38 @@
      <td class="col-sm-1">操作</td>
    </tr>
    <tr ng-repeat="cart in carts">
-     <td class="col-sm-2"><input type="checkbox"></td>
-     <td></td>
-     <td></td>
-     <td style="margin:0 auto"><div class="input-group col-sm-5" style="margin:0 auto">
-			<a href="javascript:void(0)" class="input-group-addon" ng-click="minus()" ng-class="{disabled:num == 1}">
+     <td class="col-sm-2"><input type="checkbox" class="checkOne"></td>
+     <td>
+     <img ng-alt="{{cart.cname}}" ng-src="{{cart.image_b}}" class="img-responsive" style="width: 60px; height: 60px;float:left">
+     <p class="navbar-text">{{cart.cname}}</p>
+     <p class="navbar-text">{{cart.singer}}</p>
+     </td>
+     <td>
+     <p class="navbar-text">{{cart.currPrice}}</p>
+     </td>
+     <td ><div class="input-group col-sm-5" style="">
+			<a href="javascript:void(0)" class="input-group-addon" ng-click="minus(cart)" ng-class="{disabled:num == 1}">
 				<i class="glyphicon glyphicon-minus"></i>
 			</a>
-			<input type="text" class="form-control " aria-label="Amount (to the nearest dollar)" value="{{cart.quantity}}" ng-model="cartnum" ng-blur="change($event)">
-			<a href="javascript:void(0)" class="input-group-addon" ng-click="plus()">
+			<input type="text" class="form-control " aria-label="Amount (to the nearest dollar)" value="{{cart.quantity}}" ng-model="cart.quantity" ng-change="update(cart)" >
+			<a href="javascript:void(0)" class="input-group-addon" ng-click="plus(cart)">
 				<i class="glyphicon glyphicon-plus"></i>
 			</a>
-		</div></td>
-     <td></td>
-     <td style="margin:0 auto"><a><i class="glyphicon glyphicon-remove-circle"></i></a></td>
+		</div>
+		</td>
+     <td>
+      <p class="navbar-text">{{cart.currPrice*cart.quantity}}</p>
+      </td>
+     <td style="margin:0 auto"><p class="navbar-text"><a><i class="glyphicon glyphicon-remove-circle"></i></a></p></td>
    </tr>
    <tr>
      <td class="col-sm-2">
-     <input class="col-sm-1" type="checkbox">
-           全选
+     <input class="checkAll" type="checkbox"  ng-model="status" ng-checked="status==1"> 全选
      </td>
-     <td class="col-sm-4"><a href="javascript:void(0)">删除选中商品</a></td>
+     <td class="col-sm-4"><p class="navbar-text"><a href="javascript:void(0)">删除选中商品</a></p></td>
      <td class="col-sm-1"></td>
      <td class="col-sm-3"></td>
-     <td class="col-sm-1"></td>
+     <td class="col-sm-1"><p class="navbar-text">{{total}}</p></td>
      <td class="col-sm-1"><button class="btn btn-danger">去结算</button></td>
    </tr>
   </table>
