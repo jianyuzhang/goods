@@ -49,14 +49,16 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile) {
 	}
 	$scope.$watch('carts', change, true);
 	
-	function change(){
-		var total = 0;
-		for (var i = 0; i < $scope.carts.length; i++) {
-	          var p = $scope.carts[i].currPrice;
-	          var quantity = $scope.carts[i].quantity;
-	         total  += p*quantity;
-	        }
-	       console.log(total);
-	       $scope.total = total;
+	function change(to, from) {
+		if (to != from) {
+			var total = 0;
+			for (var i = 0; i < $scope.carts.length; i++) {
+				var p = $scope.carts[i].currPrice;
+				var quantity = $scope.carts[i].quantity;
+				total += p * quantity;
+			}
+			console.log(total);
+			$scope.total = total;
+		}
 	}
 });
