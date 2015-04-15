@@ -85,9 +85,9 @@ public class CartItemController{
 	}
 	@RequestMapping("/deleteSelectedCarts.do")
 	public void deleteCarts(HttpServletRequest request ,HttpServletResponse response) throws Exception{
-		@SuppressWarnings("unchecked")
-		List<String> ids = (List<String>) request.getAttribute("ids");
-	    cartItemService.deleteCartsBySelected(ids);
+		
+		String id =  request.getParameter("id");
+	    cartItemService.deleteCartItem(id);;
 	}
 }
 

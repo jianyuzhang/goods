@@ -5,7 +5,7 @@
   <table class="table">
    <tr>
      <td class="col-sm-2">
-     <input  type="checkbox" class="checkAll" ng-model="status" ng-checked="status==1">
+     <input  type="checkbox" class="checkAll" ng-model="allCheck" ng-change="allChange()">
            全选
      </td>
      <td class="col-sm-4">商品</td>
@@ -15,7 +15,7 @@
      <td class="col-sm-1">操作</td>
    </tr>
    <tr ng-repeat="cart in carts">
-     <td class="col-sm-2"><input type="checkbox" class="checkOne"></td>
+     <td class="col-sm-2"><input type="checkbox" ng-model="cart.status" ng-change="change(cart)"></td>
      <td>
      <img ng-alt="{{cart.cname}}" ng-src="{{cart.image_b}}" class="img-responsive" style="width: 60px; height: 60px;float:left">
      <p class="navbar-text">{{cart.cname}}</p>
@@ -37,13 +37,13 @@
      <td>
       <p class="navbar-text">{{cart.currPrice*cart.quantity}}</p>
       </td>
-     <td style="margin:0 auto"><p class="navbar-text"><a><i class="glyphicon glyphicon-remove-circle"></i></a></p></td>
+     <td style="margin:0 auto"><p class="navbar-text"><a href="javascript:void(0)" ng-click="deleteOne(cart)"><i class="glyphicon glyphicon-remove-circle"></i></a></p></td>
    </tr>
    <tr>
      <td class="col-sm-2">
-     <input class="checkAll" type="checkbox"  ng-model="status" ng-checked="status==1"> 全选
+     <input class="checkAll" type="checkbox"  ng-model="allCheck" ng-change="allChange()"> 全选
      </td>
-     <td class="col-sm-4"><p class="navbar-text"><a href="javascript:void(0)">删除选中商品</a></p></td>
+     <td class="col-sm-4"><p class="navbar-text"><a href="javascript:void(0)" ng-click="deleteSelected()">删除选中商品</a></p></td>
      <td class="col-sm-1"></td>
      <td class="col-sm-3"></td>
      <td class="col-sm-1"><p class="navbar-text">{{total}}</p></td>

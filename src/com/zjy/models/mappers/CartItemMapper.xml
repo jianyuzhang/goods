@@ -121,11 +121,11 @@
 		</trim>
 	</insert>
 	<delete id="deleteById">
-		delete * from t_cartitem
+		delete  from t_cartitem
 		where cartItemId = #{cartItemId}
 	</delete>
 	<delete id="deleteByIds">
-		delete * from t_cartitem
+		delete  from t_cartitem
 		where cartItemId in
 		<foreach collection="ids" item="item" index="index" separator=",">
 			#{item}</foreach>
