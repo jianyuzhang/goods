@@ -1,12 +1,14 @@
-var app = angular.module("main", [ 'list','detail','show','cart']);
+var app = angular.module("main", [ 'list','detail','show','cart','user']);
 angularConfig(app);
 app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$scope.title = '全部';
 	$scope.pageSize = 18;
 	$http.post("/goods/operate/user/findUser.do").success(function(user) {
 		$scope.user = user;
-		//console.log($scope.user)
+		console.log(typeof($scope.user))
 		$scope.uid=user.uid;
+		$scope.flag = $scope.uid==null;
+		console.log($scope.flag);
 	});
 	$scope.showDetial = function (event){
 		$scope.cid = event.currentTarget.children[0].innerText;
@@ -14,14 +16,14 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 			$scope.cd = cd;
 			//console.log($scope.cd)
 			var detail = $element.find('div#content');
-			detail.empty().removeAttr('cart').removeAttr('show').attr('detail', '');
+			detail.empty().removeAttr('cart').removeAttr('show').removeAttr('user').attr('detail', '');
 			$compile(detail)($scope);
 		});
 		
 	}
 	$scope.show = function(event) {
 		var detail = $element.find('div#content');
-		detail.empty().removeAttr('detail').removeAttr('cart').attr('show','');
+		detail.empty().removeAttr('detail').removeAttr('cart').removeAttr('user').attr('show','');
 		$compile(detail)($scope);
 		var id = event.currentTarget.children[1].innerText;
 		event.preventDefault();
@@ -39,8 +41,17 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 			window.location.href = "index.html";
 		} else {
 		var cart = $element.find('div#content');
-		cart.empty().removeAttr('detail').removeAttr('show').attr('cart', '');
+		cart.empty().removeAttr('detail').removeAttr('show').removeAttr('user').attr('cart', '');
 		$compile(cart)($scope);
+		}
+	}
+	$scope.showUser = function(event){
+		if ($scope.uid==null) {
+			window.location.href = "index.html";
+		} else {
+		var user = $element.find('div#content');
+		user.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').attr('user', '');
+		$compile(user)($scope);
 		}
 	}
 });
@@ -90,3 +101,9 @@ app.directive('cart',function(){
 		templateUrl : 'cart.html'
 	}
 });
+app.directive('user',function(){
+	return{
+		restrict :'EA',
+		templateUrl : 'user.html'
+	}
+})
