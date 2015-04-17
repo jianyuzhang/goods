@@ -3,6 +3,7 @@ angularConfig(app);
 app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$scope.title = '全部';
 	$scope.pageSize = 18;
+	$scope.showWitch = 0;
 	$http.post("/goods/operate/user/findUser.do").success(function(user) {
 		$scope.user = user;
 		console.log(typeof($scope.user))
@@ -52,6 +53,7 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 		var user = $element.find('div#content');
 		user.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').attr('user', '');
 		$compile(user)($scope);
+		
 		}
 	}
 });

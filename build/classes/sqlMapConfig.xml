@@ -7,5 +7,6 @@
          <typeAlias type="com.zjy.models.CD" alias="CD"/>
          <typeAlias type="com.zjy.models.CartItem" alias="CartItem"/>
          <typeAlias type="com.zjy.models.Order" alias="Order"/>
+         <typeAlias type="com.zjy.models.Address" alias="Address"/>
     </typeAliases>
 </configuration>

@@ -1,5 +1,101 @@
 <div class="row" ng-controller="infoCtrol">
-	<div>
-		<form></form>
+	<div class="panel panel-default" ng-show="showWitch == 0">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<h3>收货地址</h3>
+		</div>
+		<table class="table">
+			<tr>
+				<td class="col-sm-2">
+					默认收货地址
+				</td>
+				<td class="col-sm-4">收件人</td>
+				<td class="col-sm-1">地址</td>
+				<td class="col-sm-3" >手机号码</td>
+				<td class="col-sm-1" style="text-align: center">操作</td>
+			</tr>
+			<tr ng-repeat="info in infos">
+				<td class="col-sm-2">
+					<input type="radio" ng-model="info.status" ng-checked="info.status" ng-change="change(info)">
+				</td>
+				<td>
+					<p class="navbar-text">{{info.uname}}</p>
+				</td>
+				<td>
+					<p class="navbar-text">{{info.address}}</p>
+				</td>
+				<td>
+					<p class="navbar-text">{{info.phoneNumber}}</p>
+				</td>
+				<td>
+					<p class="navbar-text">
+						<a href="javascript:void(0)" ng-click="edit(info)">
+							<i class="glyphicon glyphicon-edit" style="font-size:18px"></i>
+						</a>
+						<a href="javascript:void(0)" ng-click="delete(info)">
+							<i class="glyphicon glyphicon-trash" style="font-size:18px"></i>
+						</a>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-sm-2">
+					默认收货地址
+				</td>
+				<td class="col-sm-4">
+					<p class="navbar-text">
+					</p>
+				</td>
+				<td class="col-sm-1"></td>
+				<td class="col-sm-3"></td>
+				<td class="col-sm-1">
+					<button class="btn btn-danger" ng-click="addAddress()">添加地址</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+<div ng-show="showWitch == 1">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+		<form>
+		<div class="form-group">
+    <label for="">收件人</label>
+    <input type="text" class="form-control" id="" placeholder="Enter Name" ng-model="info.uname">
+  </div>
+		<div class="form-group">
+    <label for="">详细地址</label>
+    <input type="text" class="form-control" id="" placeholder="Enter Address" ng-model="info.address">
+  </div>
+  <div class="form-group">
+    <label for="">手机号码</label>
+    <input type="text" class="form-control" id="" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber">
+  </div>
+  <button type="reset" class="btn btn-primary btn-lg">重置</button>
+  <button type="submit" class="btn btn-info btn-lg" ng-click="addSubmit()">添加</button>
+		</form>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+	<div ng-show="showWitch == 2">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+		<form>
+		<div class="form-group">
+    <label for="">收件人</label>
+    <input type="text" class="form-control" id="" placeholder="Enter Name" ng-model="info.uname">
+  </div>
+		<div class="form-group">
+    <label for="">详细地址</label>
+    <input type="text" class="form-control" id="" placeholder="Enter Address" ng-model="info.address">
+  </div>
+  <div class="form-group">
+    <label for="">手机号码</label>
+    <input type="text" class="form-control" id="" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber">
+  </div>
+  <button type="reset" class="btn btn-primary btn-lg">重置</button>
+  <button type="submit" class="btn btn-info btn-lg" ng-click="editSubmit()">修改</button>
+		</form>
+	</div>
+	<div class="col-sm-3"></div>
 	</div>
 </div>
