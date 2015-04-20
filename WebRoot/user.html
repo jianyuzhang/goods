@@ -16,7 +16,7 @@
 			</tr>
 			<tr ng-repeat="info in infos">
 				<td class="col-sm-2">
-					<input type="radio" ng-model="info.status" ng-checked="info.status" ng-change="change(info)">
+					<input type="checkbox" ng-model="info.flag"ng-change="change(info)">
 				</td>
 				<td>
 					<p class="navbar-text">{{info.uname}}</p>
@@ -29,10 +29,10 @@
 				</td>
 				<td>
 					<p class="navbar-text">
-						<a href="javascript:void(0)" ng-click="edit(info)">
+						<a href="javascript:void(0)" ng-click="editInfo(info)">
 							<i class="glyphicon glyphicon-edit" style="font-size:18px"></i>
 						</a>
-						<a href="javascript:void(0)" ng-click="delete(info)">
+						<a href="javascript:void(0)" ng-click="deleteInfo(info)">
 							<i class="glyphicon glyphicon-trash" style="font-size:18px"></i>
 						</a>
 					</p>
@@ -55,20 +55,23 @@
 		</table>
 	</div>
 <div ng-show="showWitch == 1">
+<div class="panel-heading">
+			<h1>添加收货地址</h1>
+		</div>
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
-		<form>
+		<form name="addForm">
 		<div class="form-group">
     <label for="">收件人</label>
-    <input type="text" class="form-control" id="" placeholder="Enter Name" ng-model="info.uname">
+    <input type="text"  class="form-control" id="" placeholder="Enter Name" ng-model="uname"  required>
   </div>
 		<div class="form-group">
     <label for="">详细地址</label>
-    <input type="text" class="form-control" id="" placeholder="Enter Address" ng-model="info.address">
+    <input type="text"  class="form-control" id="" placeholder="Enter Address" ng-model="info.address"  required>
   </div>
   <div class="form-group">
     <label for="">手机号码</label>
-    <input type="text" class="form-control" id="" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber">
+    <input type="text"  class="form-control" id="" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber" ng-blur="checkPhoneNumber($event)" required>
   </div>
   <button type="reset" class="btn btn-primary btn-lg">重置</button>
   <button type="submit" class="btn btn-info btn-lg" ng-click="addSubmit()">添加</button>
@@ -77,23 +80,33 @@
 	<div class="col-sm-3"></div>
 	</div>
 	<div ng-show="showWitch == 2">
+	<div class="panel-heading">
+			<h1>修改收货地址</h1>
+		</div>
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
-		<form>
-		<div class="form-group">
+		<form name="editForm">
+		<div class="form-group col-sm-6">
     <label for="">收件人</label>
-    <input type="text" class="form-control" id="" placeholder="Enter Name" ng-model="info.uname">
+    <input type="text"  class="form-control" id="" placeholder="Enter Name" ng-model="info.uname"  required>
   </div>
-		<div class="form-group">
+		<div class="form-group col-sm-6">
     <label for="">详细地址</label>
-    <input type="text" class="form-control" id="" placeholder="Enter Address" ng-model="info.address">
+    <input type="text"  class="form-control" id="" placeholder="Enter Address" ng-model="info.address" required>
   </div>
-  <div class="form-group">
+  <div class="form-group col-sm-6">
     <label for="">手机号码</label>
-    <input type="text" class="form-control" id="" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber">
+    <input type="text"  class="form-control" id="phone" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber" ng-blur="checkPhoneNumber($event)" required>
   </div>
-  <button type="reset" class="btn btn-primary btn-lg">重置</button>
-  <button type="submit" class="btn btn-info btn-lg" ng-click="editSubmit()">修改</button>
+  <div class="form-group col-sm-6">
+    <label for="">是否默认收货地址</label>
+    <input type="text" class="form-control" id="disabledTextInput" ng-model="info.status" disabled>
+  </div>
+  <div class="form-group col-sm-6">
+  </div>
+  <div class="form-group col-sm-6">
+  <button type="submit" class="btn btn-info btn-lg" ng-click="editSubmit(info)" style="float :right">修改</button>
+  </div>
 		</form>
 	</div>
 	<div class="col-sm-3"></div>

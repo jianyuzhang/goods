@@ -60,4 +60,30 @@
 			</if>
 		</trim>
 	</insert>
+	<delete id="deleteById">
+		delete  from t_address
+		where aid = #{aid}
+	</delete>
+	<update id="update">
+		update t_address
+		<set>
+			<if test="address != null">
+				address=#{address},
+			</if>
+			<if test="uname != null">
+				uname=#{uname},
+			</if>
+			<if test="phoneNumber != null">
+				phoneNumber=#{phoneNumber},
+			</if>
+			<if test="status != null">
+				status=#{status},
+			</if>
+		</set>
+		<where>
+			<if test="aid != null">
+				AND aid = #{aid}
+			</if>
+		</where>
+	</update>
 </mapper>

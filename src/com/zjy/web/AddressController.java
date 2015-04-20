@@ -45,6 +45,12 @@ public class AddressController{
 	@RequestMapping("/updateAddress.do")
 	public void updateAddress(HttpServletRequest request ,HttpServletResponse response){
 	  Address address = new Address();
+	  address.setAddress(request.getParameter("address"));
+	  address.setAid(request.getParameter("aid"));
+	  address.setPhoneNumber(request.getParameter("phoneNumber"));
+	  address.setStatus(Integer.parseInt(request.getParameter("status")));
+	  address.setUname(request.getParameter("uname"));
+	  address.setUid(request.getParameter("uid"));
 	  addressService.updateAddress(address);
 	}
 	

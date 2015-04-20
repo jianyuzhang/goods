@@ -4,7 +4,7 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 	$scope.num = 1;
 	$scope.change = function(event) {
 		var validateNum = /^[0-9]*[1-9][0-9]*$/;
-		console.log(validateNum.test($scope.num))
+		//console.log(validateNum.test($scope.num))
 		if (!validateNum.test($scope.num) || $scope.num == '') {
 			$element.find(event.target).popover({
 				content : '数量填写错误',
