@@ -1,7 +1,7 @@
 var app = angular.module('user', []);
 app.controller('infoCtrol', function($scope, $http, $element, $compile,
 		$rootScope) {
-	
+	$scope.length = 0;
 	
 	$scope.addAddress = function() {
 		$scope.showWitch = 1;
@@ -14,42 +14,16 @@ app.controller('infoCtrol', function($scope, $http, $element, $compile,
 		uid : $scope.uid
 	}).success(function(address) {
 		
-		var num = 0;
-		if (address.length > 0) {
-			for (var i = 0; i < address.length; i++) {
-				if (address[i].status == 1) {
-					num++;
-				}
-			}
-			console.log(num)
-			if (num == 0) {
-				address[address.length-1].flag = true;
-				$scope.infos = address;
-				$scope.infos.forEach(function(a) {
-					a.status = a.flag?1:0;
-				});
-			}else{
-				$scope.infos = address;
-				$scope.infos.forEach(function(a) {
-					a.status = a.flag?1:0;
-				});
-			}
-			for(var i =0;i < $scope.infos.length ;i++){
-				$http.post("/goods/operate/address/updateAddress.do", {
-					address : $scope.infos[i].address,
-					uid : $scope.infos[i].uid,
-					uname : $scope.infos[i].uname,
-					aid : $scope.infos[i].aid,
-					phoneNumber : $scope.infos[i].phoneNumber,
-					status : $scope.infos[i].status
-				}).success(function() {
-				});
-			}
-			
-		}
-		
-
+$scope.length = address.length;
+$scope.infos = address;	
+$scope.infos.forEach(function(c) {
+	c.flag = c.status==1;
+});
+console.log($scope.infos);
 	});
+	/*
+	 * 验证手机号码
+	 */
 	$scope.checkPhoneNumber =function (event){
 		console.log(event.target.value)
 		var validatephone = /1[3|5|7|8|][0-9]{9}/;
@@ -89,15 +63,28 @@ app.controller('infoCtrol', function($scope, $http, $element, $compile,
 	}
 	$scope.addSubmit = function() {
 		 if($scope.addForm.$valid&&$scope.isRight){
-			$http.post("/goods/operate/address/addAddress.do", {
-				uid : $scope.uid,
-				uname : $scope.info.uname,
-				status : 0,
-				address : $scope.info.address,
-				phoneNumber : $scope.info.phoneNumber,
-			}).success(function() {
-				$scope.showUser();
-			});
+			 if($scope.length==0){
+					$http.post("/goods/operate/address/addAddress.do", {
+						uid : $scope.uid,
+						uname : $scope.info.uname,
+						status : 1,
+						address : $scope.info.address,
+						phoneNumber : $scope.info.phoneNumber,
+					}).success(function() {
+						$scope.showUser();
+					});
+			 }else{
+					$http.post("/goods/operate/address/addAddress.do", {
+						uid : $scope.uid,
+						uname : $scope.info.uname,
+						status : 0,
+						address : $scope.info.address,
+						phoneNumber : $scope.info.phoneNumber,
+					}).success(function() {
+						$scope.showUser();
+					});
+			 }
+		
 		}
 		
 	}
@@ -121,7 +108,7 @@ app.controller('infoCtrol', function($scope, $http, $element, $compile,
 			$element.find('input#phone').popover('show');
 		}else{
 			$element.find('input#phone').popover('destroy');
-			if($scope.editForm.$valid){
+			if($scope.editForm.$valid&&validatephone.test(info.phoneNumber)){
 				$http.post("/goods/operate/address/updateAddress.do", {
 					address : info.address,
 					uid : info.uid,

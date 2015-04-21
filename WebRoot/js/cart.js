@@ -26,7 +26,6 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile, $rootSco
 	$http.post("/goods/operate/cartItem/showSomeCarts.do",{uid:$scope.uid}).success(function(carts){
 		$scope.carts = carts;
 		$scope.isShow = $scope.carts.length > 0;
-		console.log($scope.isShow)
 	});
 	$scope.plus = function(cart){
 	//console.log(event.currentTarget.parentNode.childNodes[3].value)

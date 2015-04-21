@@ -6,10 +6,8 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$scope.showWitch = 0;
 	$http.post("/goods/operate/user/findUser.do").success(function(user) {
 		$scope.user = user;
-		console.log(typeof($scope.user))
 		$scope.uid=user.uid;
 		$scope.flag = $scope.uid==null;
-		console.log($scope.flag);
 	});
 	$scope.showDetial = function (event){
 		$scope.cid = event.currentTarget.children[0].innerText;
