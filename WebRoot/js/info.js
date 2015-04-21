@@ -13,21 +13,41 @@ app.controller('infoCtrol', function($scope, $http, $element, $compile,
 	$http.post("/goods/operate/address/showSomeAddress.do", {
 		uid : $scope.uid
 	}).success(function(address) {
-		$scope.infos = address;
+		
 		var num = 0;
-		if ($scope.infos.length > 0) {
-			for (var i = 0; i < $scope.infos.length; i++) {
-				if ($scope.infos[i].status == 1) {
+		if (address.length > 0) {
+			for (var i = 0; i < address.length; i++) {
+				if (address[i].status == 1) {
 					num++;
 				}
 			}
+			console.log(num)
 			if (num == 0) {
-				$scope.infos[$scope.infos.length-1].flag = true;
+				address[address.length-1].flag = true;
+				$scope.infos = address;
+				$scope.infos.forEach(function(a) {
+					a.status = a.flag?1:0;
+				});
+			}else{
+				$scope.infos = address;
+				$scope.infos.forEach(function(a) {
+					a.status = a.flag?1:0;
+				});
 			}
+			for(var i =0;i < $scope.infos.length ;i++){
+				$http.post("/goods/operate/address/updateAddress.do", {
+					address : $scope.infos[i].address,
+					uid : $scope.infos[i].uid,
+					uname : $scope.infos[i].uname,
+					aid : $scope.infos[i].aid,
+					phoneNumber : $scope.infos[i].phoneNumber,
+					status : $scope.infos[i].status
+				}).success(function() {
+				});
+			}
+			
 		}
-		$scope.infos.forEach(function(a) {
-			a.status = a.flag?1:0;
-		});
+		
 
 	});
 	$scope.checkPhoneNumber =function (event){
@@ -55,6 +75,17 @@ app.controller('infoCtrol', function($scope, $http, $element, $compile,
 		$scope.infos.forEach(function(a) {
 			a.status = a.flag?1:0;
 		});
+		for(var i =0;i < $scope.infos.length ;i++){
+			$http.post("/goods/operate/address/updateAddress.do", {
+				address : $scope.infos[i].address,
+				uid : $scope.infos[i].uid,
+				uname : $scope.infos[i].uname,
+				aid : $scope.infos[i].aid,
+				phoneNumber : $scope.infos[i].phoneNumber,
+				status : $scope.infos[i].status
+			}).success(function() {
+			});
+		}
 	}
 	$scope.addSubmit = function() {
 		 if($scope.addForm.$valid&&$scope.isRight){
@@ -104,22 +135,11 @@ app.controller('infoCtrol', function($scope, $http, $element, $compile,
 			}
 		}
 	}
-$scope.$watch('infos', change, true);
+//$scope.$watch('infos', change, true);
 	
 	function change(to, from) {
 		if (to != from) {
 			console.log($scope.infos)
-			for(var i =0;i < $scope.infos.length ;i++){
-				$http.post("/goods/operate/address/updateAddress.do", {
-					address : $scope.infos[i].address,
-					uid : $scope.infos[i].uid,
-					uname : $scope.infos[i].uname,
-					aid : $scope.infos[i].aid,
-					phoneNumber : $scope.infos[i].phoneNumber,
-					status : $scope.infos[i].status
-				}).success(function() {
-				});
-			}
 		
 		}
 	}
