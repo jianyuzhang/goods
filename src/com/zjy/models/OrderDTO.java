@@ -1,23 +1,23 @@
 package com.zjy.models;
 
 import java.util.Date;
+import java.util.List;
 
-public class Order {
+public class OrderDTO {
 	private String oid;//主键
-	private String uid;//外键
-	public String getUid() {
-		return uid;
-	}
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
 	private Date ordertime;//下单时间
 	private double total;//总计
 	private int status;//订单状态：1未付款, 2已付款但未发货, 3已发货未确认收货, 4确认收货了交易成功, 5已取消(只有未付款才能取消)
 	private String address;//收货地址
-	private String uname;//收件人信息
-	private String phoneNumber;//收件人联系方式
-	
+	private String uname;
+	private String phoneNumber;
+	private List<CartItem> carts;
+	public List<CartItem> getCarts() {
+		return carts;
+	}
+	public void setCarts(List<CartItem> carts) {
+		this.carts = carts;
+	}
 	public String getOid() {
 		return oid;
 	}
@@ -63,10 +63,10 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [oid=" + oid + ", uid=" + uid + ", ordertime="
-				+ ordertime + ", total=" + total + ", status=" + status
-				+ ", address=" + address + ", uname=" + uname
-				+ ", phoneNumber=" + phoneNumber + "]";
+		return "OrderDTO [oid=" + oid + ", ordertime=" + ordertime + ", total="
+				+ total + ", status=" + status + ", address=" + address
+				+ ", uname=" + uname + ", phoneNumber=" + phoneNumber
+				+ ", carts=" + carts + "]";
 	}
 	
 }

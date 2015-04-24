@@ -1,6 +1,11 @@
 var app = angular.module('cart', []);
 app.controller('cartCtrol', function($scope, $http, $element, $compile, $rootScope) {
 	$scope.allCheck = false;
+	$scope.isShow= true;
+	$http.post("/goods/operate/cartItem/showSomeCarts.do",{uid:$scope.uid}).success(function(carts){
+		$scope.carts = carts;
+		$scope.isShow = $scope.carts.length > 0;
+	});
     $scope.change =function(c){
     	if (c.status) {
 			var count = 0;
@@ -22,11 +27,6 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile, $rootSco
 			c.status = $scope.allCheck;
 		});
 	}
-	
-	$http.post("/goods/operate/cartItem/showSomeCarts.do",{uid:$scope.uid}).success(function(carts){
-		$scope.carts = carts;
-		$scope.isShow = $scope.carts.length > 0;
-	});
 	$scope.plus = function(cart){
 	//console.log(event.currentTarget.parentNode.childNodes[3].value)
 		cart.quantity++;
@@ -37,6 +37,12 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile, $rootSco
 		}).success(function() {
 
 		});
+	}
+	/*
+	 * 
+	 */
+	$scope.showSomeCD= function(cart){
+		$scope.showDetial(cart.cid);
 	}
 	$scope.minus = function(cart){
 		//console.log(event.currentTarget.parentNode[3].value)
@@ -86,13 +92,22 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile, $rootSco
 	$scope.$watch('carts', change, true);
 	
 	function change(to, from) {
+		var goods = [];
 		if (to != from) {
 			var total = 0;
-			for (var i = 0; i < $scope.carts.length; i++) {
+			/*for (var i = 0; i < $scope.carts.length; i++) {
 				var p = $scope.carts[i].currPrice;
 				var quantity = $scope.carts[i].quantity;
 				total += p * quantity;
-			}
+			}*/
+			$scope.carts.forEach(function(o){
+				if(o.status == true) {
+					 goods.push(o);
+					total += o.currPrice*o.quantity;
+				}
+			});
+			$scope.goods = goods;
+		    $scope.length =$scope.goods.length;
 			$scope.total = total;
 		}
 	}
@@ -115,7 +130,7 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile, $rootSco
 		$scope.carts.forEach(function(o) {
 			 if(o.status == true) {
 				 num++;
-				 cartIds.push(o.cartItemId)
+				 cartIds.push(o.cartItemId);
 			}
 			 if(num==0){
 				 swal("请选择商品", "", "error");
@@ -130,5 +145,14 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile, $rootSco
 			 }
 		});
 		//cartIds = JSON.stringify(cartIds);
+	}
+	$scope.pay =function (){
+		if($scope.info==null){
+			console.log(0);
+		}else{
+			/*
+			 * 生成订单
+			 */
+		}
 	}
 });

@@ -1,28 +1,41 @@
-var app = angular.module("main", [ 'list','detail','show','cart','user']);
+var app = angular.module("main", [ 'list','detail','show','cart','user','pay']);
 angularConfig(app);
 app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$scope.title = '全部';
 	$scope.pageSize = 18;
 	$scope.showWitch = 0;
+	$scope.total = 0 ;
+	/*
+	 * 拿取当前用户的默认收件地址
+	 */
+	$http.post("/goods/operate/address/showSomeAddress.do", {
+		uid : $scope.uid
+	}).success(function(address) {
+		for(var i =0;i<address.length;i++){
+			if(address[i].status==1){
+				$scope.info = address[i];
+			}
+		}
+	});
 	$http.post("/goods/operate/user/findUser.do").success(function(user) {
 		$scope.user = user;
 		$scope.uid=user.uid;
 		$scope.flag = $scope.uid==null;
 	});
-	$scope.showDetial = function (event){
-		$scope.cid = event.currentTarget.children[0].innerText;
+	$scope.showDetial = function (cid){
+		$scope.cid = cid;
 		$http.post("/goods/operate/CD/showCDDetial.do",{cid:$scope.cid}).success(function(cd){
 			$scope.cd = cd;
 			//console.log($scope.cd)
 			var detail = $element.find('div#content');
-			detail.empty().removeAttr('cart').removeAttr('show').removeAttr('user').attr('detail', '');
+			detail.empty().removeAttr('cart').removeAttr('show').removeAttr('user').removeAttr('pay').attr('detail', '');
 			$compile(detail)($scope);
 		});
 		
 	}
 	$scope.show = function(event) {
 		var detail = $element.find('div#content');
-		detail.empty().removeAttr('detail').removeAttr('cart').removeAttr('user').attr('show','');
+		detail.empty().removeAttr('detail').removeAttr('cart').removeAttr('user').removeAttr('pay').attr('show','');
 		$compile(detail)($scope);
 		var id = event.currentTarget.children[1].innerText;
 		event.preventDefault();
@@ -40,19 +53,28 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 			window.location.href = "index.html";
 		} else {
 		var cart = $element.find('div#content');
-		cart.empty().removeAttr('detail').removeAttr('show').removeAttr('user').attr('cart', '');
+		cart.empty().removeAttr('detail').removeAttr('show').removeAttr('user').removeAttr('pay').attr('cart', '');
 		$compile(cart)($scope);
 		}
 	}
-	$scope.showUser = function(event){
+	$scope.showUser = function(i){
+		if(i==null){
+			i=0;
+		}
 		if ($scope.uid==null) {
 			window.location.href = "index.html";
 		} else {
+			$scope.showWitch = i;
 		var user = $element.find('div#content');
-		user.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').attr('user', '');
+		user.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').removeAttr('pay').attr('user', '');
 		$compile(user)($scope);
 		
 		}
+	}
+	$scope.goPay = function(){
+		var content = $element.find('div#content');
+		content.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').removeAttr('user').attr('pay', '');
+		$compile(content)($scope);
 	}
 });
 app.controller('buttonCtrol', function($scope,$compile,$element){
@@ -105,5 +127,11 @@ app.directive('user',function(){
 	return{
 		restrict :'EA',
 		templateUrl : 'user.html'
+	}
+});
+app.directive('',function(){
+	return{
+		restrict :'EA',
+		templateUrl : 'pay.html'
 	}
 })

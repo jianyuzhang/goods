@@ -21,7 +21,9 @@
 					<input type="checkbox" ng-model="cart.status" ng-change="change(cart)">
 				</td>
 				<td>
-					<img ng-alt="{{cart.cname}}" ng-src="{{cart.image_b}}" class="img-responsive" style="width: 60px; height: 60px; float: left">
+					<a href="javascript:void(0)" ng-click="showSomeCD(cart)">
+						<img ng-alt="{{cart.cname}}" ng-src="{{cart.image_b}}" class="img-responsive" style="width: 60px; height: 60px; float: left">
+					</a>
 					<p class="navbar-text">{{cart.cname}}</p>
 					<p class="navbar-text">{{cart.singer}}</p>
 				</td>
@@ -29,7 +31,7 @@
 					<p class="navbar-text">{{cart.currPrice}}</p>
 				</td>
 				<td>
-					<div class="input-group col-sm-5" >
+					<div class="input-group col-sm-5">
 						<a href="javascript:void(0)" class="input-group-addon" ng-click="minus(cart)" ng-class="{disabled:num == 1}">
 							<i class="glyphicon glyphicon-minus"></i>
 						</a>
@@ -66,16 +68,79 @@
 					<p class="navbar-text">{{total}}</p>
 				</td>
 				<td class="col-sm-1">
-					<button class="btn btn-danger">去结算</button>
+					<button  class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-class="{disabled:length == 0}">去结算</button>
 				</td>
 			</tr>
 		</table>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">确认订单</h4>
+				</div>
+				<div class="modal-body row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+						<form name="addForm">
+							<div class="form-group">
+								<label for="">收件人</label>
+								<input type="text" class="form-control" ng-model="info.uname" disabled>
+							</div>
+							<div class="form-group">
+								<label for="">详细地址</label>
+								<input type="text" class="form-control" ng-model="info.address" disabled>
+							</div>
+							<div class="form-group">
+								<label for="">手机号码</label>
+								<input type="text" class="form-control" ng-model="info.phoneNumber" disabled>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-3"></div>
+
+					<table class="table" >
+						<tr ng-repeat="cd in goods">
+							<td class="col-sm-4">
+								<img ng-alt=" {{cd.cname}}" ng-src="{{cd.image_b}}" class="img-responsive" style="width: 60px; height: 60px; float: left" src="">
+							</td>
+							<td class="col-sm-6">
+								<p class="navbar-text ng-binding">{{cd.cname}}</p>
+							</td>
+							<td class="col-sm-1">
+								<p class="navbar-text ng-binding">{{cd.quantity}}</p>
+							</td>
+							<td class="col-sm-1">
+								<p class="navbar-text ng-binding">{{cd.quantity*cd.currPrice}}￥</p>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" id="showUser" ng-click="managerInfos()">添加收件信息</button>
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
+						<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">总计 ：{{total}}￥</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="pay()">去付款</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="cart Empty col-sm-11" ng-show="!isShow">
 		<div class="jumbotron col-sm-12">
 			<div class="col-sm-3" style="float: left">
 				<h1>
-					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="float:right"></span>
+					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="float: right"></span>
 				</h1>
 			</div>
 			<div class="col-sm-8">
