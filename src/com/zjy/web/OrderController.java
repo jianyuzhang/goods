@@ -41,9 +41,7 @@ public class OrderController{
 		order.setUname(request.getParameter("uname"));
 		order.setPhoneNumber(request.getParameter("phoneNumber"));
 		orderService.addOrder(order);
-		List<String> oid = new ArrayList<String>();
-		oid.add(order.getOid());
-		response.getWriter().print(JSONObject.fromObject(oid));
+		response.getWriter().print(JSONArray.fromObject(order));
 	}
  
 }

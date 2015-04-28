@@ -3,6 +3,7 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 	$scope.cd = $scope.cd[0]
 	$scope.num = 1;
 	$scope.total = $scope.num * $scope.cd.currPrice;
+	console.log($scope.flag);
 	$scope.change = function(event) {
 		var validateNum = /^[0-9]*[1-9][0-9]*$/;
 		// console.log(validateNum.test($scope.num))
@@ -23,14 +24,16 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 		$scope.total = $scope.num * $scope.cd.currPrice;
 	}
 	$scope.plus = function() {
-		$scope.num++;
+		if($scope.num < $scope.cd.sum){
+			$scope.num++;
+		}
+		
 		$scope.total = $scope.num * $scope.cd.currPrice;
 	}
 	/*
 	 * 添加购物车
 	 */
 	$scope.addCart = function() {
-		console.log($scope.total)
 		/*
 		 * 判断当前是否有用户登陆
 		 */
@@ -82,7 +85,8 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 						cname : $scope.cd.cname,
 						image_b : $scope.cd.image_b
 					}).success(function() {
-						swal({
+						//$scope.cartNum++;
+						/*swal({
 							title : "添加购物车成功",
 							text : "现在去购物车结算吗!",
 							type : "success",
@@ -91,7 +95,7 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 							confirmButtonText : "Yes, Let's Go!"
 						}, function() {
 							$scope.showCart();
-						});
+						});*/
 					});
 				}
 			});
@@ -102,10 +106,9 @@ app.controller('detailCtrol', function($scope, $http, $element) {
        
 		$scope.showUser(1);
 	}
+	
 	$scope.pay = function(){
-		if($scope.info==null){
-			console.log(0);
-		}else{
+		
 			/*
 			 * 生成订单
 			 */
@@ -115,21 +118,30 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 				address : $scope.info.address,
 				uname :$scope.info.uname,
 				phoneNumber : $scope.info.phoneNumber
-			}).success(function(oid){
-				console.log(id);
-				/*$http.post("/goods/operate/cdInOrder/addCdInOrder.do",{
-					oid :oid,
-					num : $scope.num,
+			}).success(function(order){
+				$scope.oid = order[0].oid;
+				$http.post("/goods/operate/cdInOrder/addCdInOrder.do",{
+					oid :$scope.oid,
+					sum : $scope.num,
 					singer : $scope.cd.singer,
 					price : $scope.cd.price,
 					currPrice : $scope.cd.currPrice,
 					cname : $scope.cd.cname,
 					image_b : $scope.cd.image_b
 				}).success(function(){
-					
-				});*/
+					$http.post("/goods/operate/CD/updateCD.do",{
+						cid:$scope.cd.cid,
+						sum:$scope.cd.sum-$scope.num
+					}).success(function(){});
+				});
+				
 			});
 			
+		}
+	$scope.$watch('carts', change, true);
+	function change(to, from) {
+		if (to != from) {
+			$scope.cartNum = $scope.carts.length;
 		}
 	}
 });

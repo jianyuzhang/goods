@@ -5,28 +5,37 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$scope.pageSize = 18;
 	$scope.showWitch = 0;
 	$scope.total = 0 ;
-	/*
-	 * 拿取当前用户的默认收件地址
-	 */
-	$http.post("/goods/operate/address/showSomeAddress.do", {
-		uid : $scope.uid
-	}).success(function(address) {
-		for(var i =0;i<address.length;i++){
-			if(address[i].status==1){
-				$scope.info = address[i];
-			}
-		}
-	});
+	$scope.cartNum=0;
 	$http.post("/goods/operate/user/findUser.do").success(function(user) {
 		$scope.user = user;
 		$scope.uid=user.uid;
 		$scope.flag = $scope.uid==null;
+		/*
+		 * 拿取当前用户的默认收件地址
+		 */
+		if(!$scope.flag){
+			$http.post("/goods/operate/address/showSomeAddress.do", {
+				uid : $scope.uid
+			}).success(function(address) {
+				for(var i =0;i<address.length;i++){
+					if(address[i].status==1){
+						$scope.info = address[i];
+					}
+				}
+			});
+			$http.post("/goods/operate/cartItem/showSomeCarts.do",{uid:$scope.uid}).success(function(carts){
+				$scope.carts = carts;
+				$scope.cartNum = $scope.carts.length;
+				$scope.isShow = $scope.carts.length > 0;
+			});
+		}
+		
 	});
+	
 	$scope.showDetial = function (cid){
 		$scope.cid = cid;
 		$http.post("/goods/operate/CD/showCDDetial.do",{cid:$scope.cid}).success(function(cd){
 			$scope.cd = cd;
-			//console.log($scope.cd)
 			var detail = $element.find('div#content');
 			detail.empty().removeAttr('cart').removeAttr('show').removeAttr('user').removeAttr('pay').attr('detail', '');
 			$compile(detail)($scope);
@@ -45,13 +54,19 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 		list.empty().removeAttr('list').attr('list', '');
 		$compile(list)($scope);
 	}
-	$scope.showCart = function(event){
+	$scope.showCart = function(){
 		/*
 		 * 判断当前是否有用户登陆
 		 */
+		
 		if ($scope.uid==null) {
 			window.location.href = "index.html";
 		} else {
+			$http.post("/goods/operate/cartItem/showSomeCarts.do",{uid:$scope.uid}).success(function(carts){
+				$scope.carts = carts;
+				$scope.cartNum = $scope.carts.length;
+				$scope.isShow = $scope.carts.length > 0;
+			});
 		var cart = $element.find('div#content');
 		cart.empty().removeAttr('detail').removeAttr('show').removeAttr('user').removeAttr('pay').attr('cart', '');
 		$compile(cart)($scope);
@@ -92,9 +107,14 @@ app.controller('menuCtrol', function($scope, $http) {
 
 app.controller('userCtrol', function($scope, $http) {
 	$scope.logout = function() {
-		$http.post("/goods/operate/user/logout.do").success(function() {
+		if(!$scope.flag){
+			$http.post("/goods/operate/user/logout.do").success(function() {
+				window.location.href = "main.html";
+			});
+		}else{
 			window.location.href = "index.html";
-		});
+		}
+		
 	}
 });
 

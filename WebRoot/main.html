@@ -70,7 +70,7 @@
 					<ul class="nav pull-right">
 
 						<!-- start: Message Dropdown -->
-						<li class="dropdown hidden-xs">
+						<!-- <li class="dropdown hidden-xs">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="index.html#">
 								<i class="halflings envelope white"></i>
 							</a>
@@ -142,18 +142,19 @@
 									<a class="dropdown-menu-sub-footer">View all messages</a>
 								</li>
 							</ul>
-						</li>
+						</li> -->
 						<!-- end: Message Dropdown -->
 						<li>
-							<a class="btn" href="" ng-click="showCart($event)">
+							<a class="btn" href="" ng-click="showCart()">
 								<i class="glyphicon glyphicon-shopping-cart"></i>
+								<span class="badge badge-important"  >{{cartNum}}</span>
 							</a>
 						</li>
 						<!-- start: User Dropdown -->
-						<li class="dropdown" ng-controller="userCtrol">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascrip:void(0)">
+						<li class="dropdown" ng-controller="userCtrol" >
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascrip:void(0)" >
 								<i class="halflings user white"></i>
-								{{user.loginname}}
+								<span ng-bind="user.loginname"></span>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -192,7 +193,6 @@
 							<a class="dropmenu" href="javascript:void(0)" ng-click="slideToggle($event)">
 								<i class="fa fa-folder-o"></i>
 								<span class="hidden-sm" ng-bind="parent.name"></span>
-								<span class="badge badge-important" ng-bind="parent.children.length"></span>
 							</a>
 							<ul>
 								<li ng-repeat="child in parent.children">

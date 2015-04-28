@@ -28,7 +28,7 @@
 				<span ng-bind="cd.price"></span>
 			</del>
 		</p>
-		<p class="input-group col-sm-4">
+		<div class="input-group col-sm-4" style="float:left">
 			<a href="javascript:void(0)" class="input-group-addon" ng-click="minus()" ng-class="{disabled:num == 1}">
 				<i class="glyphicon glyphicon-minus"></i>
 			</a>
@@ -36,8 +36,12 @@
 			<a href="javascript:void(0)" class="input-group-addon" ng-click="plus()">
 				<i class="glyphicon glyphicon-plus"></i>
 			</a>
-		</p>
-		<p>
+		</div>
+		<div style="font-size:18px;margin: 10px">
+			库存：
+			<span ng-bind="cd.sum"></span>
+		</div>
+		<p style=" clear:both">
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">立即购买</button>
 			<button type="button" class="btn btn-danger btn-lg" ng-click="addCart()">添加购物车</button>
@@ -50,7 +54,7 @@
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content" ng-show="!flag">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -106,6 +110,23 @@
 					<div class="col-sm-3">
 						<button type="button" class="btn btn-danger" ng-click="pay()">去付款</button>
 					</div>
+				</div>
+			</div>
+			<div class="modal-content" ng-show="flag">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body row">
+				<div class="col-sm-1"></div>
+					<div class="col-sm-10">
+						<p class="navbar-text ng-binding" style="font-size:30px;margin:0px">您尚未登录，请先<a style="color:red" href="index.html">登录</a>后进行操作</p>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
+				<div class="modal-footer">
 				</div>
 			</div>
 		</div>

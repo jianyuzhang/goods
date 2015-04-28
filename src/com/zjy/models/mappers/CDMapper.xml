@@ -60,4 +60,17 @@
 				
 		</where>
 	</select>
+	<update id="update">
+		update t_cd
+		<set>
+			<if test="sum != null">
+				sum=#{sum},
+			</if>
+		</set>
+		<where>
+			<if test="cid != null">
+				AND cid = #{cid}
+			</if>
+		</where>
+	</update>
 </mapper>

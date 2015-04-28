@@ -78,5 +78,17 @@ public class CDController{
     	System.out.println(cd.toString());
     	response.getWriter().print(JSONArray.fromObject(cd));
     }
+    /*
+     * 跟新库中的商品数量
+     */
+    @RequestMapping("/updateCD.do")
+    public void updateCD (HttpServletRequest request,HttpServletResponse response) throws Exception{
+    	int sum = Integer.parseInt(request.getParameter("sum"));
+    	String cid = request.getParameter("cid");
+    	CD cd=new CD();
+    	cd.setSum(sum);
+    	cd.setCid(cid);
+    	cdService.updateCD(cd);
+    }
 }
 

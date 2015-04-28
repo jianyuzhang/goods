@@ -54,5 +54,10 @@ public class CDServiceImpl implements CDService {
 		CD cd=cdDao.selectById(cid);
 		return cd;
 	}
+	@Override
+	public void updateCD(CD cd) {
+		// TODO Auto-generated method stub
+		cdDao.update(cd);
+	}
    
 }
