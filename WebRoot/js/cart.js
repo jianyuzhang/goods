@@ -152,6 +152,13 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 		}
 		// cartIds = JSON.stringify(cartIds);
 	}
+	$scope.managerInfos = function (){
+		$('#myModal').modal('hide');
+		$('#myModal').on('hidden.bs.modal', function (e) {
+			$scope.showUser(1);
+		})
+		
+	}
 	$scope.pay = function() {
 		/*
 		 * 生成订单

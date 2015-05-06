@@ -3,7 +3,7 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 	$scope.cd = $scope.cd[0]
 	$scope.num = 1;
 	$scope.total = $scope.num * $scope.cd.currPrice;
-	console.log($scope.flag);
+	//console.log($scope.info===undefined);
 	$scope.change = function(event) {
 		var validateNum = /^[0-9]*[1-9][0-9]*$/;
 		// console.log(validateNum.test($scope.num))
@@ -102,9 +102,12 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 		}
 	}
 	
-	$scope.managerInfos = function(){
-       
-		$scope.showUser(1);
+	$scope.addAddress = function (){
+		$('#myModal').modal('hide');
+		$('#myModal').on('hidden.bs.modal', function (e) {
+			$scope.showUser(1);
+		})
+		
 	}
 	
 	$scope.pay = function(){

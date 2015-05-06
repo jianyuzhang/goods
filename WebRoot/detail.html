@@ -100,7 +100,7 @@
 				</div>
 				<div class="modal-footer">
 					<div class="col-sm-3">
-						<button type="button" class="btn btn-danger" id="showUser" ng-click="managerInfos()">添加收件信息</button>
+						<button type="button" class="btn btn-danger" ng-click="addAddress()">添加收件信息</button>
 					</div>
 					<div class="col-sm-2">
 					</div>
@@ -108,7 +108,7 @@
 					<p class="navbar-text ng-binding" style="float:right;font-size:20px;margin:0px">总计 ：{{total}}￥</p>
 					</div>
 					<div class="col-sm-3">
-						<button type="button" class="btn btn-danger" ng-click="pay()">去付款</button>
+						<button type="button" class="btn btn-danger" ng-click="pay()" ng-class="{disabled:info === undefined}">去付款</button>
 					</div>
 				</div>
 			</div>
@@ -131,4 +131,3 @@
 			</div>
 		</div>
 	</div>
-</div>

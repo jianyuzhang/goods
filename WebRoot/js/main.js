@@ -1,4 +1,4 @@
-var app = angular.module("main", [ 'list','detail','show','cart','user','pay']);
+var app = angular.module("main", [ 'list','detail','show','cart','user','order']);
 angularConfig(app);
 app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$scope.title = '全部';
@@ -86,9 +86,9 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 		
 		}
 	}
-	$scope.goPay = function(){
+	$scope.showOrder = function(){
 		var content = $element.find('div#content');
-		content.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').removeAttr('user').attr('pay', '');
+		content.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').removeAttr('user').attr('order', '');
 		$compile(content)($scope);
 	}
 });
@@ -149,9 +149,9 @@ app.directive('user',function(){
 		templateUrl : 'user.html'
 	}
 });
-app.directive('',function(){
+app.directive('order',function(){
 	return{
 		restrict :'EA',
-		templateUrl : 'pay.html'
+		templateUrl : 'order.html'
 	}
 })

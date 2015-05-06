@@ -59,7 +59,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a  class="navbar-brand" href="javascript:void(0)">
+				<a  class="navbar-brand" href="javascript:void(0)" >
 					<span ng-show="flag">
 						<strong >商家管理中心</strong>
 					</span>
@@ -164,6 +164,12 @@
 										<span>Profile</span>
 									</a>
 								</li>
+								<li ng-show="!flag">
+								 <a href="javascript:void(0)" ng-click="showOrder()">
+								    <i class="glyphicon glyphicon-list-alt"></i>
+								    <span>CheckOrder</span>
+								 </a>
+								</li>
 								<li>
 									<a href="javascript: void(0)" ng-click="logout()">
 										<i class="halflings off white"></i>
@@ -221,7 +227,7 @@
 							<span style="margin-top: 0px; block: display" ng-bind='title'></span>专辑
 						</h1>
 					</div>
-					<div class="col-sm-2">
+					<!-- <div class="col-sm-2">
 						<div class="input-group" style="padding-top: 18px">
 							<input type="text" class="form-control" placeholder="搜索好音乐">
 							<span class="input-group-btn">
@@ -230,8 +236,8 @@
 								</button>
 							</span>
 						</div>
-						<!-- /input-group -->
-					</div>
+						/input-group
+					</div> -->
 				</div>
 				<!-- 专辑展示div -->
 				<div list></div>
@@ -299,8 +305,6 @@
 		
 	<![endif]-->
 		<script src="/goods/assets/js/jquery-migrate-1.2.1.min.js"></script>
-		<script src="/goods/assets/js/bootstrap.min.js"></script>
-
 
 		<!-- page scripts -->
 		<script src="/goods/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -314,7 +318,7 @@
 		<script src="/goods/assets/js/retina.min.js"></script>
 		<script src="/goods/assets/js/raphael.min.js"></script>
 		<script src="/goods/assets/js/justgage.1.0.1.min.js"></script>
-
+        <script src="/goods/assets/js/bootstrap.min.js"></script>
 		<!-- theme scripts -->
 		<script src="/goods/assets/js/custom.min.js"></script>
 		<script src="/goods/assets/js/core.min.js"></script>
@@ -328,7 +332,7 @@
 		<script src="/goods/js/show.js"></script>
 		<script src="/goods/js/cart.js"></script>
 		<script src="/goods/js/info.js"></script>
-		<script src="/goods/js/pay.js"></script>
+		<script src="/goods/js/order.js"></script>
 		<!-- end: JavaScript-->
 </body>
 </html>
