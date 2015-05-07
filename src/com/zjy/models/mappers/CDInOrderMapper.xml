@@ -11,7 +11,7 @@
         <result property="sum" column="sum"/>
         <result property="oid" column="oid"/>
     </resultMap>
-    <select id="findSomeOrders" resultMap="CDInOrderMap">
+    <select id="selectCDInSomeOrder" resultMap="CDInOrderMap">
 		select * from t_cdinorder t
 		<where>
 			<if test="oid != null">

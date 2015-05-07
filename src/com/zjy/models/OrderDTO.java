@@ -5,19 +5,17 @@ import java.util.List;
 
 public class OrderDTO {
 	private String oid;//主键
-	private Date ordertime;//下单时间
+	private String ordertime;//下单时间
 	private double total;//总计
-	private int status;//订单状态：1未付款, 2已付款但未发货, 3已发货未确认收货, 4确认收货了交易成功, 5已取消(只有未付款才能取消)
+	private int status;//订单状态：0未付款, 1已付款但未发货, 2已发货未确认收货, 3确认收货了交易成功, 4已取消(只有未付款才能取消)
 	private String address;//收货地址
 	private String uname;
 	private String phoneNumber;
-	private List<CartItem> carts;
-	public List<CartItem> getCarts() {
-		return carts;
-	}
-	public void setCarts(List<CartItem> carts) {
+	private List<CDInOrder> carts;
+	public void setCarts(List<CDInOrder> carts) {
 		this.carts = carts;
 	}
+
 	public String getOid() {
 		return oid;
 	}
@@ -25,10 +23,10 @@ public class OrderDTO {
 		this.oid = oid;
 	}
 	
-	public Date getOrdertime() {
+	public String getOrdertime() {
 		return ordertime;
 	}
-	public void setOrdertime(Date ordertime) {
+	public void setOrdertime(String ordertime) {
 		this.ordertime = ordertime;
 	}
 	public String getUname() {

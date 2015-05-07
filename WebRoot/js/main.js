@@ -37,14 +37,14 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 		$http.post("/goods/operate/CD/showCDDetial.do",{cid:$scope.cid}).success(function(cd){
 			$scope.cd = cd;
 			var detail = $element.find('div#content');
-			detail.empty().removeAttr('cart').removeAttr('show').removeAttr('user').removeAttr('pay').attr('detail', '');
+			detail.empty().removeAttr('cart').removeAttr('show').removeAttr('user').removeAttr('order').attr('detail', '');
 			$compile(detail)($scope);
 		});
 		
 	}
 	$scope.show = function(event) {
 		var detail = $element.find('div#content');
-		detail.empty().removeAttr('detail').removeAttr('cart').removeAttr('user').removeAttr('pay').attr('show','');
+		detail.empty().removeAttr('detail').removeAttr('cart').removeAttr('user').removeAttr('order').attr('show','');
 		$compile(detail)($scope);
 		var id = event.currentTarget.children[1].innerText;
 		event.preventDefault();
@@ -68,7 +68,7 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 				$scope.isShow = $scope.carts.length > 0;
 			});
 		var cart = $element.find('div#content');
-		cart.empty().removeAttr('detail').removeAttr('show').removeAttr('user').removeAttr('pay').attr('cart', '');
+		cart.empty().removeAttr('detail').removeAttr('show').removeAttr('user').removeAttr('order').attr('cart', '');
 		$compile(cart)($scope);
 		}
 	}
@@ -81,7 +81,7 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 		} else {
 			$scope.showWitch = i;
 		var user = $element.find('div#content');
-		user.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').removeAttr('pay').attr('user', '');
+		user.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').removeAttr('order').attr('user', '');
 		$compile(user)($scope);
 		
 		}

@@ -2,52 +2,63 @@
 	<div class="col-sm-10">
 		<h1>订单管理</h1>
 	</div>
-	<div class="col-sm-4"></div>
-	<div class="col-sm-4">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
 		<div class="btn-group" data-toggle="buttons">
-			<label class="btn btn-primary active">
-				<input type="radio" name="options" id="option1" autocomplete="off" checked>
+			<label class="btn btn-primary active" ng-click="changeStatus($event)" >
+				<input type="radio" name="status"  value=" "  ng-model="status" checked >
 				全部订单
 			</label>
-			<label class="btn btn-primary">
-				<input type="radio" name="options" id="option2" autocomplete="off">
+			<label class="btn btn-primary" ng-click="changeStatus($event)" >
+				<input type="radio"  name="status"  value="0" ng-model="status">
 				未付款
 			</label>
-			<label class="btn btn-primary">
-				<input type="radio" name="options" id="option3" autocomplete="off">
+			<label class="btn btn-primary" ng-click="changeStatus($event)" >
+				<input type="radio" name="status"  value="1" ng-model="status">
 				未发货
 			</label>
-			<label class="btn btn-primary">
-				<input type="radio" name="options" id="option3" autocomplete="off">
+			<label class="btn btn-primary" ng-click="changeStatus($event)" >
+				<input type="radio" name="status"  value="2" ng-model="status">
 				未收货
+			</label>
+			<label class="btn btn-primary" ng-click="changeStatus($event)" >
+				<input type="radio" name="status"  value="3" ng-model="status">
+				已收货
+			</label>
+			<label class="btn btn-primary" ng-click="changeStatus($event)">
+				<input type="radio"  name="status"  value="4" ng-model="status">
+				已取消
 			</label>
 		</div>
 		</div>
-		<div class="col-sm-4"></div>
+		<div class="col-sm-3"></div>
 		<div class="col-sm-11">
 			<table class="table">
 				<tr>
 					<td class="col-sm-2">日期</td>
-					<td class="col-sm-2">总价</td>
-					<td class="col-sm-2">状态</td>
-					<td class="col-sm-2">收件信息</td>
+					<td class="col-sm-1">总价</td>
+					<td class="col-sm-1">状态</td>
+					<td class="col-sm-3">收件信息</td>
+					<td class="col-sm-1">收件人</td>
+					<td class="col-sm-1">手机号</td>
 				<td class="col-sm-2">商品列表</td>
-				<td class="col-sm-2">操作</td>
+				<td class="col-sm-1">操作</td>
 				</tr>
-				<tr>
-					<td>日期</td>
-					<td>总价</td>
-					<td>状态</td>
+				<tr ng-repeat="order in orders">
+					<td>{{order.ordertime}}</td>
+					<td>{{order.total}}</td>
+					<td>{{order.status | checkStatus}}</td>
+					<td>{{order.address}}</td>
+					<td>{{order.uname}}</td>
+					<td>{{order.phoneNumber}}</td>
 					<td>
-						<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="收件地址信息" data-content="And here's some amazing content. It's very engaging. Right?" style="padding:0px">clickMe</button>
-					</td>
-					<td>商品列表</td>
+					<a href="javascript:void(0)" ng-click="">
+							商品列表
+						</a></td>
 					<td>
-					<p class="navbar-text">
-						<a href="javascript:void(0)" ng-click="">
-							<i class="glyphicon glyphicon-trash"></i>
+						<a href="javascript:void(0)" ng-click="" ng-show="order.status==0">
+							取消订单
 						</a>
-					</p>
 				</td>
 				</tr>
 			</table>

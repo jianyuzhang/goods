@@ -2,6 +2,7 @@ package com.zjy.web;
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,16 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONString;
-import net.sf.json.util.JSONStringer;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.itcast.commons.CommonUtils;
 
+import com.zjy.models.CDInOrder;
 import com.zjy.models.Order;
+import com.zjy.models.OrderDTO;
+import com.zjy.service.CDInOrderService;
 import com.zjy.service.OrderService;
 
 
@@ -43,6 +44,28 @@ public class OrderController{
 		orderService.addOrder(order);
 		response.getWriter().print(JSONArray.fromObject(order));
 	}
- 
+    @RequestMapping("/showOrder.do")
+    public void showOrder(HttpServletRequest request ,HttpServletResponse response) throws IOException{
+    	List<OrderDTO> orderDTOs = new ArrayList<OrderDTO>();
+    	List<Order> orders = new ArrayList<Order>();
+    	String[]  properties= {"uid","status"};
+    	Object[]  propertyValues = {request.getParameter("uid"),request.getParameter("status")};
+    	orders=orderService.showSomeOneOrders(properties, propertyValues);
+        for(Order order : orders){
+        	OrderDTO orderDTO= new OrderDTO();
+        	orderDTO.setAddress(order.getAddress());
+        	orderDTO.setOid(order.getOid());
+        	orderDTO.setPhoneNumber(order.getPhoneNumber());
+        	SimpleDateFormat dateformat2=new SimpleDateFormat("yyyy年MM月dd日 HH时 ");   
+        	orderDTO.setOrdertime(dateformat2.format(order.getOrdertime()));
+        	orderDTO.setStatus(order.getStatus());
+        	orderDTO.setTotal(order.getTotal());
+        	orderDTO.setUname(order.getUname());
+        	orderDTOs.add(orderDTO);
+        }
+        response.getWriter().print(JSONArray.fromObject(orderDTOs));
+        	 
+        }
+    
 }
 

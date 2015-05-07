@@ -17,6 +17,9 @@
 			<if test="uid != null">
 				AND t.uid = #{uid}
 			</if>
+			<if test="status != null">
+				AND t.status = #{status}
+			</if>
 		</where>
 	</select>
 	<update id="update">
