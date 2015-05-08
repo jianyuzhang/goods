@@ -85,18 +85,8 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 						cname : $scope.cd.cname,
 						image_b : $scope.cd.image_b
 					}).success(function() {
-						//$scope.cartNum++;
-						/*swal({
-							title : "添加购物车成功",
-							text : "现在去购物车结算吗!",
-							type : "success",
-							showCancelButton : true,
-							confirmButtonColor : "#DD6B55",
-							confirmButtonText : "Yes, Let's Go!"
-						}, function() {
-							$scope.showCart();
-						});*/
-					});
+						$scope.$digest();
+						});
 				}
 			});
 		}

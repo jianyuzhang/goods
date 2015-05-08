@@ -2,10 +2,14 @@ package com.zjy.web;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +41,14 @@ public class CDInOrderController{
 		cd.setSum(Integer.parseInt(request.getParameter("sum")));
 		cdInorderService.addGoods(cd);
 	}
- 
+    @RequestMapping("/showGoods.do")
+    public void showGoods(HttpServletRequest request,HttpServletResponse response) throws IOException{
+    	String oid = request.getParameter("oid");
+    	List<CDInOrder> cds= new ArrayList<CDInOrder>();
+    	String[] properties = {"oid"};
+    	Object[] propertyValues  = {oid};
+    	cds = cdInorderService.showCDInSomeOrder(properties, propertyValues);
+    	response.getWriter().print(JSONArray.fromObject(cds));
+    }
 }
 
