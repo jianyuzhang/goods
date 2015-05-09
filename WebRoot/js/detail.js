@@ -7,7 +7,8 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 	$scope.change = function(event) {
 		var validateNum = /^[0-9]*[1-9][0-9]*$/;
 		// console.log(validateNum.test($scope.num))
-		if (!validateNum.test($scope.num) || $scope.num == '') {
+		if (!validateNum.test($scope.num) || $scope.num == ''
+				|| $scope.num > $scope.cd.sum) {
 			$element.find(event.target).popover({
 				content : '数量填写错误',
 				placement : 'top',
@@ -15,6 +16,8 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 			});
 			$element.find(event.target).popover('show');
 			$scope.num = 1;
+		} else {
+			$element.find(event.target).popover('destroy');
 		}
 	}
 	$scope.minus = function() {
@@ -24,10 +27,10 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 		$scope.total = $scope.num * $scope.cd.currPrice;
 	}
 	$scope.plus = function() {
-		if($scope.num < $scope.cd.sum){
+		if ($scope.num < $scope.cd.sum) {
 			$scope.num++;
 		}
-		
+
 		$scope.total = $scope.num * $scope.cd.currPrice;
 	}
 	/*
@@ -49,7 +52,6 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 				uid : $scope.uid
 			}).success(function(flag) {
 				$scope.flag = flag[0];
-				console.log($scope.flag)
 				if ($scope.flag == true) {
 					/*
 					 * 获取购物车当前用户该商品的数目
@@ -85,56 +87,58 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 						cname : $scope.cd.cname,
 						image_b : $scope.cd.image_b
 					}).success(function() {
-						$scope.$digest();
-						});
+						//console.log( $scope.$digest);
+					});
 				}
 			});
 		}
 	}
-	
-	$scope.addAddress = function (){
+
+	$scope.addAddress = function() {
 		$('#myModal').modal('hide');
-		$('#myModal').on('hidden.bs.modal', function (e) {
+		$('#myModal').on('hidden.bs.modal', function(e) {
 			$scope.showUser(1);
 		})
-		
+
 	}
-	
-	$scope.pay = function(){
-		
-			/*
-			 * 生成订单
-			 */
-			$http.post("/goods/operate/order/addOrder.do",{
-				uid : $scope.uid,
-				total: $scope.total,
-				address : $scope.info.address,
-				uname :$scope.info.uname,
-				phoneNumber : $scope.info.phoneNumber
-			}).success(function(order){
-				$scope.oid = order[0].oid;
-				$http.post("/goods/operate/cdInOrder/addCdInOrder.do",{
-					oid :$scope.oid,
-					sum : $scope.num,
-					singer : $scope.cd.singer,
-					price : $scope.cd.price,
-					currPrice : $scope.cd.currPrice,
-					cname : $scope.cd.cname,
-					image_b : $scope.cd.image_b
-				}).success(function(){
-					$http.post("/goods/operate/CD/updateCD.do",{
-						cid:$scope.cd.cid,
-						sum:$scope.cd.sum-$scope.num
-					}).success(function(){});
+
+	$scope.pay = function() {
+
+		/*
+		 * 生成订单
+		 */
+		$http.post("/goods/operate/order/addOrder.do", {
+			uid : $scope.uid,
+			total : $scope.total,
+			address : $scope.info.address,
+			uname : $scope.info.uname,
+			phoneNumber : $scope.info.phoneNumber
+		}).success(function(order) {
+			$scope.oid = order[0].oid;
+			$http.post("/goods/operate/cdInOrder/addCdInOrder.do", {
+				oid : $scope.oid,
+				sum : $scope.num,
+				singer : $scope.cd.singer,
+				price : $scope.cd.price,
+				currPrice : $scope.cd.currPrice,
+				cname : $scope.cd.cname,
+				image_b : $scope.cd.image_b
+			}).success(function() {
+				$http.post("/goods/operate/CD/updateCD.do", {
+					cid : $scope.cd.cid,
+					sum : $scope.cd.sum - $scope.num
+				}).success(function() {
 				});
-				
 			});
-			
-		}
+
+		});
+
+	}
 	$scope.$watch('carts', change, true);
 	function change(to, from) {
 		if (to != from) {
 			$scope.cartNum = $scope.carts.length;
+			//$scope.$digest();
 		}
 	}
 });

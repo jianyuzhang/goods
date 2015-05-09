@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <typeAliases>
-        <typeAlias type="com.zjy.models.User" alias="User"/>
-         <typeAlias type="com.zjy.models.Menu" alias="Menu"/>
-         <typeAlias type="com.zjy.models.CD" alias="CD"/>
-         <typeAlias type="com.zjy.models.CartItem" alias="CartItem"/>
-         <typeAlias type="com.zjy.models.Order" alias="Order"/>
-         <typeAlias type="com.zjy.models.Address" alias="Address"/>
-         <typeAlias type="com.zjy.models.CDInOrder" alias="CDInOrder"/>
-    </typeAliases>
+	<typeAliases>
+		<typeAlias type="com.zjy.models.User" alias="User" />
+		<typeAlias type="com.zjy.models.Admin" alias="Admin" />
+		<typeAlias type="com.zjy.models.Menu" alias="Menu" />
+		<typeAlias type="com.zjy.models.CD" alias="CD" />
+		<typeAlias type="com.zjy.models.CartItem" alias="CartItem" />
+		<typeAlias type="com.zjy.models.Order" alias="Order" />
+		<typeAlias type="com.zjy.models.Address" alias="Address" />
+		<typeAlias type="com.zjy.models.CDInOrder" alias="CDInOrder" />
+	</typeAliases>
 </configuration>

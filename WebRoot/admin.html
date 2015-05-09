@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="login" ng-controller="baseCtrl">
+<html ng-app="Adminlogin" ng-controller="adminCtrl">
 <head>
 
 <meta charset="utf-8">
@@ -37,8 +37,8 @@ body {
 				<div class="login-box">
 					<hr>
 					<div class="icons"></div>
-					<h2>Login to your account</h2>
-					<form class="form-horizontal" action="index.html" method="post">
+					<h2>Login For Admin</h2>
+					<form class="form-horizontal" action="admin.html" method="post">
 						<fieldset>
 							<div class="input-wrap">
 								<div class="input-prepend input-group" title="Username">
@@ -55,7 +55,6 @@ body {
 							<label for="remember" class="remember"> <input type="checkbox" id="remember"> Remember me
 							</label>
 							<div class="button-login">
-							    <button type="button" class="btn" ng-click="regist()">Regist</button>
 								<button type="button" class="btn btn-primary" ng-click="submit()" id="submitBut">Login</button>
 							</div>
 							<div class="clearfix"></div>
@@ -124,22 +123,22 @@ body {
 	<!-- end: JavaScript-->
 
 	<script type="text/javascript">
-		var app = angular.module('login', []);
+		var app = angular.module('Adminlogin', []);
 		angularConfig(app);
 		
-		app.controller('baseCtrl', function($scope, $http) {
+		app.controller('adminCtrl', function($scope, $http) {
 			$scope.title = '登录页';
 
 			$scope.submit = function() {
 				if (!$scope.username || !$scope.password) {
 					swal("用户名或密码不能为空", "", "error");
 				} else {
-					$http.post('operate/user/login.do', {
+					$http.post('operate/admin/login.do', {
 						loginname : $scope.username,
 						loginpass : $scope.password
 					}).success(function(result) {
 						if(result == true || result == 'true'){
-						swal("Success", "欢迎来到音像派电子商场", "success");
+						swal("Success", "欢迎来到后台管理", "success");
 						setTimeout(function() {
 							window.location.href = 'main.html';
 						}, 1000);
@@ -149,9 +148,6 @@ body {
 					});
 				}
 			};
-			$scope.regist=function(){
-				window.location.href = "user/regist.html";
-			}
 		});
 		
 		

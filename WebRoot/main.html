@@ -60,8 +60,8 @@
 					<span class="icon-bar"></span>
 				</button>
 				<a  class="navbar-brand" href="javascript:void(0)" >
-					<span ng-show="flag">
-						<strong >商家管理中心</strong>
+					<span ng-show="flag" ng-click="manageRoute()">
+						<strong>商家管理中心</strong>
 					</span>
 				</a>
 
@@ -147,7 +147,7 @@
 						<li>
 							<a class="btn" href="" ng-click="showCart()">
 								<i class="glyphicon glyphicon-shopping-cart"></i>
-								<span class="badge badge-important"  >{{cartNum}}</span>
+								<span class="badge badge-important"  ng-bind="cartNum"></span>
 							</a>
 						</li>
 						<!-- start: User Dropdown -->

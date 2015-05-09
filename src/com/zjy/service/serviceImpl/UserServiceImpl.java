@@ -1,5 +1,7 @@
 package com.zjy.service.serviceImpl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -23,9 +25,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User login(String[] properties,Object[] values) {
-		User user =userDao.selectByProperties(".findByNameAndPassword", properties, values);
-		return user;
+	public List<User> login(String[] properties,Object[] values) {
+		List<User> users =userDao.findByStatementPostfix(".findByNameAndPassword", properties, values,null,null);
+		return users;
 	}
 
 	@Override

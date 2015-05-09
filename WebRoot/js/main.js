@@ -31,7 +31,9 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 		}
 		
 	});
-	
+	$scope.manageRoute = function (){
+		window.location.href = "admin.html";
+	}
 	$scope.showDetial = function (cid){
 		$scope.cid = cid;
 		$http.post("/goods/operate/CD/showCDDetial.do",{cid:$scope.cid}).success(function(cd){

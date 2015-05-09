@@ -1,32 +1,21 @@
 package com.zjy.web;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import cn.itcast.commons.CommonUtils;
-import cn.itcast.vcode.utils.VerifyCode;
-
-import com.zjy.models.Menu;
-import com.zjy.models.MenuDTO;
 import com.zjy.models.User;
-import com.zjy.service.MenuService;
 import com.zjy.service.UserService;
 
 @Controller
@@ -48,34 +37,7 @@ public class UserController{
 			HttpServletResponse response) throws IOException{
     	response.getWriter().print(JSONObject.fromObject(request.getSession().getAttribute("user")));
     }
-    /**
-     * 验证码
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("/VerifyCode.do")
-		public ModelAndView  VerifyCode(HttpServletRequest request, HttpServletResponse response)throws Exception
-    			 {
-    	    ServletOutputStream out = response.getOutputStream(); 
-    		VerifyCode vc = new VerifyCode();
-    		request.getSession().setAttribute("vCode", vc.getText());
-    		BufferedImage image = vc.getImage();//获取一次性验证码图片
-    		// 该方法必须在getImage()方法之后来调用
-//    		System.out.println(vc.getText());//获取图片上的文本
-    		try {
-				VerifyCode.output(image, response.getOutputStream());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}//把图片写到指定流中
-    		
-    		// 把文本保存到session中，为LoginServlet验证做准备
-    		out.flush();
-    		out.close();
-    		return null;
-    	}
+   
     /**
      * 登陆
      * @throws Exception 
@@ -86,9 +48,13 @@ public class UserController{
     	String loginPass=request.getParameter("loginpass");
     	String[] properties={"loginname","loginpass"};
     	Object[] values={loginName,loginPass};
-    	User user=userService.login(properties, values);
-    	request.getSession().setAttribute("user", user);
-    	response.getWriter().print(!"".equals(user));
+    	List<User> users=userService.login(properties, values);
+    	int i = users.size();
+    	System.out.println(i);
+    	if(i>0){
+    		request.getSession().setAttribute("user", users.get(0));
+    	}
+    	response.getWriter().print(i>0);
     }
     
    /**
