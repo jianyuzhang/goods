@@ -87,7 +87,7 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 						cname : $scope.cd.cname,
 						image_b : $scope.cd.image_b
 					}).success(function() {
-						//console.log( $scope.$digest);
+						$scope.$parent.cartNum++;
 					});
 				}
 			});
