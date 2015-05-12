@@ -55,11 +55,16 @@
 		</table>
 	</div>
 <div ng-show="showWitch == 1">
-<div class="panel-heading">
-			<h1>添加收货地址</h1>
+<div class="panel-heading row">
+<div class="col-sm-5">
+<a href="javascript:void(0)" ng-click="goBack()"><i class="glyphicon glyphicon-arrow-left" style="font-size:40px"></i></a>
+</div>
+<div class="col-sm-4"><h1>添加收货地址</h1></div>
+<div class="col-sm-3"></div>
 		</div>
-	<div class="col-sm-3"></div>
-	<div class="col-sm-6">
+		<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-5">
 		<form name="addForm">
 		<div class="form-group">
     <label for="">收件人</label>
@@ -73,18 +78,24 @@
     <label for="">手机号码</label>
     <input type="text"  class="form-control" id="" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber" ng-blur="checkPhoneNumber($event)" required>
   </div>
-  <button type="reset" class="btn btn-primary btn-lg">重置</button>
+  <button type="reset" class="btn btn-primary btn-lg" id="infoReset" >重置</button>
   <button type="submit" class="btn btn-info btn-lg" ng-click="addSubmit()">添加</button>
 		</form>
 	</div>
 	<div class="col-sm-3"></div>
 	</div>
+	</div>
 	<div ng-show="showWitch == 2">
 	<div class="panel-heading">
-			<h1>修改收货地址</h1>
+			<div class="col-sm-5">
+<a href="javascript:void(0)" ng-click="goBack()"><i class="glyphicon glyphicon-arrow-left" style="font-size:40px"></i></a>
+</div>
+<div class="col-sm-4"><h1>修改收货地址</h1></div>
+<div class="col-sm-3"></div>
 		</div>
-	<div class="col-sm-3"></div>
-	<div class="col-sm-6">
+		<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-5">
 		<form name="editForm">
 		<div class="form-group col-sm-6">
     <label for="">收件人</label>
@@ -110,5 +121,6 @@
 		</form>
 	</div>
 	<div class="col-sm-3"></div>
+	</div>
 	</div>
 </div>

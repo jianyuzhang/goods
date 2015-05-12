@@ -152,12 +152,13 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 		}
 		// cartIds = JSON.stringify(cartIds);
 	}
-	$scope.managerInfos = function (){
+	$scope.managerInfos = function() {
+
 		$('#myModal').modal('hide');
-		$('#myModal').on('hidden.bs.modal', function (e) {
+		$('#myModal').on('hidden.bs.modal', function(e) {
 			$scope.showUser(1);
 		})
-		
+
 	}
 	$scope.pay = function() {
 		/*
@@ -197,7 +198,11 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 					}
 
 				});
-				$scope.deleteSelected();
+				$('#myModal').modal('hide');
+				$('#myModal').on('hidden.bs.modal', function(e) {
+					$scope.deleteSelected();
+				})
+				
 			}
 
 		});

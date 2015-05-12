@@ -128,6 +128,10 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 					cid : $scope.cd.cid,
 					sum : $scope.cd.sum - $scope.num
 				}).success(function() {
+					$('#myModal').modal('hide');
+					$('#myModal').on('hidden.bs.modal', function(e) {
+						$scope.showDetial($scope.cd.cid);
+					})
 				});
 			});
 
