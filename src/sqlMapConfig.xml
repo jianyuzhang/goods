@@ -10,5 +10,6 @@
 		<typeAlias type="com.zjy.models.Order" alias="Order" />
 		<typeAlias type="com.zjy.models.Address" alias="Address" />
 		<typeAlias type="com.zjy.models.CDInOrder" alias="CDInOrder" />
+		<typeAlias type="com.zjy.models.Money" alias="Money" />
 	</typeAliases>
 </configuration>

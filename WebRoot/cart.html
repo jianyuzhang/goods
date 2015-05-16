@@ -136,6 +136,33 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">支付</h4>
+				</div>
+				<div class="modal-body row">
+
+				</div>
+				<div class="modal-footer">
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger"  data-dismiss="modal" aria-label="Close" ng-click="managerInfos()"></button>
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
+						<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">总计 ：{{total  | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="pay()">去付款</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="cart Empty col-sm-11" ng-show="!isShow">
 		<div class="jumbotron col-sm-12">
 			<div class="col-sm-3" style="float: left">

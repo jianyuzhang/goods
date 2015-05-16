@@ -199,12 +199,13 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 
 				});
 				$('#myModal').modal('hide');
-				$('#myModal').on('hidden.bs.modal', function(e) {
-					$scope.deleteSelected();
-				})
 				
 			}
 
 		});
+		$('#myModal1').modal('show');
+		$('#myModal1').on('hidden.bs.modal', function(e) {
+			$scope.deleteSelected();
+		})
 	}
 });
