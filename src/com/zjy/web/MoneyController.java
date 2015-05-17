@@ -35,7 +35,7 @@ public class MoneyController {
 		Money money = new Money();
 		money.setMid(request.getParameter("mid"));
 		money.setUid(request.getParameter("uid"));
-		money.setNum(Integer.parseInt(request.getParameter("num")));
+		money.setNum(Double.parseDouble(request.getParameter("num")));
 		moneyService.update(money);
 	}
 }

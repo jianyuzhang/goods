@@ -3,6 +3,7 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 		$rootScope) {
 	$scope.allCheck = false;
 	$scope.length = 0;
+	$scope.oid = 0;
 	$scope.carts.forEach(function(c) {
 		c.status = $scope.allCheck;
 	});
@@ -172,6 +173,7 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 			phoneNumber : $scope.info.phoneNumber
 		}).success(function(order) {
 			$scope.oid = order[0].oid;
+			console.log($scope.oid);
 			for (var i = 0; i < $scope.length; i++) {
 				console.log($scope.goods[i].quantity);
 				$http.post("/goods/operate/cdInOrder/addCdInOrder.do", {
@@ -188,8 +190,6 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 					cid : $scope.goods[i].cid
 				}).success(function(cd) {
 					for (var j = 0; j < $scope.length; j++) {
-						console.log(cd[0]);
-						console.log($scope.goods[j].quantity);
 						$http.post("/goods/operate/CD/updateCD.do", {
 							cid : cd[0].cid,
 							sum : cd[0].sum - $scope.goods[j].quantity
@@ -199,13 +199,63 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 
 				});
 				$('#myModal').modal('hide');
-				
+
 			}
 
 		});
 		$('#myModal1').modal('show');
-		$('#myModal1').on('hidden.bs.modal', function(e) {
-			$scope.deleteSelected();
-		})
 	}
+	$http.post("/goods/operate/money/showAllMoneys.do").success(
+			function(moneys) {
+				for (var i = 0; i < moneys.length; i++) {
+					if (0 == moneys[i].uid) {
+						$scope.monster = moneys[i];
+					} else if ($scope.uid == moneys[i].uid) {
+						$scope.audience = moneys[i];
+						$scope.money = moneys[i].num;
+					}
+				}
+
+			});
+	$scope.payMoney = function() {
+		if ($scope.audience < $scope.total) {
+			$('#myModal1').modal('hide');
+			$('#myModal1').on('hidden.bs.modal', function(e) {
+				$scope.deleteSelected();
+				setTimeout(function() {
+					swal("支付失败", "", "error");
+				}, 100);
+			});
+		} else {
+			$scope.audience.num -= $scope.total;
+			$scope.monster.num += $scope.total;
+			console.log($scope.audience.num);
+			console.log($scope.monster.num);
+			$http.post("/goods/operate/money/updaeMoney.do", {
+				mid : $scope.audience.mid,
+				uid : $scope.uid,
+				num : $scope.audience.num
+			}).success(function() {
+				$http.post("/goods/operate/money/updaeMoney.do", {
+					mid : $scope.monster.mid,
+					uid : 0,
+					num : $scope.monster.num
+				}).success(function() {
+					$http.post('/goods/operate/order/updateOrder.do', {
+						status : 1,
+						oid : $scope.oid
+					}).success(function() {
+
+					});
+					$('#myModal1').modal('hide');
+					$('#myModal1').on('hidden.bs.modal', function(e) {
+						$scope.deleteSelected();
+					});
+				});
+			});
+		}
+	}
+	$('#myModal1').on('hidden.bs.modal', function(e) {
+		$scope.deleteSelected();
+	});
 });

@@ -46,7 +46,7 @@ app.filter('checkStatus', function() {
 		if (0 == status) {
 			return "未付款";
 		} else if (1 == status) {
-			return "已发货";
+			return "未发货";
 		} else if (2 == status) {
 			return "未收货";
 		} else if (3 == status) {

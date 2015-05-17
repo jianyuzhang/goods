@@ -56,6 +56,7 @@
 				</td>
 				<td>
 					<a href="javascript:void(0)" ng-click="cancelOrder(order)" ng-show="order.status==0"> 取消订单 </a>
+					<a href="javascript:void(0)" ng-click="pay(order)" ng-show="order.status==0">付款 </a>
 				</td>
 			</tr>
 		</table>
@@ -97,6 +98,36 @@
 							</td>
 						</tr>
 					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">支付</h4>
+				</div>
+				<div class="modal-body row">
+                  <div class="col-sm-3">
+					</div>
+					<div class="col-sm-6">
+					<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">余额：{{money | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3"></div>
+				</div>
+				<div class="modal-footer">
+					<div class="col-sm-3">
+					</div>
+					<div class="col-sm-6">
+					<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">商品总价：{{currTotal | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="payMoney(order)">付款</button>
+					</div>
 				</div>
 			</div>
 		</div>

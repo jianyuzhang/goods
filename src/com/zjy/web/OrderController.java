@@ -66,10 +66,10 @@ public class OrderController{
         response.getWriter().print(JSONArray.fromObject(orderDTOs));
         	 
         }
-    @RequestMapping("/cancelOrder.do")
+    @RequestMapping("/updateOrder.do")
     public void cancelOrder(HttpServletRequest request,HttpServletResponse response){
      Order order= 	new Order();
-     order.setStatus(4);
+     order.setStatus(Integer.parseInt(request.getParameter("status")));
      order.setOid(request.getParameter("oid"));
      orderService.updateOrder(order);
     }

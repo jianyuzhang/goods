@@ -1,6 +1,8 @@
 var app = angular.module('order', []);
 app.controller('orderCtrol', function($scope, $http, $element, $compile,
 		$rootScope) {
+	$scope.currTotal = 0;
+	$scope.oid = null;
 	$(function() {
 		$('[data-toggle="popover"]').popover()
 	});
@@ -40,18 +42,72 @@ app.controller('orderCtrol', function($scope, $http, $element, $compile,
 			oid : order.oid
 		}).success(function(goods) {
 			$scope.cdsInOrder = goods;
-			console.log($scope.cdsInOrder);
 		});
 	}
   /*
    * 取消订单
    */
 	$scope.cancelOrder = function(order) {
-		$http.post('/goods/operate/order/cancelOrder.do', {
+		$http.post('/goods/operate/order/updateOrder.do', {
+			status : 4,
 			oid : order.oid
 		}).success(function() {
 
 		});
+	}
+	$http.post("/goods/operate/money/showAllMoneys.do").success(
+			function(moneys) {
+				for (var i = 0; i < moneys.length; i++) {
+					if (0 == moneys[i].uid) {
+						$scope.monster = moneys[i];
+					} else if ($scope.uid == moneys[i].uid) {
+						$scope.audience = moneys[i];
+						$scope.money = moneys[i].num;
+					}
+				}
+
+			});
+	$scope.pay = function(order){
+		$('#myModal1').modal('show');
+		$scope.currTotal = order.total;
+		$scope.oid = order.oid;
+		console.log($scope.currTotal);
+		console.log(order);
+	}
+	$scope.payMoney = function(order) {
+		console.log($scope.currTotal);
+		if ($scope.audience.num < $scope.currTotal) {
+			$('#myModal1').modal('hide');
+			$('#myModal1').on('hidden.bs.modal', function(e) {
+				setTimeout(function() {
+					swal("支付失败", "", "error");
+				}, 100);
+			});
+		} else {
+			$scope.audience.num -= $scope.currTotal;
+			$scope.monster.num +=$scope.currTotal;
+			console.log($scope.audience.num);
+			console.log($scope.monster.num);
+			$http.post("/goods/operate/money/updaeMoney.do", {
+				mid : $scope.audience.mid,
+				uid : $scope.uid,
+				num : $scope.audience.num
+			}).success(function() {
+				$http.post("/goods/operate/money/updaeMoney.do", {
+					mid : $scope.monster.mid,
+					uid : 0,
+					num : $scope.monster.num
+				}).success(function() {
+					$http.post('/goods/operate/order/updateOrder.do', {
+						status : 1,
+						oid : $scope.oid
+					}).success(function() {
+
+					});
+					$('#myModal1').modal('hide');
+				});
+			});
+		}
 	}
 });
 app.filter('checkStatus', function() {
@@ -59,7 +115,7 @@ app.filter('checkStatus', function() {
 		if (0 == status) {
 			return "未付款";
 		} else if (1 == status) {
-			return "已发货";
+			return "未发货";
 		} else if (2 == status) {
 			return "未收货";
 		} else if (3 == status) {
