@@ -5,10 +5,12 @@
 	<div class="col-sm-4" style="height: 300px; margin-left: 40px">
 		<h1 ng-bind="cd.cname" style="margin-top: 0px"></h1>
 		<h1 style="margin-top: 0px">
-			<a href="javascript:void(0)">
+			<a href="javascript:void(0)" ng-click="playMusic()">
 				<i class="glyphicon glyphicon-play-circle"></i>
 			</a>
 		</h1>
+		<audio id="myaudio" ng-src="{{cd.image_w}}" controls="controls" loop="false" hidden="true"  >
+        </audio>
 		<p>
 			演唱 ：
 			<span ng-bind="cd.singer"></span>

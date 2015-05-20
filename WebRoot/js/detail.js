@@ -186,6 +186,11 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 			});
 		}
 	}
+	$scope.playMusic = function (){
+		$scope.myAuto = $element.find("#myaudio")[0];
+		console.log($scope.myAuto);
+		$scope.myAuto.play();
+	}
 	$scope.$watch('carts', change, true);
 	function change(to, from) {
 		if (to != from) {

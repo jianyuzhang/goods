@@ -30,8 +30,7 @@ app.controller('infoCtrol',
 			$scope.checkPhoneNumber = function(event) {
 				console.log(event.target.value)
 				var validatephone = /1[3|5|7|8|][0-9]{9}/;
-				console.log(validatephone.test(event.target.value));
-				if (!validatephone.test(event.target.value)) {
+				if (!validatephone.test(event.target.value)||(event.target.value).length>11) {
 					$element.find(event.target).popover({
 						content : '手机号码格式错误',
 						placement : 'top',
@@ -41,7 +40,8 @@ app.controller('infoCtrol',
 				} else {
 					$element.find(event.target).popover('destroy');
 				}
-				$scope.isRight = validatephone.test(event.target.value);
+				$scope.isRight = validatephone.test(event.target.value)&&(event.target.value).length<=11;
+				console.log($scope.isRight);
 			}
 
 			$scope.change = function(o) {
@@ -103,9 +103,9 @@ app.controller('infoCtrol',
 
 			}
 			$scope.editSubmit = function(info) {
-				console.log(info);
+				console.log($scope.isRight);
 				var validatephone = /1[3|5|7|8|][0-9]{9}/;
-				if (!validatephone.test(info.phoneNumber)) {
+				if (!validatephone.test(info.phoneNumber)||(event.target.value).length>11) {
 					$element.find('input#phone').popover({
 						content : '手机号码格式错误',
 						placement : 'top',
@@ -115,7 +115,7 @@ app.controller('infoCtrol',
 				} else {
 					$element.find('input#phone').popover('destroy');
 					if ($scope.editForm.$valid
-							&& validatephone.test(info.phoneNumber)) {
+							&& $scope.isRight) {
 						$http.post("/goods/operate/address/updateAddress.do", {
 							address : info.address,
 							uid : info.uid,

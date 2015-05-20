@@ -81,17 +81,7 @@ app.controller('allOrderCtrol', function($scope, $http, $element, $compile,
 			});
 		});
 	}
-	/*
-	 * 查询制定订单的物流单号
-	 */
-	$scope.checkWuliu = function(order) {
-		console.log(order.oid);
-		$http.post("/goods/operate/wuliu/showWuliu.do", {
-			oid : order.oid
-		}).success(function(wuliu) {
-			swal(wuliu[0].wid, "", "");
-		});
-	}
+	
 });
 app.filter('checkStatus', function() {
 	return function(status) {

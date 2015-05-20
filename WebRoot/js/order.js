@@ -109,6 +109,28 @@ app.controller('orderCtrol', function($scope, $http, $element, $compile,
 			});
 		}
 	}
+	/*
+	 * 查询制定订单的物流单号
+	 */
+	$scope.checkWuliu = function(order) {
+		$http.post("/goods/operate/wuliu/showWuliu.do", {
+			oid : order.oid
+		}).success(function(wuliu) {
+			var wuliuhao = wuliu[0].wid;
+			swal(wuliuhao, "", "");
+		});
+	}
+	/*
+	 * 确认收货
+	 */
+	$scope.receiveGoods = function (order){
+		$http.post('/goods/operate/order/updateOrder.do',{
+			status : 3,
+			oid :order.oid
+		}).success(function (){
+			
+		});
+	}
 });
 app.filter('checkStatus', function() {
 	return function(status) {

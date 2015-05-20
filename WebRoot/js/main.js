@@ -1,4 +1,4 @@
-var app = angular.module("main", [ 'list','detail','show','cart','user','order']);
+var app = angular.module("main", [ 'list','detail','show','cart','user','order','search']);
 angularConfig(app);
 app.controller('indexCtrol',function($scope, $http, $element, $compile){
 	$scope.title = '全部';
@@ -93,6 +93,23 @@ app.controller('indexCtrol',function($scope, $http, $element, $compile){
 		content.empty().removeAttr('detail').removeAttr('show').removeAttr('cart').removeAttr('user').attr('order', '');
 		$compile(content)($scope);
 	}
+	$scope.searchMusic =function (){
+		$scope.title = "搜索";
+		console.log($scope.keyValue);
+		$http.post("/goods/operate/CD/searchListByPage.do", {
+			cname : $scope.keyValue,
+			singer : $scope.keyValue
+	}).success(function(allcds) {
+		$scope.allcds = allcds;
+		var list = $element.find('div[list]');
+		list.empty().removeAttr('list').attr('search', '');
+		$compile(list)($scope);
+	});
+	
+		var list = $element.find('div[list]');
+		list.empty().removeAttr('list').attr('search', '');
+		$compile(list)($scope);
+	}
 });
 app.controller('buttonCtrol', function($scope,$compile,$element){
 	
@@ -156,4 +173,10 @@ app.directive('order',function(){
 		restrict :'EA',
 		templateUrl : 'order.html'
 	}
-})
+});
+app.directive('search',function(){
+	return{
+		restrict : 'EA',
+		templateUrl : 'search.html'
+	}
+});

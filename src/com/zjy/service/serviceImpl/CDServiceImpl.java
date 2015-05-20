@@ -59,5 +59,11 @@ public class CDServiceImpl implements CDService {
 		// TODO Auto-generated method stub
 		cdDao.update(cd);
 	}
+	@Override
+	public List<CD> searchSomeCDsByPage(String[] properties,
+			Object[] propertyValues) {
+		List<CD> cds=cdDao.findByStatementPostfix(".searchListByPage", properties, propertyValues, null, null);
+		return cds;
+	}
    
 }

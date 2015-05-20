@@ -35,7 +35,7 @@ public class WuliuController {
 	public void addWuliu(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		Wuliu wuliu = new Wuliu();
-		wuliu.setWid(CommonUtils.uuid().substring(0,9));
+		wuliu.setWid(CommonUtils.uuid().substring(0,10));
 		wuliu.setOid(request.getParameter("oid"));
 		wuliu.setFromwhere(request.getParameter("fromwhere"));
 		wuliu.setFromwho(request.getParameter("fromwho"));

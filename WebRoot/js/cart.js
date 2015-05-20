@@ -74,6 +74,13 @@ app.controller('cartCtrol', function($scope, $http, $element, $compile,
 					});
 				});
 				cart.quantity = 1;
+				$http.post("/goods/operate/cartItem/updateCart.do", {
+					uid : $scope.uid,
+					cid : cart.cid,
+					num : cart.quantity
+				}).success(function() {
+
+				});
 			}
 		}
 	}

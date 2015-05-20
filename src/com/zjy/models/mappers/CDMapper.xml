@@ -51,6 +51,17 @@
 	#{pageNo} ,18
 	
 	</select>
+	<select id="searchListByPage" resultMap="CDMap">
+	   select * from t_cd t 
+	   <where>
+	   <if test="cname != null">
+	      t.cname like concat('%',#{cname},'%')
+	   </if>
+	   <if test="singer != null">
+	     OR  t.singer like concat('%',#{singer},'%')
+	   </if>
+	   </where>	
+	</select>
 	<select id="selectById" resultMap="CDMap" parameterType="java.lang.String">
 	select * from t_cd t
 		<where>

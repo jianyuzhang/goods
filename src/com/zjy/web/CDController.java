@@ -66,7 +66,19 @@ public class CDController{
 		List<CD> cdListPages=cdService.showSomeCDsByPage(properties, propertyValues);
 		response.getWriter().print(JSONArray.fromObject(cdListPages));
 	}
-	
+	/*
+	 * 分页展示查询内容
+	 */
+	@RequestMapping("/searchListByPage.do")
+	public void searchCDsByPage(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String[] properties={"cname","singer"};
+		//int pageNo= (Integer.parseInt(request.getParameter("pageNo"))-1)*18;
+		String cname = request.getParameter("cname");
+		String singer = request.getParameter("singer");
+		Object[] propertyValues={cname,singer};
+		List<CD> cdListPages=cdService.searchSomeCDsByPage(properties, propertyValues);
+		response.getWriter().print(JSONArray.fromObject(cdListPages));
+	}
 	/*
 	 * 展示CD的具体内容
 	 */

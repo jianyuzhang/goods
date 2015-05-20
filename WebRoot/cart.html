@@ -36,7 +36,7 @@
 							<i class="glyphicon glyphicon-minus"></i>
 						</a>
 						<input type="text" class="form-control " aria-label="Amount (to the nearest dollar)" value="{{cart.quantity}}" ng-model="cart.quantity" ng-change="update(cart)">
-						<a href="javascript:void(0)" class="input-group-addon" ng-click="plus(cart)">
+						<a href="javascript:void(0)" class="input-group-addon" ng-click="plus(cart)" ng-class="{disabled:num == cart.sum}">
 							<i class="glyphicon glyphicon-plus"></i>
 						</a>
 					</div>

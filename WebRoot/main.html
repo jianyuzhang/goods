@@ -229,9 +229,9 @@
 					</div>
 					 <div class="col-sm-2">
 						<div class="input-group" style="padding-top: 18px">
-							<input type="text" class="form-control" placeholder="搜索好音乐">
+							<input type="text" class="form-control"  placeholder="搜索好音乐" ng-model="keyValue">
 							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">
+								<button class="btn btn-default" type="button" ng-click="searchMusic()">
 									<i class="glyphicon glyphicon-search"></i>
 								</button>
 							</span>
@@ -332,6 +332,7 @@
 		<script src="/goods/js/cart.js"></script>
 		<script src="/goods/js/info.js"></script>
 		<script src="/goods/js/order.js"></script>
+		<script src="/goods/js/search.js"></script>
 		<!-- end: JavaScript-->
 </body>
 </html>
