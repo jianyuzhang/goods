@@ -23,6 +23,10 @@
 		<property name="prefix" value="/jsps/"></property>
 		<property name="suffix" value=".jsp"></property> 
 	</bean> 
+	<bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+            <!-- one of the properties available; the maximum file size in bytes --> 
+            <property name="maxUploadSize" value="10000000"/> 
+        </bean> 
   <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">  		
   <property name="order" value="10"></property>  		
   <property name="prefix" value="/"></property>  		

@@ -12,6 +12,9 @@ import net.sf.json.JSONArray;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.zjy.models.CD;
 import com.zjy.service.CDService;
@@ -101,6 +104,15 @@ public class CDController{
     	cd.setSum(sum);
     	cd.setCid(cid);
     	cdService.updateCD(cd);
+    }
+    /*
+     * 添加CD
+     */
+    @RequestMapping(value="/addCD.do",method=RequestMethod.POST)
+    public void addCD(@RequestParam("image_b") MultipartFile image_b,@RequestParam("image_w") MultipartFile image_w,HttpServletRequest request,HttpServletResponse response) throws Exception{
+    	String cname = request.getParameter("cname");
+    	System.out.println(cname);
+    	System.out.println(image_b.getSize()+image_b.getSize());
     }
 }
 
