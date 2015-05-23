@@ -5,7 +5,7 @@
 		</div>
 		<div class="col-sm-5"></div>
 		<div class="col-sm-4">
-			<button type="button" class="btn btn-danger btn-lg" ng-click="addCD()">新品上架</button>
+			 <button type="button" class="btn btn-danger btn-lg" ng-click="addCD()">新品上架</button> 
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
@@ -60,7 +60,7 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="">歌手</label>
-							<input type="text" class="form-control" id="" placeholder="Enter singer" ng-model="singer" required>
+							<input type="text" class="form-control" id="" placeholder="Enter singer" ng-model="cd.singer" required>
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="">价格</label>
@@ -97,7 +97,7 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="">语种</label>
-							<select class="form-control" ng-model="language">
+							<select class="form-control" ng-model="cd.language">
 								<option>国语</option>
 								<option>粤语</option>
 								<option>欧美</option>
@@ -114,7 +114,7 @@
 							<input type="text" class="form-control" id="" placeholder="Enter Press" ng-model="cd.press" required>
 						</div>
 						<button type="reset" class="btn btn-primary btn-lg" id="cdReset">重置</button>
-						<button type="submit" class="btn btn-info btn-lg">添加</button>
+						<button type="submit" class="btn btn-info btn-lg" ng-click="addACD(cd)">添加</button>
 					</form>
 				</div>
 			</div>

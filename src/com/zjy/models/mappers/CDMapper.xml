@@ -84,4 +84,87 @@
 			</if>
 		</where>
 	</update>
+	<delete id="deleteById">
+		delete  from t_cd
+		where cid = #{cid}
+	</delete>
+	<insert id="insert">
+		insert into t_cd
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cid != null">
+				cid,
+			</if>
+			<if test="mid != null">
+				mid,
+			</if>
+			<if test="cname != null">
+				cname,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="currPrice != null">
+			   currPrice,
+			</if>
+			<if test="language != null">
+			   language,
+			</if>
+			<if test="press != null">
+				press,
+			</if>
+			<if test="printtime != null">
+				printtime,
+			</if>
+			<if test="singer != null">
+			   singer,
+			</if>
+			<if test="image_w != null">
+			   image_w,
+			</if>
+			<if test="image_b != null">
+			   image_b,
+			</if>
+			<if test="sum != null">
+			   sum,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cid != null">
+				#{cid},
+			</if>
+			<if test="mid != null">
+				#{mid},
+			</if>
+			<if test="cname != null">
+				#{cname},
+			</if>
+			<if test="price != null">
+				#{price},
+			</if>
+			<if test="currPrice != null">
+			   #{currPrice},
+			</if>
+			<if test="language != null">
+			   #{language},
+			</if>
+			<if test="press != null">
+				#{press},
+			</if>
+			<if test="printtime != null">
+				#{printtime},
+			</if>
+			<if test="singer != null">
+			   #{singer},
+			</if>
+			<if test="image_w != null">
+			   #{image_w},
+			</if>
+			<if test="image_b != null">
+			   #{image_b},
+			</if>
+			<if test="sum != null">
+			   #{sum},
+			</if>
+		</trim>
+	</insert>
 </mapper>

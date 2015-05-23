@@ -27,7 +27,34 @@ app.controller('goodsCtrol', function($http, $scope) {
 			language : cd.language,
 			printtime : cd.printtime
 		}).success(function() {
-        $('#myModal1').modal('hide');
+			$('#myModal1').modal('hide');
+		});
+	}
+	$scope.deletecd = function(cd) {
+		$http.post('/goods/operate/CD/deleteCD.do', {
+			cid : cd.cid
+		}).success(function() {
+
+		});
+	}
+	$scope.addACD = function(cd) {
+		console.log(cd);
+		console.log($scope.image_w);
+		console.log($scope.image_b);
+		$http.post('/goods/operate/CD/addCD.do', {
+			cname : cd.cname,
+			mid : cd.mid,
+			language:cd.language,
+			sum :cd.sum,
+			price:cd.price,
+			currPrice:cd.currPrice,
+			printtime : cd.printtime,
+			press : cd.press,
+			singer : cd.singer,
+			image_w : $scope.image_w,
+			image_b : $scope.image_b
+		}).success(function() {
+
 		});
 	}
 });
@@ -78,13 +105,18 @@ app.directive('imgUploadify', function() {
 				silverlight_xap_url : 'js/Moxie.xap',
 				filters : {
 					max_file_size : '20mb'
-									},
+				},
 				init : {
 					FilesAdded : function(up, files) {
 						uploader.start();
 					},
 					FileUploaded : function(up, file, info) {
-
+						var type = file.name.split(".")[1];
+						if ('mp3' == type) {
+							$scope.image_w ="music/"+ file.name;
+						} else {
+							$scope.image_b ="cds/"+ file.name;
+						}
 					}
 				}
 			});

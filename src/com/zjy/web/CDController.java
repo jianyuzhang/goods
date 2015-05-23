@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import cn.itcast.commons.CommonUtils;
+
 import com.zjy.models.CD;
 import com.zjy.service.CDService;
 
@@ -148,7 +150,15 @@ public class CDController {
 		cd.setPrinttime(printtime);
 		cdService.updateCD(cd);
 	}
-
+	
+   /*
+    * 删除功能
+    */
+	@RequestMapping("/deleteCD.do")
+	public void deleteCD(HttpServletRequest request ,HttpServletResponse response) throws Exception{
+		String cid = request.getParameter("cid");
+		cdService.deleteCD(cid);
+	}
 	/*
 	 * 图片上传
 	 */
@@ -156,14 +166,22 @@ public class CDController {
 	public void uploadImg(@RequestParam("fileUpload") MultipartFile image_b,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+	String imgPath = request.getServletContext().getRealPath("/cds/"); //得到保存的路径
+    String imgFileName = image_b.getOriginalFilename();
+    String savePath = imgPath+"/"+imgFileName;
+	try{
 		byte[] bytes = image_b.getBytes();
-
-		if (!image_b.isEmpty()) {
-			BufferedOutputStream stream = new BufferedOutputStream(
-					new FileOutputStream(new File("/cds")));
-			stream.write(bytes);
-			stream.close();
-		}
+		BufferedOutputStream stream = new BufferedOutputStream(
+				new FileOutputStream(new File(savePath)));
+		stream.write(bytes);
+		stream.close();
+	}catch (Exception e){
+		 System.out.println("You failed to upload" + e.getMessage());
+	}
+	response.getWriter().print(imgFileName);
+			
+		
 	}
 /*
  * 音乐上传
@@ -172,6 +190,51 @@ public class CDController {
 	public void uploadMusic(@RequestParam("fileUpload") MultipartFile image_w,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		System.out.println(image_w);
+		String mp3icPath = request.getServletContext().getRealPath("/music/"); //得到保存的路径
+	    String mp3FileName = image_w.getOriginalFilename();
+	    String savePath = mp3icPath+"/"+mp3FileName;
+		try{
+			byte[] bytes = image_w.getBytes();
+			BufferedOutputStream stream = new BufferedOutputStream(
+					new FileOutputStream(new File(savePath)));
+			stream.write(bytes);
+			stream.close();
+		}catch (Exception e){
+			 System.out.println("You failed to upload" + e.getMessage());
+		}
+		response.getWriter().print(mp3FileName);
+	}
+	/*
+	 * 添加CD
+	 */
+	@RequestMapping("/addCD.do")
+	public void addCD(HttpServletRequest request,HttpServletResponse response){
+		String mid = request.getParameter("mid");
+		String cname = request.getParameter("cname");
+		String language = request.getParameter("language");
+		String singer = request.getParameter("singer");
+		Double currPrice = Double
+				.parseDouble(request.getParameter("currPrice"));
+		Double price = Double.parseDouble(request.getParameter("price"));
+		String printtime = request.getParameter("printtime");
+		String cid = CommonUtils.uuid();
+		String image_w = request.getParameter("image_w");
+		String image_b = request.getParameter("image_b");
+		String press = request.getParameter("press");
+		int sum = Integer.parseInt(request.getParameter("sum"));
+		CD cd = new CD();
+		cd.setCid(cid);
+		cd.setCname(cname);
+		cd.setCurrPrice(currPrice);
+		cd.setImage_b(image_b);
+		cd.setImage_w(image_w);
+		cd.setMid(mid);
+		cd.setLanguage(language);
+		cd.setPress(press);
+		cd.setPrice(price);
+		cd.setPrinttime(printtime);
+		cd.setSinger(singer);
+		cd.setSum(sum);
+		cdService.addCD(cd);
 	}
 }

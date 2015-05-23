@@ -3,8 +3,9 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 	$scope.cd = $scope.cd[0]
 	$scope.num = 1;
 	$scope.oid = 0;
+	$scope.isPlay = false;
 	$scope.total = $scope.num * $scope.cd.currPrice;
-	//console.log($scope.info===undefined);
+	console.log($scope.isPlay);
 	$scope.change = function(event) {
 		var validateNum = /^[0-9]*[1-9][0-9]*$/;
 		// console.log(validateNum.test($scope.num))
@@ -186,10 +187,26 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 			});
 		}
 	}
+	$('#myModal2').on('hidden.bs.modal', function(e) {
+		$scope.myAuto = $element.find("#myaudio")[0];
+		console.log($scope.myAuto);
+		$scope.myAuto.pause();
+		$element.find("#paseIcon").click();
+	})
 	$scope.playMusic = function (){
 		$scope.myAuto = $element.find("#myaudio")[0];
 		console.log($scope.myAuto);
 		$scope.myAuto.play();
+		$('#myModal2').modal('show');
+		$scope.isPlay = true;
+		console.log($scope.isPlay);
+	}
+	$scope.stopMusic =function (){
+		$scope.myAuto = $element.find("#myaudio")[0];
+		console.log($scope.myAuto);
+		$scope.myAuto.pause();
+		$scope.isPlay = false;
+		console.log($scope.isPlay);
 	}
 	$scope.$watch('carts', change, true);
 	function change(to, from) {

@@ -13,4 +13,6 @@ public interface CDService {
 	  public Integer countCDs(String propertyName, Object propertyValue);
 	  public CD showCDDetial(String cid);
 	  public void updateCD(CD cd);
+	  public void deleteCD(String cid);
+	  public int addCD(CD cd);
 }

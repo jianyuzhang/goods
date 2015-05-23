@@ -65,5 +65,15 @@ public class CDServiceImpl implements CDService {
 		List<CD> cds=cdDao.findByStatementPostfix(".searchListByPage", properties, propertyValues, null, null);
 		return cds;
 	}
+	@Override
+	public void deleteCD(String cid) {
+		cdDao.deleteById(cid);
+		
+	}
+	@Override
+	public int addCD(CD cd) {
+		int i =cdDao.insert(cd);
+		return i ;
+	}
    
 }
