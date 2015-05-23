@@ -9,35 +9,6 @@ app.controller('goodsCtrol', function($http, $scope) {
 	$scope.addcd = function(cd) {
 		console.log(cd);
 	}
-	app.directive('imgUploadify',function(){
-		return {
-			restrict : 'A',
-			link : function($scope,elm,attrs){
-				var uploader = new plupload.Uploader({
-					file_date_name : 'html5,flash,silverlight,html4',
-					browse_button : elem.attr('id'),
-					container : elm.parent[0],
-					url : opts.url ||'',
-					flash_swf_url : 'scripts/inc/plupload/Moxie.swf',
-					silverlight :'scripts/inc/plupload/Moxie.xap',
-					filters :{
-						max_file_size : '15mb',
-						mime_type :[{title : 'Image files',extensions : 'jpg,gif,png'}]
-					},
-					init :{
-						FilesAdded : function(up ,files){
-							uploader.start();
-							console.log('正在上传');
-						},
-						FileUploaded : function(up,file,info){
-							
-						}
-					}
-				});
-				uploader.init();
-			}
-		}
-	});
 });
 
 app.filter('checkMid', function() {
@@ -66,6 +37,41 @@ app.filter('checkMid', function() {
 			return "名族";
 		} else if (35 == mid) {
 			return "纯乐";
+		}
+	}
+});
+
+app.directive('imgUploadify', function() {
+	return {
+		restrict : 'A',
+		link : function($scope, elm, attrs) {
+			var opts = angular.extend({}, $scope.$eval(attrs.imgUploadify));
+
+			var uploader = new plupload.Uploader({
+				file_data_name : 'fileUpload',
+				runtimes : 'html5,flash,silverlight,html4',
+				browse_button : elm.attr('id'),
+				container : elm.parent()[0],
+				url : opts.url || 'test.html',
+				flash_swf_url : 'js/Moxie.swf',
+				silverlight_xap_url : 'js/Moxie.xap',
+				filters : {
+					max_file_size : '10mb',
+					mime_types : [ {
+						title : 'Image files',
+						extensions : 'jpg,gif,png'
+					} ]
+				},
+				init : {
+					FilesAdded : function(up, files) {
+						uploader.start();
+					},
+					FileUploaded : function(up, file, info) {
+
+					}
+				}
+			});
+			uploader.init();
 		}
 	}
 });
