@@ -104,11 +104,10 @@
 							</select>
 						</div>
 						<div class="form-group col-sm-6">
-							<a id="person_avatar" href="javascript:;" style="position: relative; z-index: 1;" img-uploadify="{url: ''}">上传封面</a>
+							<a id="person_avatar1" href="javascript:;" img-uploadify="{url: '/goods/operate/CD/uploadImg.do'}">上传封面</a>
 						</div>
 						<div class="form-group col-sm-6">
-							<label for="">上传歌曲</label>
-							<input type="file" ng-file-select="onFileSelect($files)" multiple accept="music/*">
+						<a id="person_avatar2" href="javascript:;"    img-uploadify="{url: '/goods/operate/CD/uploadMusic.do'}">上传歌曲</a>
 						</div>
 						<div class="form-group">
 							<label for="">描述</label>
@@ -131,7 +130,61 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel">商品信息修改</h4>
 				</div>
-				<div class="modal-body row"></div>
+				<div class="modal-body row">
+				<form name="editForm">
+						<div class="form-group col-sm-6">
+							<label for="">名称</label>
+							<input type="text" class="form-control" id="" placeholder="Enter Name" ng-model="cd.cname"  required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">歌手</label>
+							<input type="text" class="form-control" id="" placeholder="Enter singer" ng-model="cd.singer" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">价格</label>
+							<input type="text" class="form-control" id="" placeholder="Enter price" ng-model="cd.price" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">售价</label>
+							<input type="text" class="form-control" id="" placeholder="Enter price" ng-model="cd.currPrice" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">库存</label>
+							<input type="text" class="form-control" id="" placeholder="Enter num" ng-model="cd.sum" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">发布时间</label>
+							<input type="text" class="form-control" id="" placeholder="Enter printtime" ng-model="cd.printtime" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">对应菜单</label>
+							<select class="form-control" ng-model="cd.mid">
+								<option value="10">{{10 | checkMid}}</option>
+								<option value="11">{{11 | checkMid}}</option>
+								<option value="12">{{12 | checkMid}}</option>
+								<option value="20">{{20 | checkMid}}</option>
+								<option value="21">{{21 | checkMid}}</option>
+								<option value="22">{{22 | checkMid}}</option>
+								<option value="30">{{30 | checkMid}}</option>
+								<option value="31">{{31 | checkMid}}</option>
+								<option value="32">{{32 | checkMid}}</option>
+								<option value="33">{{33 | checkMid}}</option>
+								<option value="34">{{34 | checkMid}}</option>
+								<option value="35">{{35 | checkMid}}</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">语种</label>
+							<select class="form-control" ng-model="cd.language">
+								<option>国语</option>
+								<option>粤语</option>
+								<option>欧美</option>
+							</select>
+						</div>
+						<button type="reset" class="btn btn-primary btn-lg" id="editReset">重置</button>
+						<button type="submit" class="btn btn-info btn-lg" ng-click="editCD(cd)">修改</button>
+						</form>
+				</div>
 			</div>
 		</div>
 	</div>

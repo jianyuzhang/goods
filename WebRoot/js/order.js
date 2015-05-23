@@ -16,6 +16,7 @@ app.controller('orderCtrol', function($scope, $http, $element, $compile,
 	 * 切换状态
 	 */
 	$scope.changeStatus = function(event) {
+		console.log(event);
 		$scope.status = event.target.children[0].value;
 		if ($scope.status == " ") {
 			$http.post('/goods/operate/order/showOrder.do', {
@@ -105,6 +106,9 @@ app.controller('orderCtrol', function($scope, $http, $element, $compile,
 
 					});
 					$('#myModal1').modal('hide');
+					$('#myModal1').on('hidden.bs.modal', function(e) {
+					$element.find('#status1').click();
+					});
 				});
 			});
 		}
@@ -128,7 +132,10 @@ app.controller('orderCtrol', function($scope, $http, $element, $compile,
 			status : 3,
 			oid :order.oid
 		}).success(function (){
-			
+			swal("确认收件成功", "", "");
+			setTimeout(function() {
+				$element.find('#status2').click();
+			}, 100);
 		});
 	}
 });

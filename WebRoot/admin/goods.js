@@ -9,6 +9,27 @@ app.controller('goodsCtrol', function($http, $scope) {
 	$scope.addcd = function(cd) {
 		console.log(cd);
 	}
+	$scope.editcd = function(cd) {
+		$('#myModal1').modal('show');
+		$scope.cd = cd;
+		console.log($scope.cd);
+	}
+	$scope.editCD = function(cd) {
+		console.log(cd);
+		$http.post('/goods/operate/CD/editCD.do', {
+			cid : cd.cid,
+			mid : cd.mid,
+			sum : cd.sum,
+			price : cd.price,
+			currPrice : cd.currPrice,
+			cname : cd.cname,
+			singer : cd.singer,
+			language : cd.language,
+			printtime : cd.printtime
+		}).success(function() {
+        $('#myModal1').modal('hide');
+		});
+	}
 });
 
 app.filter('checkMid', function() {
@@ -52,16 +73,12 @@ app.directive('imgUploadify', function() {
 				runtimes : 'html5,flash,silverlight,html4',
 				browse_button : elm.attr('id'),
 				container : elm.parent()[0],
-				url : opts.url || 'test.html',
+				url : opts.url || '',
 				flash_swf_url : 'js/Moxie.swf',
 				silverlight_xap_url : 'js/Moxie.xap',
 				filters : {
-					max_file_size : '10mb',
-					mime_types : [ {
-						title : 'Image files',
-						extensions : 'jpg,gif,png'
-					} ]
-				},
+					max_file_size : '20mb'
+									},
 				init : {
 					FilesAdded : function(up, files) {
 						uploader.start();

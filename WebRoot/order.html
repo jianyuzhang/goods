@@ -5,28 +5,28 @@
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
 		<div class="btn-group" data-toggle="buttons">
-			<label class="btn btn-primary active" ng-click="changeStatus($event)">
-				<input type="radio" name="status" value=" " ng-model="status" checked>
+			<label id="status" class="btn btn-primary active" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value=" " ng-model="status" checked>
 				全部订单
 			</label>
-			<label class="btn btn-primary" ng-click="changeStatus($event)">
-				<input type="radio" name="status" value="0" ng-model="status">
+			<label id="status0" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value="0" ng-model="status">
 				未付款
 			</label>
-			<label class="btn btn-primary" ng-click="changeStatus($event)">
+			<label id="status1" class="btn btn-primary" ng-click="changeStatus($event)">
 				<input type="radio" name="status" value="1" ng-model="status">
 				未发货
 			</label>
-			<label class="btn btn-primary" ng-click="changeStatus($event)">
-				<input type="radio" name="status" value="2" ng-model="status">
+			<label id="status2" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value="2" ng-model="status">
 				未收货
 			</label>
-			<label class="btn btn-primary" ng-click="changeStatus($event)">
-				<input type="radio" name="status" value="3" ng-model="status">
+			<label id="status3" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value="3" ng-model="status">
 				已收货
 			</label>
-			<label class="btn btn-primary" ng-click="changeStatus($event)">
-				<input type="radio" name="status" value="4" ng-model="status">
+			<label id="status4" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value="4" ng-model="status">
 				已取消
 			</label>
 		</div>
@@ -117,6 +117,7 @@
                   <div class="col-sm-3">
 					</div>
 					<div class="col-sm-6">
+					<i class="glyphicon glyphicon-user" style="font-size:30px"></i>
 					<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">余额：{{money | currency : '￥'}}</p>
 					</div>
 					<div class="col-sm-3"></div>
