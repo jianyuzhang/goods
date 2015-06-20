@@ -8,8 +8,6 @@ import java.io.Serializable;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * @author Hing<xingguang.ren@pactera.com>
- * @since 2014年4月19日
  */
 public class BaseDTO implements Serializable {
 

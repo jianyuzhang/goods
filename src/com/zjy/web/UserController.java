@@ -33,9 +33,10 @@ public class UserController{
  * @throws IOException 
   */
     @RequestMapping("/findUser.do")
-    public void index(HttpServletRequest request,
+    public @ResponseBody  User index(HttpServletRequest request,
 			HttpServletResponse response) throws IOException{
-    	response.getWriter().print(JSONObject.fromObject(request.getSession().getAttribute("user")));
+    	User user =(User) request.getSession().getAttribute("user");
+		return user;
     }
    
     /**

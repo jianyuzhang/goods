@@ -4,8 +4,6 @@
 package com.zjy.baseDao;
 
 /**
- * @author Hing<xingguang.ren@pactera.com>
- * @since 2014年4月19日
  */
 public class BaseException extends RuntimeException {
 

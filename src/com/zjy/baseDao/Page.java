@@ -4,7 +4,6 @@
 package com.zjy.baseDao;
 
 /**
- * @author chen.nie
  * 
  */
 public class Page extends BaseDTO {

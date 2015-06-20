@@ -31,6 +31,7 @@ app.controller('detailCtrol', function($scope, $http, $element) {
 	$scope.plus = function() {
 		if ($scope.num < $scope.cd.sum) {
 			$scope.num++;
+			console.log($scope.num);
 		}
 
 		$scope.total = $scope.num * $scope.cd.currPrice;
