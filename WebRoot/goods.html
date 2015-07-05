@@ -1,0 +1,191 @@
+<div ng-controller="goodsCtrol" class="row">
+	<div class="col-sm-11">
+		<div class="col-sm-11">
+			<h2>商品管理</h2>
+		</div>
+		<div class="col-sm-5"></div>
+		<div class="col-sm-4">
+			 <button type="button" class="btn btn-danger btn-lg" ng-click="addCD()">新品上架</button> 
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+	<div class="col-sm-11">
+		<table class="table">
+			<tr>
+				<td class="col-sm-2">名称</td>
+				<td class="col-sm-1">歌手</td>
+				<td class="col-sm-1">照片</td>
+				<td class="col-sm-1">售价</td>
+				<td class="col-sm-1">库存</td>
+				<td class="col-sm-4">描述</td>
+				<td class="col-sm-2">操作</td>
+			</tr>
+			<tr ng-repeat="cd in cds">
+				<td ng-bind="cd.cname"></td>
+				<td ng-bind="cd.singer"></td>
+				<td>
+					<img ng-alt="{{cd.cname}}" ng-src="{{cd.image_b}}" class="img-responsive" style="width: 60px; height: 60px; float: left">
+				</td>
+				<td ng-bind="cd.currPrice"></td>
+				<td ng-bind="cd.sum"></td>
+				<td ng-bind="cd.press"></td>
+				<td>
+					<p class="navbar-text">
+						<a href="javascript:void(0)" ng-click="editcd(cd)">
+							<i class="glyphicon glyphicon-edit" style="font-size: 18px"></i>
+						</a>
+						<a href="javascript:void(0)" ng-click="deletecd(cd)">
+							<i class="glyphicon glyphicon-trash" style="font-size: 18px"></i>
+						</a>
+					</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkGoodsInOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">新品上架</h4>
+				</div>
+				<div class="modal-body row">
+					<form name="addForm">
+						<div class="form-group col-sm-6">
+							<label for="">名称</label>
+							<input type="text" class="form-control" id="" placeholder="Enter Name" ng-model="cd.cname" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">歌手</label>
+							<input type="text" class="form-control" id="" placeholder="Enter singer" ng-model="cd.singer" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">价格</label>
+							<input type="text" class="form-control" id="" placeholder="Enter price" ng-model="cd.price" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">售价</label>
+							<input type="text" class="form-control" id="" placeholder="Enter price" ng-model="cd.currPrice" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">发布时间</label>
+							<input type="text" class="form-control" id="" placeholder="Enter printtime" ng-model="cd.printtime" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">库存</label>
+							<input type="text" class="form-control" id="" placeholder="Enter num" ng-model="cd.sum" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">对应菜单</label>
+							<select class="form-control" ng-model="cd.mid">
+								<option value="10">{{10 | checkMid}}</option>
+								<option value="11">{{11 | checkMid}}</option>
+								<option value="12">{{12 | checkMid}}</option>
+								<option value="20">{{20 | checkMid}}</option>
+								<option value="21">{{21 | checkMid}}</option>
+								<option value="22">{{22 | checkMid}}</option>
+								<option value="30">{{30 | checkMid}}</option>
+								<option value="31">{{31 | checkMid}}</option>
+								<option value="32">{{32 | checkMid}}</option>
+								<option value="33">{{33 | checkMid}}</option>
+								<option value="34">{{34 | checkMid}}</option>
+								<option value="35">{{35 | checkMid}}</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">语种</label>
+							<select class="form-control" ng-model="cd.language">
+								<option>国语</option>
+								<option>粤语</option>
+								<option>欧美</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-6">
+							<a id="person_avatar1" href="javascript:;" img-uploadify="{url: '/goods/operate/CD/uploadImg.do'}">上传封面</a>
+						</div>
+						<div class="form-group col-sm-6">
+						<a id="person_avatar2" href="javascript:;"    img-uploadify="{url: '/goods/operate/CD/uploadMusic.do'}">上传歌曲</a>
+						</div>
+						<div class="form-group">
+							<label for="">描述</label>
+							<input type="text" class="form-control" id="" placeholder="Enter Press" ng-model="cd.press" required>
+						</div>
+						<button type="reset" class="btn btn-primary btn-lg" id="cdReset">重置</button>
+						<button type="submit" class="btn btn-info btn-lg" ng-click="addACD(cd)">添加</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkGoodsInOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">商品信息修改</h4>
+				</div>
+				<div class="modal-body row">
+				<form name="editForm">
+						<div class="form-group col-sm-6">
+							<label for="">名称</label>
+							<input type="text" class="form-control" id="" placeholder="Enter Name" ng-model="cd.cname"  required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">歌手</label>
+							<input type="text" class="form-control" id="" placeholder="Enter singer" ng-model="cd.singer" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">价格</label>
+							<input type="text" class="form-control" id="" placeholder="Enter price" ng-model="cd.price" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">售价</label>
+							<input type="text" class="form-control" id="" placeholder="Enter price" ng-model="cd.currPrice" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">库存</label>
+							<input type="text" class="form-control" id="" placeholder="Enter num" ng-model="cd.sum" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">发布时间</label>
+							<input type="text" class="form-control" id="" placeholder="Enter printtime" ng-model="cd.printtime" required>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">对应菜单</label>
+							<select class="form-control" ng-model="cd.mid">
+								<option value="10">{{10 | checkMid}}</option>
+								<option value="11">{{11 | checkMid}}</option>
+								<option value="12">{{12 | checkMid}}</option>
+								<option value="20">{{20 | checkMid}}</option>
+								<option value="21">{{21 | checkMid}}</option>
+								<option value="22">{{22 | checkMid}}</option>
+								<option value="30">{{30 | checkMid}}</option>
+								<option value="31">{{31 | checkMid}}</option>
+								<option value="32">{{32 | checkMid}}</option>
+								<option value="33">{{33 | checkMid}}</option>
+								<option value="34">{{34 | checkMid}}</option>
+								<option value="35">{{35 | checkMid}}</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="">语种</label>
+							<select class="form-control" ng-model="cd.language">
+								<option>国语</option>
+								<option>粤语</option>
+								<option>欧美</option>
+							</select>
+						</div>
+						<button type="reset" class="btn btn-primary btn-lg" id="editReset">重置</button>
+						<button type="submit" class="btn btn-info btn-lg" ng-click="editCD(cd)">修改</button>
+						</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

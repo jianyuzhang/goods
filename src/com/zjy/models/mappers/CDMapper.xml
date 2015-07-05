@@ -6,7 +6,7 @@
         <result property="singer" column="singer"/>
         <result property="cname" column="cname"/>
         <result property="price" column="price"/>
-        <result property="currprice" column="currprice"/>
+        <result property="currPrice" column="currPrice"/>
         <result property="discount" column="discount"/>
         <result property="press" column="press"/>
         <result property="publishtime" column="publishtime"/>
@@ -17,6 +17,7 @@
         <result property="image_b" column="image_b"/>
         <result property="orderBy" column="orderBy"/>
         <result property="sum" column="sum"/>
+        <result property="language" column="language"/>
     </resultMap>
     <select id="selectAll" resultMap="CDMap">
         select * from t_cd 
@@ -30,6 +31,140 @@
 				
 		</where>
 	</select>
+	<select id="count" resultType="int">
+	select count(*) from t_cd t
+	<where>
+	   <if test="mid != null">
+	     AND t.mid = #{mid}
+	   </if>
+	</where>
+	</select>
+	<select id="selectListByPage" resultMap="CDMap">
+	   select * from t_cd t 
+	   
+	   <if test="mid != null">
+	   <where>
+	     AND t.mid = #{mid}
+	    </where>
+	   </if>
+	 limit 
+	#{pageNo} ,18
 	
-	
+	</select>
+	<select id="searchListByPage" resultMap="CDMap">
+	   select * from t_cd t 
+	   <where>
+	   <if test="cname != null">
+	      t.cname like concat('%',#{cname},'%')
+	   </if>
+	   <if test="singer != null">
+	     OR  t.singer like concat('%',#{singer},'%')
+	   </if>
+	   </where>	
+	</select>
+	<select id="selectById" resultMap="CDMap" parameterType="java.lang.String">
+	select * from t_cd t
+		<where>
+			<if test="_parameter != null">
+				AND t.cid= #{_parameter}
+			</if>
+				
+		</where>
+	</select>
+	<update id="update">
+		update t_cd
+		<set>
+			<if test="sum != null">
+				sum=#{sum},
+			</if>
+		</set>
+		<where>
+			<if test="cid != null">
+				AND cid = #{cid}
+			</if>
+		</where>
+	</update>
+	<delete id="deleteById">
+		delete  from t_cd
+		where cid = #{cid}
+	</delete>
+	<insert id="insert">
+		insert into t_cd
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cid != null">
+				cid,
+			</if>
+			<if test="mid != null">
+				mid,
+			</if>
+			<if test="cname != null">
+				cname,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="currPrice != null">
+			   currPrice,
+			</if>
+			<if test="language != null">
+			   language,
+			</if>
+			<if test="press != null">
+				press,
+			</if>
+			<if test="printtime != null">
+				printtime,
+			</if>
+			<if test="singer != null">
+			   singer,
+			</if>
+			<if test="image_w != null">
+			   image_w,
+			</if>
+			<if test="image_b != null">
+			   image_b,
+			</if>
+			<if test="sum != null">
+			   sum,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cid != null">
+				#{cid},
+			</if>
+			<if test="mid != null">
+				#{mid},
+			</if>
+			<if test="cname != null">
+				#{cname},
+			</if>
+			<if test="price != null">
+				#{price},
+			</if>
+			<if test="currPrice != null">
+			   #{currPrice},
+			</if>
+			<if test="language != null">
+			   #{language},
+			</if>
+			<if test="press != null">
+				#{press},
+			</if>
+			<if test="printtime != null">
+				#{printtime},
+			</if>
+			<if test="singer != null">
+			   #{singer},
+			</if>
+			<if test="image_w != null">
+			   #{image_w},
+			</if>
+			<if test="image_b != null">
+			   #{image_b},
+			</if>
+			<if test="sum != null">
+			   #{sum},
+			</if>
+		</trim>
+	</insert>
 </mapper>

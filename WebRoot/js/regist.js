@@ -115,6 +115,10 @@ app.controller('registCtrol', function($scope, $http, $element) {
 			swal("请填写完毕后提交", "", "error");
 		}
 	};
+	$scope.recover=function(){
+		window.location.href= history.go(-1);
+	};
+	
 });
 
 app.directive('ngBlur', function() {
@@ -134,3 +138,4 @@ app.directive('main', function() {
 		templateUrl: 'main.html'
 	};
 });
+

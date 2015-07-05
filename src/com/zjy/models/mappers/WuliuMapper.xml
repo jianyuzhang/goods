@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjy.models.Wuliu">
+	<resultMap type="Wuliu" id="WuliuMap">
+		<id property="wid" column="wid" />
+		<result property="fromwhere" column="fromwhere" />
+		<result property="fromwho" column="fromwho" />
+		<result property="oid" column="oid" />
+		<result property="towhere" column="towhere" />
+		<result property="towho" column="towho" />
+		<result property="city" column="city" />
+		<result property="phonenumber" column="phonenumber" />
+	</resultMap>
+	<select id="selectWuliuByOid" resultMap="WuliuMap">
+		select * from t_wuliu t 
+		<where>
+			<if test="oid != null">
+				AND t.oid= #{oid}
+			</if>
+		</where>
+	</select>
+	<insert id="insert" parameterType="Wuliu" >
+    insert into t_wuliu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+       	wid,
+      <if test="oid != null">
+        oid, 
+      </if>  
+      <if test="fromwhere != null" >
+        fromwhere,
+      </if>
+      <if test="fromwho != null" >
+        fromwho,
+      </if>
+       <if test="towhere != null" >
+        towhere,
+      </if>
+      <if test="towho != null">
+		towho,
+	  </if>
+	  <if test="city != null">
+		city,
+	  </if>
+	  <if test="phonenumber != null">
+		phonenumber,
+	  </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+       #{wid},
+       <if test="oid != null">
+		#{oid},
+	 </if>
+     <if test="fromwhere != null">
+		#{fromwhere},
+	 </if>
+     <if test="fromwho != null" >
+        #{fromwho},
+      </if>
+     <if test="towhere != null" >
+        #{towhere},
+      </if>
+      <if test="towho != null">
+        #{towho},
+      </if>
+      <if test="city != null">
+		#{city},
+	  </if>
+	  <if test="phonenumber != null">
+		#{phonenumber},
+	 </if>
+     </trim>
+    </insert>
+</mapper>

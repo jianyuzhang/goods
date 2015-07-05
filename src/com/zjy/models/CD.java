@@ -16,6 +16,14 @@ public class CD {
 	private String image_b;//小图路径
 	private int orderBy;//顺序
 	private int sum;//库存数量
+	private String language;//语种
+	
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 	public String getCid() {
 		return cid;
 	}
@@ -114,7 +122,7 @@ public class CD {
 				+ ", publishtime=" + publishtime + ", edition=" + edition
 				+ ", printtime=" + printtime + ", mid=" + mid + ", image_w="
 				+ image_w + ", image_b=" + image_b + ", orderBy=" + orderBy
-				+ ", sum=" + sum + "]";
+				+ ", sum=" + sum + ", language=" + language + "]";
 	}
 	
 }

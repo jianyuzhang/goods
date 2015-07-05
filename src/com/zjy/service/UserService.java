@@ -1,5 +1,7 @@
 package com.zjy.service;
 
+import java.util.List;
+
 import com.zjy.models.User;
 
 
@@ -18,7 +20,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public User login(String[] properties,Object[] values) ;
+	public List<User> login(String[] properties,Object[] values) ;
 	
 	/**
 	 * 激活功能

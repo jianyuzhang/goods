@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjy.models.Money">
+	<resultMap type="Money" id="MoneyMap">
+		<id property="mid" column="mid" />
+		<result property="uid" column="uid" />
+		<result property="num" column="num" />
+	</resultMap>
+	<select id="selectAll" resultMap="MoneyMap">
+		select * from t_money 
+	</select>
+	<update id="update">
+		update t_money
+		<set>
+			<if test="num != null">
+				num=#{num},
+			</if>
+		</set>
+		<where>
+			<if test="mid != null">
+				AND mid = #{mid}
+			</if>
+		</where>
+	</update>
+</mapper>

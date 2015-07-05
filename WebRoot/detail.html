@@ -1,0 +1,231 @@
+<div class="row" ng-controller="detailCtrol">
+	<div class="col-sm-3" style="height: 300px; margin-left: 50px; padding-left: 0px">
+		<img ng-alt="{{cd.cname}}" ng-src="{{cd.image_b}}" class="img-responsive" style="width: 260px; height: 280px">
+	</div>
+	<div class="col-sm-4" style="height: 300px; margin-left: 40px">
+		<h1 ng-bind="cd.cname" style="margin-top: 0px"></h1>
+		<h1 style="margin-top: 0px">
+			<a href="javascript:void(0)" ng-click="playMusic()" ng-show="!isPlay">
+				<i class="glyphicon glyphicon-play"></i>
+			</a>
+			<a href="javascript:void(0)" ng-click="stopMusic()" ng-show="isPlay" id="paseIcon">
+				<i class="glyphicon glyphicon-pause"></i>
+			</a>
+		</h1>
+		<audio id="myaudio" ng-src="{{cd.image_w}}" controls="controls" loop="false" hidden="true">
+		</audio>
+		<p>
+			演唱 ：
+			<span ng-bind="cd.singer"></span>
+		</p>
+		<p>
+			出版时间 :
+			<span ng-bind="cd.printtime"></span>
+		</p>
+		<p>
+			现价 ：
+			<i class="glyphicon glyphicon-yen"></i>
+			<span ng-bind="cd.currPrice"></span>
+			<br>
+			原价 ：
+			<i class="glyphicon glyphicon-yen"></i>
+			<del style="color: red">
+				<span ng-bind="cd.price"></span>
+			</del>
+		</p>
+		<div class="input-group col-sm-4" style="float: left">
+			<a href="javascript:void(0)" class="input-group-addon" ng-click="minus()" ng-class="{disabled:num == 1}">
+				<i class="glyphicon glyphicon-minus"></i>
+			</a>
+			<input type="text" class="form-control " aria-label="Amount (to the nearest dollar)" value="{{num}}" ng-model="num" ng-blur="change($event)">
+			<a href="javascript:void(0)" class="input-group-addon" ng-click="plus()">
+				<i class="glyphicon glyphicon-plus"></i>
+			</a>
+		</div>
+		<div style="font-size: 18px; margin: 10px">
+			库存：
+			<span ng-bind="cd.sum"></span>
+		</div>
+		<p style="clear: both">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">立即购买</button>
+			<button type="button" class="btn btn-danger btn-lg" ng-click="addCart()">添加购物车</button>
+		</p>
+	</div>
+	<div class="col-sm-7" style="margin-left: 50px">
+		<h3>歌曲简介</h3>
+		<p ng-bind="cd.press"></p>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" ng-show="!flag">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">确认订单</h4>
+				</div>
+				<div class="modal-body row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+						<form name="addForm">
+							<div class="form-group">
+								<label for="">收件人</label>
+								<input type="text" class="form-control" ng-model="info.uname" disabled>
+							</div>
+							<div class="form-group">
+								<label for="">详细地址</label>
+								<input type="text" class="form-control" ng-model="info.address" disabled>
+							</div>
+							<div class="form-group">
+								<label for="">手机号码</label>
+								<input type="text" class="form-control" ng-model="info.phoneNumber" disabled>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-3"></div>
+
+					<table class="table">
+						<tr>
+							<td class="col-sm-4">
+								<img ng-alt=" {{cd.cname}}" ng-src="{{cd.image_b}}" class="img-responsive" style="width: 60px; height: 60px; float: left" src="">
+							</td>
+							<td class="col-sm-6">
+								<p class="navbar-text ng-binding">{{cd.cname}}</p>
+							</td>
+							<td class="col-sm-1">
+								<p class="navbar-text ng-binding">{{num}}</p>
+							</td>
+							<td class="col-sm-1">
+								<p class="navbar-text ng-binding">{{num*cd.currPrice}}￥</p>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="addAddress()">添加收件信息</button>
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
+						<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">总计 ：{{total}}￥</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="pay()" ng-class="{disabled:info === undefined}">去付款</button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-content" ng-show="flag">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-10">
+						<p class="navbar-text ng-binding" style="font-size: 30px; margin: 0px">
+							您尚未登录，请先
+							<a style="color: red" href="index.html">登录</a>
+							后进行操作
+						</p>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">支付</h4>
+				</div>
+				<div class="modal-body row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+						<i class="glyphicon glyphicon-user" style="font-size: 30px"></i>
+						<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">余额：{{money | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3"></div>
+				</div>
+				<div class="modal-footer">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+						<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">商品总价：{{total | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="payMoney()">付款</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+					<img id="animations" ng-alt="{{cd.cname}}" ng-src="{{cd.image_b}}" class="img-circle" style="width:260px;height:260px">
+					</div>
+					<div class="col-sm-3"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+#myModal2 .modal-content{
+	background:transparent;
+	border:none;
+	border-radius:none;
+	box-shadow:none;
+}
+#animations{
+filter:alpha(opacity=80);  
+      -moz-opacity:0.8;  
+      -khtml-opacity: 0.8;  
+      opacity: 0.8; 
+}
+.active{
+
+  border:1px solid black;
+
+  width:200px;
+
+  height:150px;
+
+  background:#f9c;
+
+}
+
+@-webkit-keyframes aixuexi{
+0%{-webkit-transform:rotate(0deg);opacity:1;}
+25%{-webkit-transform:rotate(90deg);opacity:1;}
+
+50%{-webkit-transform:rotate(180deg);opacity:1;}
+
+75%{-webkit-transform:rotate(270deg);opacity:1;}
+
+100%{-webkit-transform:rotate(360deg);opacity:1;}
+
+}
+#animations{
+ 
+-webkit-animation-name:aixuexi;
+
+-webkit-animation-duration: 4s;
+
+-webkit-animation-iteration-count: infinite;
+
+-webkit-animation-timing-function: linear;
+
+</style> 

@@ -1,0 +1,16 @@
+<div class="row" ng-controller="searchCtrl">
+	<div class="col-sm-2" ng-repeat="cd in allcds" style="height: 271px">
+		<div ng-click="showDetial(cd.cid)">
+			<span style="display: none">{{cd.cid}}</span>
+			<a href="javascript:void(0)" class="thumbnail">
+				<img alt="{{cd.cname}}" ng-src="{{cd.image_b}}" class="img-rounded" style="height: 160px; width: 160px">
+			</a>
+			<div class="caption">
+				<h5>
+					<a>{{cd.cname}}</a>
+				</h5>
+				<p>{{cd.singer}}</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,12 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zjy.models.Order">
-    <resultMap type="Order" id="OrderMap">
-        <id property="oid" column="oid"/>
-        <result property="ordertime" column="ordertime"/>
-        <result property="total" column="total"/>
-        <result property="status" column="status"/>
-        <result property="address" column="address"/>
-    </resultMap>
-   
+	<resultMap type="Order" id="OrderMap">
+		<id property="oid" column="oid" />
+		<result property="uid" column="uid" />
+		<result property="ordertime" column="ordertime" />
+		<result property="total" column="total" />
+		<result property="status" column="status" />
+		<result property="address" column="address" />
+		<result property="uname" column="uname" />
+		<result property="phoneNumber" column="phoneNumber" />
+	</resultMap>
+	<select id="selectOrders" resultMap="OrderMap">
+		select * from t_order t
+		<where>
+			<if test="uid != null">
+				AND t.uid = #{uid}
+			</if>
+			<if test="status != null">
+				AND t.status = #{status}
+			</if>
+		</where>
+	</select>
+	<update id="update">
+		update t_order
+		<set>
+			<if test="status != null">
+				status=#{status},
+			</if>
+		</set>
+		<where>
+			<if test="oid != null">
+				AND oid = #{oid}
+			</if>
+		</where>
+	</update>
+	<insert id="insert">
+		insert into t_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="oid != null">
+				oid,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			ordertime,
+			<if test="total != null">
+				total,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="uname != null">
+				uname,
+			</if>
+			<if test="phoneNumber != null">
+				phoneNumber,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="oid != null">
+				#{oid},
+			</if>
+			<if test="uid != null">
+				#{uid},
+			</if>
+			SYSDATE(),
+			<if test="total != null">
+				#{total},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+			<if test="address != null">
+				#{address},
+			</if>
+			<if test="uname != null">
+				#{uname},
+			</if>
+			<if test="phoneNumber != null">
+				#{phoneNumber},
+			</if>
+		</trim>
+	</insert>
 </mapper>

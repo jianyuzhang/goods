@@ -1,0 +1,37 @@
+<div class="row" ng-controller="listCtrl">
+	<div class="col-sm-2" ng-repeat="cd in allcds" style="height: 271px">
+		<div ng-click="showDetial(cd.cid)">
+			<span style="display: none">{{cd.cid}}</span>
+			<a href="javascript:void(0)" class="thumbnail">
+				<img alt="{{cd.cname}}" ng-src="{{cd.image_b}}" class="img-rounded" style="height: 160px; width: 160px">
+			</a>
+			<div class="caption">
+				<h5>
+					<a>{{cd.cname}}</a>
+				</h5>
+				<p>{{cd.singer}}</p>
+			</div>
+		</div>
+	</div>
+	<div style="clear: both">
+		<nav>
+			<div style="text-align: center; margin-left: auto; margin-right: auto;" ng-style="style">
+				<ul class="pagination pagination-lg">
+					<li ng-class="{disabled:page == 1}" ng-click="forward()">
+						<a href="javascript:void(0)" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li ng-class="{active:$index == page-1}" ng-repeat="p in pageList" ng-click="current(p)">
+						<a href="javascript:void(0)">{{p}}</a>
+					</li>
+					<li ng-class="{disabled:page == totalPage}" ng-click="back()">
+						<a href="javascript:void(0)" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>

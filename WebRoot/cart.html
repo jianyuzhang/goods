@@ -1,0 +1,186 @@
+<div class="row" ng-controller="cartCtrol">
+	<div class="panel panel-default" ng-show="isShow">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<h3>购物车</h3>
+		</div>
+		<table class="table">
+			<tr>
+				<td class="col-sm-2">
+					<input type="checkbox" class="checkAll" ng-model="allCheck" ng-change="allChange()">
+					全选
+				</td>
+				<td class="col-sm-4">商品</td>
+				<td class="col-sm-1">单价（元）</td>
+				<td class="col-sm-3" style="text-align: center">数量</td>
+				<td class="col-sm-1">小计（元）</td>
+				<td class="col-sm-1">操作</td>
+			</tr>
+			<tr ng-repeat="cart in carts">
+				<td class="col-sm-2">
+					<input type="checkbox" ng-model="cart.status" ng-change="change(cart)">
+				</td>
+				<td>
+					<a href="javascript:void(0)" ng-click="showSomeCD(cart)">
+						<img ng-alt="{{cart.cname}}" ng-src="{{cart.image_b}}" class="img-responsive" style="width: 60px; height: 60px; float: left">
+					</a>
+					<p class="navbar-text">{{cart.cname}}</p>
+					<p class="navbar-text">{{cart.singer}}</p>
+				</td>
+				<td>
+					<p class="navbar-text">{{cart.currPrice}}</p>
+				</td>
+				<td>
+					<div class="input-group col-sm-5">
+						<a href="javascript:void(0)" class="input-group-addon" ng-click="minus(cart)" ng-class="{disabled:num == 1}">
+							<i class="glyphicon glyphicon-minus"></i>
+						</a>
+						<input type="text" class="form-control " aria-label="Amount (to the nearest dollar)" value="{{cart.quantity}}" ng-model="cart.quantity" ng-change="update(cart)">
+						<a href="javascript:void(0)" class="input-group-addon" ng-click="plus(cart)" ng-class="{disabled:num == cart.sum}">
+							<i class="glyphicon glyphicon-plus"></i>
+						</a>
+					</div>
+				</td>
+				<td>
+					<p class="navbar-text">{{cart.currPrice*cart.quantity}}</p>
+				</td>
+				<td style="margin: 0 auto">
+					<p class="navbar-text">
+						<a href="javascript:void(0)" ng-click="deleteOne(cart)">
+							<i class="glyphicon glyphicon-trash"></i>
+						</a>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-sm-2">
+					<input class="checkAll" type="checkbox" ng-model="allCheck" ng-change="allChange()">
+					全选
+				</td>
+				<td class="col-sm-4">
+					<p class="navbar-text">
+						<a href="javascript:void(0)" ng-click="deleteSelected()">删除选中商品</a>
+					</p>
+				</td>
+				<td class="col-sm-1"></td>
+				<td class="col-sm-3"></td>
+				<td class="col-sm-1">
+					<p class="navbar-text">{{total}}</p>
+				</td>
+				<td class="col-sm-1">
+					<button  class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-class="{disabled:length == 0}">去结算</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">确认订单</h4>
+				</div>
+				<div class="modal-body row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+						<form name="addForm">
+							<div class="form-group">
+								<label for="">收件人</label>
+								<input type="text" class="form-control" ng-model="info.uname" disabled>
+							</div>
+							<div class="form-group">
+								<label for="">详细地址</label>
+								<input type="text" class="form-control" ng-model="info.address" disabled>
+							</div>
+							<div class="form-group">
+								<label for="">手机号码</label>
+								<input type="text" class="form-control" ng-model="info.phoneNumber" disabled>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-3"></div>
+
+					<table class="table" >
+						<tr ng-repeat="cd in goods">
+							<td class="col-sm-4">
+								<img ng-alt=" {{cd.cname}}" ng-src="{{cd.image_b}}" class="img-responsive" style="width: 60px; height: 60px; float: left" src="">
+							</td>
+							<td class="col-sm-6">
+								<p class="navbar-text ng-binding">{{cd.cname}}</p>
+							</td>
+							<td class="col-sm-1">
+								<p class="navbar-text ng-binding">{{cd.quantity}}</p>
+							</td>
+							<td class="col-sm-1">
+								<p class="navbar-text ng-binding">{{cd.quantity*cd.currPrice  | currency : '￥'}}</p>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger"  data-dismiss="modal" aria-label="Close" ng-click="managerInfos()">添加收件信息</button>
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
+						<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">总计 ：{{total  | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="pay()" ng-class="{disabled:info==undefined}">去付款</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">支付</h4>
+				</div>
+				<div class="modal-body row">
+                  <div class="col-sm-3">
+					</div>
+					<div class="col-sm-6">
+					<i class="glyphicon glyphicon-user" style="font-size:30px"></i>
+					<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">余额：{{money | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3"></div>
+				</div>
+				<div class="modal-footer">
+					<div class="col-sm-3">
+					</div>
+					<div class="col-sm-6">
+					<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">商品总价：{{total | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="payMoney()">付款</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cart Empty col-sm-11" ng-show="!isShow">
+		<div class="jumbotron col-sm-12">
+			<div class="col-sm-3" style="float: left">
+				<h1>
+					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="float: right"></span>
+				</h1>
+			</div>
+			<div class="col-sm-8">
+				<h1>购物车都瘪了</h1>
+				<p>既然来了怎么可以白来一趟，再去看看有没有心仪的~</p>
+				<p>
+					<a class="btn btn-primary btn-lg" href="main.html" role="button">去看看</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

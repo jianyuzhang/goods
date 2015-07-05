@@ -1,10 +1,126 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-User
-</body>
-</html>
+<div class="row" ng-controller="infoCtrol">
+	<div class="panel panel-default" ng-show="showWitch == 0">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<h3>收货地址</h3>
+		</div>
+		<table class="table">
+			<tr>
+				<td class="col-sm-2">
+					默认收货地址
+				</td>
+				<td class="col-sm-4">收件人</td>
+				<td class="col-sm-1">地址</td>
+				<td class="col-sm-3" >手机号码</td>
+				<td class="col-sm-1" style="text-align: center">操作</td>
+			</tr>
+			<tr ng-repeat="info in infos">
+				<td class="col-sm-2">
+					<input type="checkbox" ng-model="info.flag"ng-change="change(info)">
+				</td>
+				<td>
+					<p class="navbar-text">{{info.uname}}</p>
+				</td>
+				<td>
+					<p class="navbar-text">{{info.address}}</p>
+				</td>
+				<td>
+					<p class="navbar-text">{{info.phoneNumber}}</p>
+				</td>
+				<td>
+					<p class="navbar-text">
+						<a href="javascript:void(0)" ng-click="editInfo(info)">
+							<i class="glyphicon glyphicon-edit" style="font-size:18px"></i>
+						</a>
+						<a href="javascript:void(0)" ng-click="deleteInfo(info)">
+							<i class="glyphicon glyphicon-trash" style="font-size:18px"></i>
+						</a>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-sm-2">
+					默认收货地址
+				</td>
+				<td class="col-sm-4">
+					<p class="navbar-text">
+					</p>
+				</td>
+				<td class="col-sm-1"></td>
+				<td class="col-sm-3"></td>
+				<td class="col-sm-1">
+					<button class="btn btn-danger" ng-click="addAddress()">添加地址</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+<div ng-show="showWitch == 1">
+<div class="panel-heading row">
+<div class="col-sm-5">
+<a href="javascript:void(0)" ng-click="goBack()"><i class="glyphicon glyphicon-arrow-left" style="font-size:40px"></i></a>
+</div>
+<div class="col-sm-4"><h1>添加收货地址</h1></div>
+<div class="col-sm-3"></div>
+		</div>
+		<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-5">
+		<form name="addForm">
+		<div class="form-group">
+    <label for="">收件人</label>
+    <input type="text"  class="form-control" id="" placeholder="Enter Name" ng-model="info.uname"  required>
+  </div>
+		<div class="form-group">
+    <label for="">详细地址</label>
+    <input type="text"  class="form-control" id="" placeholder="Enter Address" ng-model="info.address"  required>
+  </div>
+  <div class="form-group">
+    <label for="">手机号码</label>
+    <input type="text"  class="form-control" id="" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber" ng-blur="checkPhoneNumber($event)" required>
+  </div>
+  <button type="reset" class="btn btn-primary btn-lg" id="infoReset" >重置</button>
+  <button type="submit" class="btn btn-info btn-lg" ng-click="addSubmit()">添加</button>
+		</form>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+	</div>
+	<div ng-show="showWitch == 2">
+	<div class="panel-heading">
+			<div class="col-sm-5">
+<a href="javascript:void(0)" ng-click="goBack()"><i class="glyphicon glyphicon-arrow-left" style="font-size:40px"></i></a>
+</div>
+<div class="col-sm-4"><h1>修改收货地址</h1></div>
+<div class="col-sm-3"></div>
+		</div>
+		<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-5">
+		<form name="editForm">
+		<div class="form-group col-sm-6">
+    <label for="">收件人</label>
+    <input type="text"  class="form-control" id="" placeholder="Enter Name" ng-model="info.uname"  required>
+  </div>
+		<div class="form-group col-sm-6">
+    <label for="">详细地址</label>
+    <input type="text"  class="form-control" id="" placeholder="Enter Address" ng-model="info.address" required>
+  </div>
+  <div class="form-group col-sm-6">
+    <label for="">手机号码</label>
+    <input type="text"  class="form-control" id="phone" placeholder="Enter PhoneNumber" ng-model="info.phoneNumber" ng-blur="checkPhoneNumber($event)" required>
+  </div>
+  <div class="form-group col-sm-6">
+    <label for="">是否默认收货地址</label>
+    <input type="text" class="form-control" id="disabledTextInput" ng-model="info.status" disabled>
+  </div>
+  <div class="form-group col-sm-6">
+  </div>
+  <div class="form-group col-sm-6">
+  <button type="submit" class="btn btn-info btn-lg" ng-click="editSubmit(info)" style="float :right">修改</button>
+  </div>
+		</form>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+	</div>
+</div>

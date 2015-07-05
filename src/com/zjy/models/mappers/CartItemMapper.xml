@@ -1,9 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zjy.models.CartItem">
-    <resultMap type="CartItem" id="CartMap">
-        <id property="cartItemId" column="cartItemId"/>
-        <result property="quantity" column="quantity"/>
-    </resultMap>
-   
+	<resultMap type="CartItem" id="CartMap">
+		<id property="cartItemId" column="cartItemId" />
+		<result property="quantity" column="quantity" />
+		<result property="cid" column="cid" />
+		<result property="uid" column="uid" />
+		<result property="singer" column="singer"/>
+        <result property="cname" column="cname"/>
+        <result property="price" column="price"/>
+        <result property="currPrice" column="currPrice"/>
+        <result property="image_b" column="image_b"/>
+	</resultMap>
+	<select id="selectAllCarts" resultMap="CartMap">
+		select * from t_cartitem t
+		<where>
+			<if test="uid != null">
+				AND t.uid = #{uid}
+			</if>
+		</where>
+	</select>
+	<select id="selectSomeCartQunaty" resultMap="CartMap">
+		select * from t_cartitem t
+		<where>
+			<if test="uid != null">
+				AND t.uid = #{uid}
+			</if>
+			<if test="cid != null">
+				AND t.cid = #{cid}
+			</if>
+		</where>
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from t_cartitem t
+		<where>
+			<if test="cid != null">
+				AND t.cid = #{cid}
+			</if>
+			<if test="uid != null">
+				AND t.uid = #{uid}
+			</if>
+		</where>
+	</select>
+	<update id="update">
+		update t_cartitem
+		<set>
+			<if test="quantity != null">
+				quantity=#{quantity},
+			</if>
+		</set>
+		<where>
+			<if test="cid != null">
+				AND cid = #{cid}
+			</if>
+			<if test="uid != null">
+				AND uid = #{uid}
+			</if>
+		</where>
+	</update>
+
+	<insert id="insert">
+		insert into t_cartitem
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cartItemId != null">
+				cartItemId,
+			</if>
+			<if test="quantity != null">
+				quantity,
+			</if>
+			<if test="cid != null">
+				cid,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="singer != null">
+			   singer,
+			</if>
+			<if test="cname != null">
+			  cname,
+			</if>
+			<if test="price != null">
+			 price,
+			</if>
+			<if test="currPrice != null">
+			 currPrice,
+			</if>
+			<if test="image_b != null">
+			image_b,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cartItemId != null">
+				#{cartItemId},
+			</if>
+			<if test="quantity != null">
+				#{quantity},
+			</if>
+			<if test="cid != null">
+				#{cid},
+			</if>
+			<if test="uid != null">
+				#{uid},
+			</if>
+			<if test="singer != null">
+			  #{singer},
+			</if>
+			<if test="cname != null">
+			  #{cname},
+			</if>
+			<if test="price != null">
+			#{price},
+			</if>
+			<if test="currPrice != null">
+			 #{currPrice},
+			</if>
+			<if test="image_b != null">
+			#{image_b},
+			</if>
+		</trim>
+	</insert>
+	<delete id="deleteById">
+		delete  from t_cartitem
+		where cartItemId = #{cartItemId}
+	</delete>
+	<delete id="deleteByIds">
+		delete  from t_cartitem
+		where cartItemId in
+		<foreach collection="ids" item="item" index="index" separator=",">
+			#{item}</foreach>
+	</delete>
 </mapper>

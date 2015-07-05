@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html ng-app="Adminlogin" ng-controller="adminCtrl">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title ng-bind="title"></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.min.css" rel="stylesheet">
+<link href="assets/css/retina.min.css" rel="stylesheet">
+<!--提示信息插件-->
+ <link href="tips/css/example.css" type="text/css" rel="stylesheet">
+<link href="tips/css/sweet-alert.css" type="text/css" rel="stylesheet">
+<script src="tips/js/sweet-alert.min.js"> </script>
+<!--[if lt IE 9]>
+	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<link href="assets/css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+<!--[if IE 9]>
+		<link id="ie9style" href="assets/css/ie9.css" rel="stylesheet">
+	<![endif]-->
+
+<style type="text/css">
+body {
+	background: url("assets/img/bg-login.jpg") !important;
+}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="row">
+				<div class="login-box">
+					<hr>
+					<div class="icons"></div>
+					<h2>Login For Admin</h2>
+					<form class="form-horizontal" action="admin.html" method="post">
+						<fieldset>
+							<div class="input-wrap">
+								<div class="input-prepend input-group" title="Username">
+									<span class="input-group-addon"> <i class="fa fa-user"></i>
+									</span> <input class="form-control" id="username" type="text" placeholder="用户名" ng-model="username" />
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-prepend input-group" title="Password">
+									<span class="input-group-addon"> <i class="fa fa-lock"></i>
+									</span> <input class="form-control" id="password" type="password" placeholder="密码" ng-model="password" />
+								</div>
+							</div>
+							<label for="remember" class="remember"> <input type="checkbox" id="remember"> Remember me
+							</label>
+							<div class="button-login">
+								<button type="button" class="btn btn-primary" ng-click="submit()" id="submitBut">Login</button>
+							</div>
+							<div class="clearfix"></div>
+					</form>
+					<hr>
+					<div class="icons"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">信息</h4>
+					</div>
+					<div class="modal-body">
+						<p ng-bind="errorMsg"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- start: JavaScript-->
+	<!--[if !IE]>-->
+
+	<script src="assets/js/jquery-2.1.0.min.js"></script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script src="assets/js/jquery-1.11.0.min.js"></script>
+	
+	<![endif]-->
+
+	<!--[if !IE]>-->
+
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='assets/js/jquery-2.1.0.min.js'>" + "<"+"/script>");
+	</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script type="text/javascript">
+	 	window.jQuery || document.write("<script src='assets/js/jquery-1.11.0.min.js'>"+"<"+"/script>");
+		</script>
+		
+	<![endif]-->
+	<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+
+	<!-- theme scripts -->
+	<script src="assets/js/custom.min.js"></script>
+	<script src="assets/js/core.min.js"></script>
+	<script src="assets/js/angular.min.js"></script>
+	<script src="assets/js/pages/angularConfig.js"></script>
+	<!-- end: JavaScript-->
+
+	<script type="text/javascript">
+		var app = angular.module('Adminlogin', []);
+		angularConfig(app);
+		
+		app.controller('adminCtrl', function($scope, $http) {
+			$scope.title = '登录页';
+
+			$scope.submit = function() {
+				if (!$scope.username || !$scope.password) {
+					swal("用户名或密码不能为空", "", "error");
+				} else {
+					$http.post('operate/admin/login.do', {
+						loginname : $scope.username,
+						loginpass : $scope.password
+					}).success(function(result) {
+						if(result == true || result == 'true'){
+						swal("Success", "欢迎来到后台管理", "success");
+						setTimeout(function() {
+							window.location.href = 'root.html';
+						}, 1000);
+						}else{
+							swal("用户名或密码错误", "", "error");
+						}
+					});
+				}
+			};
+		});
+		
+		
+	</script>
+</body>
+</html>

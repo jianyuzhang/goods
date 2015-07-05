@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html ng-app="root" lang="en">
+<head>
+
+<!-- start: Meta -->
+<meta charset="utf-8">
+<title>音像派</title>
+<meta name="description" content="ACME Dashboard Bootstrap Admin Template.">
+<meta name="author" content="Łukasz Holeczek">
+<meta name="keyword" content="ACME, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- end: Mobile Specific -->
+
+<!-- start: CSS -->
+<link href="/goods/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/goods/assets/css/style.min.css" rel="stylesheet">
+<link href="/goods/assets/css/retina.min.css" rel="stylesheet">
+<style type="text/css">
+</style>
+<!-- end: CSS -->
+
+<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<link href="assets/css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+<!--[if IE 9]>
+		<link id="ie9style" href="assets/css/ie9.css" rel="stylesheet">
+	<![endif]-->
+
+<!-- start: Favicon and Touch Icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/goods/assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/goods/assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/goods/assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/goods/assets/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="/goods/assets/ico/favicon.png">
+<link href="/goods/tips/css/sweet-alert.css" type="text/css" rel="stylesheet">
+<script src="/goods/tips/js/sweet-alert.min.js">
+	
+</script>
+<!-- end: Favicon and Touch Icons -->
+
+
+
+
+</head>
+
+<body ng-controller="rootCtrol">
+	<!-- start: Header -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="javascript:void(0)"> </a>
+
+				<!-- start: Header Menu -->
+				<div class="nav-no-collapse header-nav">
+					<ul class="nav pull-right">
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- start: Header -->
+
+	<div class="container">
+		<div class="row">
+			<!-- start: Main Menu -->
+			<div id="sidebar-left" class="col-sm-1">
+				<div class="nav-collapse sidebar-nav collapse navbar-collapse bs-navbar-collapse">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li>
+							<a href="javascript:void(0)" class="submenu" ng-click="showGoods()">
+								<i class="fa fa-edit"></i>
+								<span class="hidden-sm">商品管理</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="submenu" ng-click="showOrder()">
+								<i class="fa fa-edit"></i>
+								<span class="hidden-sm">订单管理</span>
+							</a>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+			<a id="main-menu-toggle" class="hidden-xs open">
+				<i class="fa fa-bars"></i>
+			</a>
+			<!-- end: Main Menu -->
+
+
+			<!-- start: Content -->
+			<div id="content" class="col-sm-11">
+				<div class="jumbotron row">
+					<h1>欢迎光临</h1>
+					<p>欢迎进入商家管理系统页面</p>
+				</div>
+			</div>
+			<!-- end: Content -->
+		</div>
+	</div>
+	<!--/container-->
+
+
+
+
+	<div class="clearfix"></div>
+
+	<footer>
+
+		<div class="row">
+
+			<div class="col-sm-5">
+				&copy; 2015 creativeLabs.
+				<a href="http://bootstrapmaster.com">Admin Templates</a>
+				by BootstrapMaster
+			</div>
+			<!--/.col-->
+
+			<div class="col-sm-7 text-right">
+				Powered by:
+				<a href="http://localhost:8080/goods/" alt="音像派">音像派</a>
+				| Based on Bootstrap 3.1.1 | Built with Brix.io
+			</div>
+			<!--/.col-->
+		</div>
+		<!--/.row-->
+
+	</footer>
+
+	<!-- start: JavaScript-->
+	<!--[if !IE]>-->
+
+	<script src="/goods/assets/js/jquery-2.1.0.min.js"></script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script src="assets/js/jquery-1.11.0.min.js"></script>
+	
+	<![endif]-->
+
+	<!--[if !IE]>-->
+
+	<script type="text/javascript">
+		window.jQuery
+				|| document
+						.write("<script src='/goods/assets/js/jquery-2.1.0.min.js'>"
+								+ "<"+"/script>");
+	</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script type="text/javascript">
+	 	window.jQuery || document.write("<script src='assets/js/jquery-1.11.0.min.js'>"+"<"+"/script>");
+		</script>
+		
+	<![endif]-->
+	<script src="/goods/assets/js/jquery-migrate-1.2.1.min.js"></script>
+
+	<!-- page scripts -->
+	<script src="/goods/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="/goods/assets/js/jquery.sparkline.min.js"></script>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="assets/js/excanvas.min.js"></script><![endif]-->
+	<script src="/goods/assets/js/jquery.flot.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.pie.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.stack.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.resize.min.js"></script>
+	<script src="/goods/assets/js/jquery.flot.time.min.js"></script>
+	<script src="/goods/assets/js/retina.min.js"></script>
+	<script src="/goods/assets/js/raphael.min.js"></script>
+	<script src="/goods/assets/js/justgage.1.0.1.min.js"></script>
+	<script src="/goods/assets/js/bootstrap.min.js"></script>
+	<!-- theme scripts -->
+	<script src="/goods/assets/js/custom.min.js"></script>
+	<script src="/goods/assets/js/core.min.js"></script>
+	<script src="/goods/assets/js/angular.min.js"></script>
+	<script src="/goods/assets/js/angular-file-upload.min.js"></script> 
+	<script src="/goods/assets/js/pages/angularConfig.js"></script>
+	<!-- inline scripts related to this page -->
+	<script src="/goods/assets/js/pages/index.js"></script>
+	<script src="/goods/admin/root.js"></script>
+	<script src="/goods/admin/allOrder.js"></script>
+	<script src="/goods/admin/goods.js"></script>
+	<script src="/goods/admin/js/plupload.full.min.js"></script>
+	<!-- end: JavaScript-->
+</body>
+</html>

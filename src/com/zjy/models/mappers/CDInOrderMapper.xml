@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjy.models.CDInOrder">
+    <resultMap type="CDInOrder" id="CDInOrderMap">
+        <id property="coid" column="coid"/>
+        <result property="singer" column="singer"/>
+        <result property="cname" column="cname"/>
+        <result property="price" column="price"/>
+        <result property="currPrice" column="currPrice"/>
+        <result property="image_b" column="image_b"/>
+        <result property="sum" column="sum"/>
+        <result property="oid" column="oid"/>
+    </resultMap>
+    <select id="selectCDInSomeOrder" resultMap="CDInOrderMap">
+		select * from t_cdinorder t
+		<where>
+			<if test="oid != null">
+				AND t.oid= #{oid}
+			</if>
+		</where>
+	</select>
+	<insert id="insert">
+		insert into t_cdinorder
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="coid != null">
+				coid,
+			</if>
+			<if test="singer != null">
+				singer,
+			</if>
+			<if test="cname != null">
+				cname,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="currPrice != null">
+				currPrice,
+			</if>
+			<if test="image_b != null">
+				image_b,
+			</if>
+			<if test="sum != null">
+				sum,
+			</if>
+			<if test="oid != null">
+				oid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="coid != null">
+				#{coid},
+			</if>
+			<if test="singer != null">
+				#{singer},
+			</if>
+			<if test="cname != null">
+				#{cname},
+			</if>
+			<if test="price != null">
+				#{price},
+			</if>
+			<if test="currPrice != null">
+				#{currPrice},
+			</if>
+			<if test="image_b != null">
+				#{image_b},
+			</if>
+			<if test="sum != null">
+				#{sum},
+			</if>
+			<if test="oid != null">
+				#{oid},
+			</if>
+		</trim>
+	</insert>
+</mapper>

@@ -1,0 +1,138 @@
+<div class="row" ng-controller="orderCtrol">
+	<div class="col-sm-10">
+		<h1>订单管理</h1>
+	</div>
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+		<div class="btn-group" data-toggle="buttons">
+			<label id="status" class="btn btn-primary active" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value=" " ng-model="status" checked>
+				全部订单
+			</label>
+			<label id="status0" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value="0" ng-model="status">
+				未付款
+			</label>
+			<label id="status1" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input type="radio" name="status" value="1" ng-model="status">
+				未发货
+			</label>
+			<label id="status2" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value="2" ng-model="status">
+				未收货
+			</label>
+			<label id="status3" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value="3" ng-model="status">
+				已收货
+			</label>
+			<label id="status4" class="btn btn-primary" ng-click="changeStatus($event)">
+				<input  type="radio" name="status" value="4" ng-model="status">
+				已取消
+			</label>
+		</div>
+	</div>
+	<div class="col-sm-3"></div>
+	<div class="col-sm-11">
+		<table class="table">
+			<tr>
+				<td class="col-sm-2">日期</td>
+				<td class="col-sm-1">总价</td>
+				<td class="col-sm-1">状态</td>
+				<td class="col-sm-3">收件信息</td>
+				<td class="col-sm-1">收件人</td>
+				<td class="col-sm-1">手机号</td>
+				<td class="col-sm-2">商品列表</td>
+				<td class="col-sm-1">操作</td>
+			</tr>
+			<tr ng-repeat="order in orders">
+				<td>{{order.ordertime}}</td>
+				<td>{{order.total | currency : '￥'}}</td>
+				<td>{{order.status | checkStatus}}</td>
+				<td>{{order.address}}</td>
+				<td>{{order.uname}}</td>
+				<td>{{order.phoneNumber}}</td>
+				<td>
+					<a href="javascript:void(0)" ng-click="showGoodList(order)"> 商品列表 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0)" ng-click="cancelOrder(order)" ng-show="order.status==0"> 取消订单 </a>
+					<a href="javascript:void(0)" ng-click="pay(order)" ng-show="order.status==0">付款 </a>
+					<a href="javascript:void(0)" ng-click="checkWuliu(order)" ng-show="order.status==2">查询单号</a>
+					<a href="javascript:void(0)" ng-click="receiveGoods(order)" ng-show="order.status==2">确认收货</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkGoodsInOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">商品列表</h4>
+				</div>
+				<div class="modal-body row">
+					<table class="table">
+					    <tr>
+					     <td class="col-sm-3">名称</td>
+					     <td class="col-sm-2">歌手</td>
+					     <td class="col-sm-2">数目</td>
+					     <td class="col-sm-2">售价</td>
+					     <td class="col-sm-2">小计</td>
+					    </tr>
+						<tr ng-repeat="cd in cdsInOrder">
+							<td>
+								<p class="navbar-text ng-binding">{{cd.cname}}</p>
+							</td>
+							<td>
+								<p class="navbar-text ng-binding">{{cd.singer}}</p>
+							</td>
+							<td>
+								<p class="navbar-text ng-binding">{{cd.sum}}</p>
+							</td>
+							<td>
+								<p class="navbar-text ng-binding">{{cd.currPrice | currency : '￥'}}</p>
+							</td>
+							<td>
+								<p class="navbar-text ng-binding">{{cd.sum*cd.currPrice | currency : '￥'}}</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="checkOrder">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">支付</h4>
+				</div>
+				<div class="modal-body row">
+                  <div class="col-sm-3">
+					</div>
+					<div class="col-sm-6">
+					<i class="glyphicon glyphicon-user" style="font-size:30px"></i>
+					<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">余额：{{money | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3"></div>
+				</div>
+				<div class="modal-footer">
+					<div class="col-sm-3">
+					</div>
+					<div class="col-sm-6">
+					<p class="navbar-text ng-binding" style="float: right; font-size: 20px; margin: 0px">商品总价：{{currTotal | currency : '￥'}}</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-danger" ng-click="payMoney(order)">付款</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
